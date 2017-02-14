@@ -1,0 +1,86 @@
+<tal:block metal:define-macro="vertical"
+    tal:on-error="structure python:here.dmd.error_handler(error)">
+<tal:block tal:define="
+    colors python:('red','orange','yellow','blue','grey');
+    summaries python:here.getEventSummary();
+    totals python:[x[2] for x in summaries];
+    ackstatus python:[x[1] for x in summaries];
+    ">
+
+    <div class="vertical-rainbow"
+    onclick="location.href=YAHOO.zenoss.templateFreeURL+'/viewEvents'">
+        <tal:block tal:repeat="evnum python:totals">
+        <div tal:define="idx python:repeat['evnum'].index;
+                         color python:colors[idx];
+                         acked python:ackstatus[idx];
+                         total python:totals[idx];
+                         cssclass python:'no-events' if not total else 'acked-events' if acked==total else '';"
+            tal:attributes="class string:evpill-${color} ${cssclass}; title string:${acked} out of ${total} acknowledged">
+            <span tal:content="evnum">0</span>
+        </div>
+        </tal:block>
+    </div>
+</tal:block>
+</tal:block>
+
+<table width='100%' metal:define-macro="eventrainbow"
+    tal:on-error="structure python:here.dmd.error_handler(error)"
+    tal:define="
+        default  python:1;
+        severity severity | default">
+    <tr>
+        <td align=center width=16%
+        tal:repeat="evt python:here.getEventSummary(severity=severity)"
+        tal:attributes="class python:test(evt[1]-evt[2]>=0,
+                        evt[0]+' empty', evt[0])">
+            <span tal:replace="python:'%d/%d' % (evt[1],evt[2])"/>
+        </td>
+  </tr>
+</table>
+
+<tal:block metal:define-macro="horizontal">
+<tal:block tal:define="
+    zem python:here.ZenEventManager;
+    colors python:('critical','error','warning','info','debug');
+    summaries python:here.getEventSeveritiesCount();
+    totals python:[summaries.get(x, {}) for x in colors]">
+    <table class="eventrainbow eventrainbow_cols_5"
+        tal:attributes="
+            onclick string:location.href='${here/absolute_url_path}/viewEvents';;
+        ">
+        <tr>
+            <tal:block tal:repeat="counts python:totals">
+            <td tal:define="
+                total python:counts.get('count', 0);
+                acked python:counts.get('acknowledged_count', 0);
+                cssclass python:'no-events' if not total else 'acked-events' if total==acked else '';
+                idx repeat/counts/index;
+                severity python:colors[idx];
+                "
+                tal:attributes="class string:severity-icon-small ${severity} ${cssclass}; title string:${acked} out of ${total} acknowledged"
+                tal:content="total">
+            </td>
+            </tal:block>
+        </tr>
+    </table>
+    <!--
+        <div class="horizontal-rainbow"
+    onclick="top.location.href=YAHOO.zenoss.templateFreeURL+'/viewEvents'">
+        <tal:block tal:repeat="evnum python:totals[:-1]">
+        <div tal:define="color python:colors[repeat['evnum'].index]"
+            tal:attributes="class string:evpill-${color}"
+            style="float:left">
+            <span tal:content="evnum">0</span>
+            <div tal:condition="python:ackstatus[repeat['evnum'].index]<=0">
+            </div>
+        </div>
+        </tal:block>
+        <div class="evpill-green" style="float:left">
+            <div tal:condition="python:filter(lambda x:x,
+                                              map(int, totals[:-1]))">
+            </div>
+        </div>
+    </div>
+    -->
+</tal:block>
+</tal:block>

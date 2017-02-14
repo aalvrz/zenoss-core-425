@@ -1,0 +1,27 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+<script>
+Ext.addBehaviors({
+    'tbody * a@click' : function(a) {
+        if (/\/zport\/dmd\/ZenUsers\//.test(a.target.href)) {
+            window.parent.location.href = a.target.href;
+        }
+    }
+});
+</script>
+
+<span metal:use-macro="here/userCommandsMacros/macros/userCommandsTableBackCompat" />
+
+<span metal:use-macro="here/templates/macros/contentSeparator"/>
+
+<span metal:use-macro="here/maintenanceWindowsMacro/macros/maintenanceWindows"/>
+
+<span metal:use-macro="here/templates/macros/contentSeparator"/>
+
+<tal:block tal:condition="here/isManager">
+<span metal:use-macro="here/deviceManagement/macros/adminRolesTable"/>
+</tal:block>
+
+</tal:block>
+</tal:block>

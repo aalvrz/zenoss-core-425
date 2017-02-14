@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: zenoss.protocols
+Version: 0.2
+Summary: Protobufs and AMQP client for integrating with Zenoss.
+Home-page: http://www.zenoss.com/
+Author: Zenoss
+Author-email: support@zenoss.com
+License: GPLv2 or later
+Description: UNKNOWN
+Keywords: zenoss protocols
+Platform: UNKNOWN

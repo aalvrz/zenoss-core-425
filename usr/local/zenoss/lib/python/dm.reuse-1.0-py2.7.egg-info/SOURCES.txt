@@ -1,0 +1,14 @@
+setup.cfg
+setup.py
+dm/__init__.py
+dm.reuse.egg-info/PKG-INFO
+dm.reuse.egg-info/SOURCES.txt
+dm.reuse.egg-info/dependency_links.txt
+dm.reuse.egg-info/namespace_packages.txt
+dm.reuse.egg-info/top_level.txt
+dm.reuse.egg-info/zip-safe
+dm/reuse/LICENSE.txt
+dm/reuse/README.txt
+dm/reuse/VERSION.txt
+dm/reuse/__init__.py
+dm/reuse/tests.py

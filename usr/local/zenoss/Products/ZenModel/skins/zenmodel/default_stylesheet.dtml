@@ -1,0 +1,420 @@
+<dtml-comment>
+    Dont think we need this any more...
+    <dtml-unless do_inline_css>
+    <dtml-call "RESPONSE.setHeader('Content-Type','text/css')">
+    </dtml-unless>
+</dtml-comment>
+
+<dtml-with stylesheet_properties>
+
+body {
+    background-color: &dtml-base_bg_color;;
+    color: &dtml-base_font_color;;
+    font-family:  &dtml-base_font_family;;
+    font-size:  &dtml-base_font_size;;
+    margin: 0px;
+}
+
+#frame {
+    margin: 0px;
+    padding: 3px;
+    position: relative;
+    background:orange;
+    min-height: 400px;
+}
+
+#topPane{
+	background: &dtml-toppane_bg_color;;
+	color: &dtml-toppane_font_color;;
+	height: &dtml-toppane_height;;
+	text-align: right;
+	clear: both;	
+	padding: 0px 20px 0px 0px;
+    margin: 0;
+}
+#topPane p{
+	color: &dtml-toppane_font_color;;
+    font-size: &dtml-toppane_font_size;;
+}
+#topPane a{
+	color: &dtml-toppane_font_color;;
+}
+#leftPane {
+	left: 0;
+    position: absolute;
+	width: &dtml-leftpane_width;;
+    padding: &dtml-leftpane_top_padding; 5px 0px 10px;
+	min-height: 350px;
+    background: purple;
+}
+#leftPane p {
+    background: &dtml-base_bg_color;;
+    font-size: &dtml-leftpane_menu_font_size;;
+    padding: 0px 0px 0px 3px;
+    margin: 0px 0px 0px 0px;
+    font-weight: bold;
+    border-bottom: 1px solid &dtml-leftpane_menu_font_color;;
+    width: 90%;
+    color: &dtml-leftpane_menu_font_color;;
+}
+
+#leftPane ul {
+    list-style: none; 
+    margin: 0px 0px 10px 0px; 
+    padding: 0px; 
+    font-size: &dtml-leftpane_link_font_size;;
+}
+
+#leftPane ul li {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+#leftPane ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 2px 0px 2px 8px;
+    margin: 0px;
+    overflow: hidden;
+}
+	
+#leftPane ul li a:hover {
+    color: &dtml-leftpane_hover_font_color;;
+    background: &dtml-leftpane_hover_bg_color;;
+    overflow: hidden;
+    /*background-image: url(arrows.gif);*/
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+#leftPane ul li a.selected {
+    color: &dtml-leftpane_selected_font_color;;
+    background: &dtml-leftpane_selected_bg_color;;
+    text-decoration: none;
+    display: block;
+    padding: 4px 10px 3px 10px;
+    margin: 0px;
+    background-position: right;
+    background-repeat: no-repeat;
+    /*font-weight: bold;*/
+}
+
+#leftPane ul li a.selected:hover {
+    color: &dtml-leftpane_hover_font_color;;
+    background: &dtml-leftpane_hover_bg_color;;
+    overflow: hidden;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+#rightPane
+{
+    position: absolute;
+    left: &dtml-rightpane_left_padding;;
+    padding: &dtml-rightpane_border_width;;
+	/*
+    margin: 0px 0px 0px &dtml-rightpane_left_padding;;
+	padding-left: &dtml-rightpane_border_width;;
+	padding-right: &dtml-rightpane_border_width;;
+	padding-bottom: &dtml-rightpane_border_width;;
+    background: &dtml-rightpane_border_color;;
+    */
+    background:red;
+}
+#breadCrumbPane
+{
+	color: &dtml-crumb_font_color;;
+	font-size: &dtml-crumb_font_size;;
+	padding-top: &dtml-crumb_padding;;
+	padding-bottom: &dtml-crumb_padding;;
+	margin: 0px;
+	font-weight: bold;
+}
+
+#breadCrumbPane a
+{
+	color: inherit;
+	font-size: inherit;
+	background: inherit;
+	font-weight: inherit;
+}
+
+#tabsPane
+{
+}
+
+#contentPane
+{
+	padding: &dtml-contentpane_padding;;
+	background: &dtml-contentpane_bg_color;;
+    min-height: 350px;
+    background:green;
+}
+a:link {
+    color: &dtml-link_color;;
+}
+
+a:visited {
+    color: &dtml-vlink_color;;
+}
+
+a:active {
+    color: &dtml-alink_color;
+}
+
+a:hover {
+    color:  &dtml-hover_color;;
+}
+
+form {
+    margin-bottom:0;
+    border:0;
+    margin:0;
+}
+
+table.tabtable {
+    font-family: &dtml-base_font_family;;
+    font-weight: normal; 
+    width: 92%;
+	height: 25px;
+	margin: 0px;
+	padding: 0px;
+}
+
+table.tabtable td{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	vertical-align: top;
+}
+
+table.zentable {
+    font-family: &dtml-base_font_family;;
+    font-size: &dtml-base_font_size;; 
+    width: 100%;
+    font-weight: normal; 
+	margin: 0px;
+	padding: 0px;
+    background-color: #FFFFFF;
+	border-top: 1px solid &dtml-zentable_border_top;;
+	border-left: 1px solid &dtml-zentable_border_top;;
+	border-bottom: 1px solid &dtml-zentable_border_top;;
+	border-right: 1px solid &dtml-zentable_border_top;;
+}
+.navcontrol {
+    margin-bottom:0;
+    border:0;
+    margin:0;
+    padding:0;
+    font-size: 8pt;
+}
+
+.errortitle {
+    font-size: 14pt;
+    font-weight: bold; 
+    color: #ff0000;
+    background-color: #CCCCCC;
+}
+
+a.tabletitle {  
+    font-size: &dtml-tabletitle_font_size;; 
+    color: &dtml-tabletitle_font_color;;
+    font-weight: bold; 
+    background-color: &dtml-tabletitle_bg_color;;
+
+	/*background-image: url(tab_corner.gif);*/
+	background-position: right top;
+	background-repeat: no-repeat;
+	display: block;
+	border-bottom: 1px solid black;
+	border-right: 2px solid &dtml-rightpane_border_color;;
+	text-decoration: none;
+	padding: 2px 0px 0px 0px;
+	margin: 0px;
+    height:23px;
+}
+a.tabletitle:link {  
+    color: &dtml-tabletitle_font_color;;
+}
+a.tabletitle:visited {  
+    color: &dtml-tabletitle_font_color;;
+}
+a.tabletitle:active {  
+    color: &dtml-alink_color;;
+}
+a.tabletitle:hover {  
+    color: &dtml-hover_color;;
+    color: &dtml-hover_color_dark;;
+}
+
+th.tabletitle {
+    font-size: &dtml-tabletitle_font_size;; 
+    color: &dtml-tabletitle_font_color;;
+    background-color: &dtml-tabletitle_bg_color;;
+    background-image: url(subtitle_bkgrd.gif);
+    background-repeat: repeat-X;
+    text-align: left;
+}
+.tabletitleselected { 
+    color: &dtml-tabletitleselected_font_color;;
+    background-color: &dtml-tabletitleselected_bg_color;;
+    font-size: &dtml-tabletitle_font_size;; 
+    font-weight: bold; 
+	background-position: right top;
+	background-repeat: no-repeat;
+	display: block;
+	border-right: 2px solid &dtml-rightpane_border_color;;
+	padding: 2px 0px 0px 0px;
+    height:25px;
+}
+
+a.tabletitleselected:link {  
+    color: &dtml-tabletitleselected_font_color;;
+    text-decoration: none;
+}
+a.tabletitleselected:visited {  
+    color: &dtml-tabletitleselected_font_color;;
+    text-decoration: none;
+}
+a.tabletitleselected:active {  
+    color: &dtml-tabletitleselected_font_color;;
+    text-decoration: none;
+}
+a.tabletitleselected:hover {  
+    color: &dtml-hover_color;;
+}
+
+.tableheader { 
+    font-family: &dtml-base_font_family;;
+    font-size: &dtml-tableheader_font_size;;
+    color: &dtml-tableheader_font_color;;
+    background-color: &dtml-tableheader_bg_color;;
+    font-weight: normal; 
+    text-align: left;
+}
+.tableheaderselected { 
+    font-family: &dtml-base_font_family;;
+    font-size: &dtml-tableheader_font_size;;
+    color: &dtml-tableheaderselected_font_color;;
+    background-color: &dtml-tableheaderselected_bg_color;;
+    font-weight: normal; 
+    text-align: left;
+}
+.statusbar { 
+    font-family: &dtml-base_font_family;; 
+    font-size: &dtml-statusbar_font_size;;
+    font-weight: normal; 
+    color: &dtml-tableheader_font_color;;
+    background-color: &dtml-tabletitleselected_bg_color;;
+}
+.tablevalues {  
+    font-family: &dtml-base_font_family;;
+    font-size: &dtml-tablevalues_font_size;; 
+    color: &dtml-tablevalues_font_color;; 
+    font-weight: normal; 
+    background-color: &dtml-tablevalues_bg_color;;
+}
+td.tablevalues {  
+    font-family: &dtml-base_font_family;;
+    font-size: &dtml-tablevalues_font_size;; 
+    color: &dtml-tablevalues_font_color;; 
+    font-weight: normal; 
+    background-color: &dtml-tablevalues_bg_color;;
+}
+a.tablevalues:link {  
+    color: &dtml-tablevalues_font_color;;
+}
+a.tablevalues:visited {  
+    color: &dtml-tablevalues_font_color;;
+}
+a.tablevalues:hover {  
+    color: &dtml-hover_color;;
+}
+a.tablevalues:active {  
+    color: &dtml-alink_color;;
+}
+.errorvalues {
+    font-weight: bold;
+    color: #ff0000;
+    background-color: &dtml-tablevalues_bg_color;;
+}
+.statusvalues {  
+    font-family: &dtml-base_font_family;;
+    font-size: &dtml-tablevalues_font_size;; 
+    font-weight: normal;
+}
+
+.dpDiv {
+	}
+
+.dpTable {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+    color: &dtml-tablevalues_font_color;; 
+    background-color: &dtml-tablevalues_bg_color;;
+	border: 1px solid &dtml-tabletitle_bg_color;;
+	}
+
+.dpTR {
+	}
+
+.dpTitleTR {
+	}
+
+.dpDayTR {
+	}
+
+.dpTodayButtonTR {
+	}
+
+.dpTD {
+	cursor: pointer;
+	}
+
+.dpDayHighlightTD {
+	background-color: &dtml-tableheader_bg_color;;
+	border: 1px solid &dtml-tabletitle_bg_color;;
+	cursor: pointer;
+	}
+
+.dpTitleTD {
+	}
+
+.dpButtonTD {
+	}
+
+.dpTodayButtonTD {
+	}
+
+.dpDayTD {
+	background-color: &dtml-tableheader_bg_color;;
+	border: 1px solid &dtml-tabletitle_bg_color;;
+	color: white;
+	}
+
+.dpTitleText {
+	font-size: 12px;
+	color: black;
+	}
+
+.dpDayHighlight {
+	color:  &dtml-tabletitle_bg_color;;
+	font-weight: bold;
+	}
+
+.dpButton {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+    color: &dtml-tableheader_font_color;;
+	background: &dtml-tableheader_bg_color;;
+	padding: 0px;
+	}
+
+.dpTodayButton {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+    color: &dtml-tableheader_font_color;;
+	background: &dtml-tableheader_bg_color;;
+	}
+</dtml-with>

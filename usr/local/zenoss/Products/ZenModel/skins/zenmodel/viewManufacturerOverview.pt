@@ -1,0 +1,135 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane">
+<form method="post" tal:attributes="action here/absolute_url_path">
+
+
+        <tal:block tal:define="tabletitle string:Manufacturer;">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr>
+      <td class="tableheader">Name</td>
+      <td class="tablevalues" tal:content="here/titleOrId">Zentinel</td>
+      <td class="tableheader">Phone</td>
+      <td width="14%" class="tablevalues" tal:content="here/supportNumber"/>
+    </tr>
+    <tr>
+      <td class="tableheader">URL</td>
+      <td class="tablevalues" colspan=5>
+          <a tal:attributes="href here/url" 
+            tal:content="here/url">http://www.zentinel.com</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Street 1</td>
+      <td class="tablevalues" colspan=5 tal:content="here/address1">
+        3071 Riverview Rd.
+      </td>
+    </tr>
+    <tr tal:condition="here/address2">
+      <td class="tableheader">Street 2</td>
+      <td class="tablevalues" tal:content="here/address2"/>
+    </tr>
+    <tr>
+      <td class="tableheader">City</td>
+      <td class="tablevalues" tal:content="here/city">Riva</td>
+      <td class="tableheader">State/Province</td>
+      <td class="tablevalues" tal:content="here/state">MD</td>
+    </tr>
+    <tr>
+      <td class="tableheader">Country</td>
+      <td class="tablevalues" tal:content="here/country">USA</td>
+      <td class="tableheader">Postal/Zip Code</td>
+      <td class="tablevalues" tal:content="here/zip">21140</td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+
+<span metal:use-macro="here/templates/macros/contentSeparator"/> 
+
+        <tal:block tal:define="
+        tableName string:manufacturerproducts;
+        objects here/products/objectValuesAll;
+        menu_id string:Product_list;
+        showfilterbox python:True;
+        batch python:here.ZenTableManager.getBatch(tableName,objects); 
+        tabletitle string:Products">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr>
+    <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                tableName,'primarySortKey','Name')">Name</th>
+    <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                tableName,'type','Type')">Type</th>
+    <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                tableName,'getProductKey','Product Key')">Product Key</th>
+    <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                tableName,'count','Count')">Count</th>
+  </tr>
+  
+  <tal:block tal:repeat="prod batch">
+  <tr tal:define="odd repeat/prod/odd"
+        tal:attributes="class python:odd and 'odd' or 'even'">
+    <td class="tablevalues">
+        <input tal:condition="here/isManager" 
+            type="checkbox" name="ids:list" 
+            tal:attributes="value prod/getId"/>
+        <a tal:attributes="href prod/getPrimaryUrlPath"
+            tal:content="prod/id">name</a>
+    </td>
+    <td class="tablevalues" tal:content="prod/type">Software</td>
+    <td class="tablevalues" tal:content="prod/getProductKey">3495</td>
+    <td class="tablevalues" align="center"
+        tal:content="prod/count">Good stuff</td>
+  </tr>
+  </tal:block>
+  
+  <tr>
+    <td colspan="4" class="tableheader">
+        <form metal:use-macro="here/zenTableNavigation/macros/navtool"></form>
+    </td>
+  </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+</tal:block>
+</tal:block>

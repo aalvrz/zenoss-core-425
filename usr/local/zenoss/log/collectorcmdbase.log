@@ -1,0 +1,8 @@
+2014-04-25 10:39:17 INFO zen.zenwinperf: Connecting to localhost:8789
+2014-04-25 10:39:17 INFO zen.zenwinperf: Connected to ZenHub
+2014-04-25 10:39:17 INFO zen.maintenance: Performing periodic maintenance
+2014-04-25 10:39:17 INFO zen.zenwinperf: Counter eventCount, value 1
+2014-04-25 10:39:17 INFO zen.zenwinperf: 0 devices processed (0 datapoints)
+2014-04-25 10:39:17 INFO zen.collector.scheduler: Tasks: 1 Successful_Runs: 0 Failed_Runs: 0 Missed_Runs: 0 Queued_Tasks: 0 Running_Tasks: 0 
+2014-04-25 10:40:10 INFO zen.zenwinperf: Deleting PID file /usr/local/zenoss/var/zenwinperf-localhost.pid ...
+2014-04-25 10:40:10 INFO zen.zenwinperf: Daemon CollectorDaemon shutting down

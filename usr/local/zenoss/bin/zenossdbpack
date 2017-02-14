@@ -1,0 +1,115 @@
+#!/usr/bin/env python
+##############################################################################
+#
+# Copyright (C) Zenoss, Inc. 2011, all rights reserved.
+#
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+#
+##############################################################################
+
+"""Zenoss ZODB storage packing utility.
+"""
+import sys
+from os import path
+import tempfile
+import argparse
+import subprocess
+
+import Globals
+from Products.ZenUtils.Utils import zenPath
+from Products.ZenUtils.GlobalConfig import getGlobalConfiguration
+
+
+def get_config(database=None):
+    _global_conf = getGlobalConfiguration()
+    if database:
+        _global_conf['zodb-db'] = database
+    zodb_socket = _global_conf.get('zodb-socket')
+    if zodb_socket:
+        _global_conf['socket'] = 'unix_socket %s' % zodb_socket
+    else:
+        _global_conf['socket'] = ''
+
+    config = """
+<relstorage>
+    pack-gc true
+    keep-history false
+    <mysql>
+        host %(zodb-host)s
+        port %(zodb-port)s
+        db %(zodb-db)s
+        user %(zodb-user)s
+        passwd %(zodb-password)s
+        %(socket)s
+    </mysql>
+</relstorage>
+""" % _global_conf
+    return config
+
+
+_zodbpack = zenPath('bin', 'zodbpack')
+
+def pack_database(config):
+    """
+    Write the config file and call zodbpack
+    """
+    with tempfile.NamedTemporaryFile() as configfile:
+        configfile.write(config)
+        configfile.flush()
+        cmd = [_zodbpack, configfile.name, '-d', str(options.days)]
+        return subprocess.call(cmd)
+
+
+def get_session_database():
+    """
+    Read the value of the session database from
+    $ZENHOME/etc/zodb_db_session.conf
+    """
+    session_conf = zenPath('etc', 'zodb_db_session.conf')
+    if not path.isfile(session_conf):
+        return None
+
+    with open(session_conf) as f:
+        dbline = filter(lambda a: (a.strip().startswith('db')), f.readlines())
+        if dbline:
+            return dbline[0].split()[1]
+
+
+if __name__ == "__main__":
+    for fname in ('.remote_hub', '.remote_collector'):
+        if path.isfile(zenPath('var', fname)):
+            print "zenossdbpack should not run on a remote system"
+            sys.exit(1)
+
+    # Get the days option to forward to zodbpack
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "-d", "--days", dest="days", type=float, default=0.2, # About 5 hours
+        help="Days to keep unreferenced objects (default: %(default)s). "
+        "Caution: setting to 0 may result in database inconsistency in "
+        "certain scenarios.")
+    parser.add_argument(
+        "-e", "--exclude-db", dest="excludeDB",
+        choices=['session', 'zodb'],
+        help="Specify which database to exclude")
+
+    options = parser.parse_args()
+
+    retcode = 1
+
+    if options.excludeDB != 'zodb':
+        # pack the main database
+        retcode = pack_database(get_config())
+    else:
+        print "Skipping zodb"
+
+    if options.excludeDB != 'session':
+        # pack the session database
+        sessiondb = get_session_database()
+        if sessiondb:
+            retcode = max(retcode, pack_database(get_config(sessiondb)))
+    else:
+        print "Skipping zodb session"
+
+    sys.exit(retcode)

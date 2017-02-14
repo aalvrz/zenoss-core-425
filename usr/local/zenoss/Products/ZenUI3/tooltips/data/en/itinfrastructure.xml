@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+  <tooltip>
+    <target>delete-button</target>
+
+    <html>Remove devices</html>
+  </tooltip>
+
+  <tooltip>
+    <target>adddevice-button</target>
+
+    <html>Add devices</html>
+  </tooltip>
+
+  <tooltip>
+    <target>actions-menu</target>
+
+    <anchor>left</anchor>
+
+    <html>Administer devices </html>
+  </tooltip>
+
+  <tooltip>
+    <target>commands-menu</target>
+
+    <anchor>left</anchor>
+
+    <html>Run commands</html>
+  </tooltip>
+
+  <tooltip>
+    <target>productionState</target>
+
+    <html>Select production state </html>
+  </tooltip>
+</view>

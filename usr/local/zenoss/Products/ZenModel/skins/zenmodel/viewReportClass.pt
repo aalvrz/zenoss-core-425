@@ -1,0 +1,121 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+<form tal:attributes="method string:post;
+                name string:reportClassForm;
+                action here/absolute_url_path">
+<input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+
+
+        <tal:block tal:define="tableName string:reportorgs;
+        menu_id string:ReportClass_list;
+        objects here/children;
+        showfilterbox python:True;
+        batch python:here.ZenTableManager.getBatch(tableName,objects); 
+        tabletitle string:Report Organizers" >
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr tal:condition="objects">
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'primarySortKey','Name')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'countChildren','SubFolders')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'countReports','Reports')"/>
+    </tr>
+    <tal:block tal:repeat="rorg batch"> 
+    <tr tal:define="odd repeat/rorg/odd"
+        tal:attributes="class python:test(odd, 'odd', 'even')">
+      <td class="tablevalues">
+        <input tal:condition="here/isManager" 
+            type="checkbox" name="organizerPaths:list" 
+            tal:attributes="value rorg/id"/>
+      <a tal:attributes="href rorg/getPrimaryUrlPath" tal:content="rorg/id"></a>
+      </td>
+      <td class="tablevalues" tal:content="rorg/countChildren"/>
+      <td class="tablevalues" tal:content="rorg/countReports"/>
+    </tr>
+    </tal:block>
+    <tr>
+        <td class="tableheader" colspan="3">
+            <span metal:use-macro="here/zenTableNavigation/macros/navbody"/>
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+<br />
+</form>
+
+<form   tal:condition="python: here.getPrimaryId() != '/zport/dmd/Reports'"
+        tal:attributes="method string:post;
+        name string:reportForm;
+        action here/absolute_url_path">
+<input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+
+
+        <tal:block tal:define="tableName string:reportlist;
+        objects here/reports;
+        showfilterbox python:True;
+        batch python:here.ZenTableManager.getBatch(tableName,objects); 
+        tabletitle string:Reports;
+        menu_id string:Report_list">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr tal:condition="objects">
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'primarySortKey','Name')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'title','Title')"/>
+    </tr>
+    <tal:block tal:repeat="rpt batch" tal:omit-tag="">
+    <tr tal:define="odd repeat/rpt/odd"
+        tal:attributes="class python:test(odd, 'odd', 'even')">
+      <td class="tablevalues">
+        <input tal:condition="here/isManager" type="checkbox" name="ids:list" 
+            tal:attributes="value rpt/id"/>
+      <a tal:attributes="href rpt/getPrimaryUrlPath" tal:content="rpt/id"></a>
+      </td>
+      <td class="tablevalues" tal:content="python: rpt.title or rpt.id"/>
+    </tr>
+    </tal:block>
+    <tr>
+        <td colspan="2" class="tableheader">
+            <span metal:use-macro="here/zenTableNavigation/macros/navbody"/>
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+<br />
+</form>
+
+</tal:block>
+</tal:block>

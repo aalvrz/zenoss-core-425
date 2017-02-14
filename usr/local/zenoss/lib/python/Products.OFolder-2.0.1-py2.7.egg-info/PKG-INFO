@@ -1,0 +1,36 @@
+Metadata-Version: 1.0
+Name: Products.OFolder
+Version: 2.0.1
+Summary: A tiny ordered folder for Zope 2.11 (or above)
+Home-page: http://www.dieter.handshake.de/pyprojects/zope
+Author: Dieter Maurer
+Author-email: dieter@handshake.de
+License: BSD
+Description: OFolder
+        =======
+        
+          An ``OFolder`` contains an ordered sequence of objects much like ``OrderedFolder``.
+        
+          In addition, you can reorder the objects by assigning new order numbers (these
+          are float values) and then press 'reorder'.
+        
+        History
+        =======
+        
+         2.0
+           * ``OFolder`` now derives from ``OrderedFolder`` (instead of ``Folder``)
+           * ``OFolder`` now uses ``Manage properties`` to protect its ``manage_reorder``
+             (to be more in line with ``OrderedFolder``)
+           
+         1.0.1
+           * Zope 2.12 dropped ``ZClasses`` -- make ``ZClass`` base class registration conditional
+           * Zope 2.12 stupidly deprecated import of ``InitializeClass`` and ``DTMLFile`` from ``Globals`` -- avoid deprecation messages
+Keywords: Zope 2,ordered,folder
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Framework :: Zope2
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Utilities

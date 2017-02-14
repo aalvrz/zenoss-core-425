@@ -1,0 +1,193 @@
+#!/usr/bin/env python
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2010, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+
+
+import optparse
+import os
+import re
+import sys
+import tempfile
+
+
+# Handles updating or removing settings from $ZENHOME/etc/global.conf. All
+# updates are performed atomically using a temporary file to prevent losing
+# configuration.
+
+CONF_FILE = ''
+
+SETTINGS_DELIM = re.compile(r'\s+')
+
+def zenPath(*args):
+    return os.path.abspath(os.path.join(os.environ['ZENHOME'], *args))
+
+def parse_settings(conf_file):
+    if not os.path.isfile(conf_file):
+        return
+    with open(conf_file) as global_conf:
+        for line in global_conf:
+            name = None
+            value = None
+            if line and not line.lstrip().startswith('#'):
+                fields = re.split(SETTINGS_DELIM, line.rstrip(), 1)
+                if len(fields) == 1:
+                    name, value = fields[0],None
+                elif len(fields) > 1:
+                    name, value = fields
+            yield (line, name, value)
+
+def create_tmpfile(path):
+    statinfo = os.stat(path)
+    (tmpfd,tmpname) = tempfile.mkstemp(suffix='.conf',dir=os.path.dirname(path),text=True)
+    # Clone permissions from original file
+    os.chmod(tmpname, statinfo.st_mode)
+    os.chown(tmpname, statinfo.st_uid, statinfo.st_gid)
+    return tmpfd, tmpname
+
+def print_setting(setting_name):
+    filename = CONF_FILE
+    for line, name, value in parse_settings(filename):
+        if name == setting_name :
+            if value is not None:
+                print value
+            break
+    else:
+        sys.exit(-1)
+
+def remove_settings(settings_to_remove):
+    filename = CONF_FILE
+    (tmpfd,tmpname) = create_tmpfile(filename)
+    output_file = os.fdopen(tmpfd, 'wb')
+    found_settings = set()
+    try:
+        for line, name, value in parse_settings(filename):
+            if name is None or name not in settings_to_remove:
+                output_file.write(line)
+            else:
+                found_settings.add(name)
+        output_file.close()
+        if len(found_settings) > 0:
+            os.rename(tmpname, filename)
+    finally:
+        try:
+            os.remove(tmpname)
+        except OSError:
+            pass
+
+def update_settings(settings_dict):
+    filename = CONF_FILE
+    (tmpfd,tmpname) = create_tmpfile(filename)
+    output_file = os.fdopen(tmpfd, 'wb')
+    found_settings = set()
+    try:
+        for line, name, value in parse_settings(filename):
+            if name is None or not name in settings_dict:
+                output_file.write(line)
+            elif name not in found_settings:
+                newval = settings_dict.get(name)
+                output_file.write("%s %s\n" % (name, newval))
+                found_settings.add(name)
+
+        for name, val in settings_dict.iteritems():
+            if not name in found_settings:
+                output_file.write("%s %s\n" % (name, val))
+
+        output_file.close()
+        os.rename(tmpname, filename)
+    finally:
+        try:
+            os.remove(tmpname)
+        except OSError:
+            pass
+
+def main():
+    if 'ZENHOME' not in os.environ:
+        print >> sys.stderr, (
+            "ZENHOME not set. You must run this script as the zenoss user.")
+        sys.exit(1)
+
+    parser = optparse.OptionParser(usage='%prog <-p|-r|-u> prop_name[=prop_val] [...]')
+    parser.add_option('-p', '--print', dest='get', action="store_true", default=False,
+                      help='Prints setting from the configuration file.')
+    parser.add_option('-r', '--remove', dest='remove', action="store_true", default=False,
+                      help='Removes settings from the configuration file.')
+    parser.add_option('-u', '--update', dest='update', action="store_true", default=False,
+                      help='Adds or updates settings in the configuration file.')
+    parser.add_option('-s', '--sync-zope-conf', dest='synczope', action="store_true", default=False,
+                      help='Syncs the ZODB db conf from global from to zodb_db_main.conf.')
+    parser.add_option('-f', '--conffile', dest='conffile', default=zenPath('etc','global.conf'),
+                      help='Zenoss conf file')
+    
+    (options, args) = parser.parse_args(args=sys.argv[1:])
+
+    global CONF_FILE
+    CONF_FILE = options.conffile
+
+    numcmds = int(options.get) + int(options.remove) + int(options.update) + int(options.synczope)
+    if not numcmds:
+        parser.error("Must specify command (-p|-r|-u|-s)")
+    if numcmds > 1:
+        parser.error("Only one command can be specified (-p|-r|-u|-s)")
+
+    if len(args) == 0 and not options.synczope:
+        parser.error("required property names not provided")
+
+    if options.synczope:
+        if CONF_FILE != zenPath('etc', 'global.conf'):
+            print "--sync-zope-conf only valid with global.conf"
+            sys.exit(1)
+        # load zcml for the product
+        import Globals
+        import Products.ZenossStartup
+        from Products.Five import zcml
+        zcml.load_site()
+        # look up the utility
+        from zope.component import getUtility
+        from Products.ZenUtils.ZodbFactory import IZodbFactoryLookup
+        connectionFactory = getUtility(IZodbFactoryLookup).get()
+        zodbConf = connectionFactory.getZopeZodbConf()
+        zodbSessionConf = connectionFactory.getZopeZodbSessionConf()
+
+        def write_zodb_conf(confname, contents):
+            dirname = zenPath('etc')
+            tconf = None
+            try:
+                tconf = tempfile.NamedTemporaryFile(prefix=confname,
+                                                    dir=dirname,
+                                                    delete=False)
+                os.chmod(tconf.name, 0600)
+                tconf.write(contents)
+                tconf.close()
+                os.rename(tconf.name, zenPath('etc', confname))
+            finally:
+                if tconf is not None and os.path.exists(tconf.name):
+                    os.unlink(tconf.name)
+        
+        write_zodb_conf('zodb_db_main.conf', zodbConf)
+        write_zodb_conf('zodb_db_session.conf', zodbSessionConf)
+        sys.exit(0)
+    elif options.get:
+        if len(args) > 1:
+            parser.error("Print option only takes one setting name")
+        print_setting(args[0])
+    elif options.remove:
+        remove_settings(args)
+    else:
+        argsdict = {}
+        for arg in args:
+            splitargs = arg.split('=', 1) + ['',]
+            name = splitargs[0].strip()
+            value = splitargs[1].strip()
+            if len(name) == 0:
+                parser.error("invalid argument: %s" % arg)
+            argsdict[name] = value
+        update_settings(argsdict)
+
+if __name__ == '__main__':
+    main()

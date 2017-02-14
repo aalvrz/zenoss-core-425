@@ -1,0 +1,132 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane">
+
+
+
+        <tal:block tal:define=" 
+            tabletitle string:Status">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr>
+      <td class="tableheader">Events</td>
+      <td class="tablevalues">
+        <table metal:use-macro="here/rainbows/macros/horizontal"></table>
+      </td>
+      <th class="tableheader" align="left">Total Event Count</th>
+      <td class="tablevalues" align="center" tal:content="here/getStatus">
+        100</td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+
+<span metal:use-macro="here/templates/macros/contentSeparator"/>
+
+
+
+        <tal:block tal:define=" 
+            tabletitle string:EventClassInst">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr>
+      <td class="tableheader" width="15%">Event Class Key</td>
+      <td class="tablevalues" tal:content="here/eventClassKey">name</td>
+    </tr>
+    <tr>
+      <td class="tableheader">Sequence</td>
+      <td class="tablevalues" tal:content="here/sequence">0</td>
+    </tr>
+    <tr>
+      <td class="tableheader" colspan="2">Rule</td>
+    </tr>
+    <tr>
+      <td class="tablevalues" colspan="6" tal:content="here/rule"
+        tal:attributes="style here/testRuleStyle">
+      regex</td>
+    </tr>
+    <tr>
+      <td class="tableheader" colspan="6">Regex</td>
+    </tr>
+    <tr>
+      <td class="tablevalues" colspan="6" tal:content="here/regex"
+        tal:attributes="style here/testRegexStyle">
+      regex</td>
+    </tr>
+    <tr>
+      <td class="tableheader" colspan="6">Example</td>
+    </tr>
+    <tr>
+      <td class="tablevalues" colspan="6" tal:content="here/example">examp</td>
+    </tr>
+    <tr>
+      <td class="tableheader" colspan="6">Transform</td>
+    </tr>
+    <tr>
+      <td class="tablevalues" colspan="6" >
+        <pre tal:content="here/transform">code</pre>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader" colspan="6">Explanation</td>
+    </tr>
+    <tr>
+      <td class="tablevalues" colspan="6" tal:content="here/explanation">
+        text</td>
+    </tr>
+    <tr>
+      <td class="tableheader" colspan="6">Resolution</td>
+    </tr>
+    <tr>
+      <td class="tablevalues" colspan="6" tal:content="here/resolution">
+        text</td>
+    </tr>
+    <!--
+    <tr>
+      <td class="tableheader">Apply Device Context</td>
+      <td class="tablevalues" tal:content="here/applyDeviceContext">regex</td>
+    </tr>
+    -->
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+
+</tal:block>
+</tal:block>

@@ -1,0 +1,42 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+<tal:block metal:define-macro="header"
+    tal:define="global ztabs python:here.zentinelTabs(template.id);
+                global numbcols python:len(ztabs)">
+    <table border=0 cellpadding=3 cellspacing=0 
+        width="100%" bgcolor="#FFFFFF">
+    <tr>
+            <td class="tabletitle" colspan="_" align="left"
+                tal:attributes="colspan python:numbcols-1">
+                    <img border=0 src="_"
+                        tal:attributes="src here/icon"/>
+                    <span metal:use-macro="here/miscmacros/macros/breadCrumbs"/>
+            </td>
+            <td class="tabletitle" align="right" 
+                tal:content="structure here/helpLink">help
+            </td>
+        </tr>
+    </table>
+    <table class=" zentable" cellpadding=3 cellspacing=1 
+        metal:define-macro="buttons">
+        <tr>
+            <td class="tabletitle" align="center" tal:repeat="tab ztabs"
+                tal:attributes="
+                    class python:tab.get('selected', None) and 
+                            'tabletitleselected' or 'tabletitle'">
+                <a 
+                    class="tabletitle"
+                    tal:attributes="href python:
+                        '%s/%s'% (here.getPrimaryUrlPath(),tab['action']);
+                    class python:tab.get('selected',None) and 
+                            'tabletitleselected' or 'tabletitle'"
+                    tal:content="tab/name">
+                    TabName
+                </a>
+            </td>
+        </tr>
+    </table>
+</tal:block>
+</tal:block>
+</tal:block>

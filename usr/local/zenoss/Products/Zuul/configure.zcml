@@ -1,0 +1,174 @@
+<!--
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2009, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+-->
+
+
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five">
+
+    <five:implements
+        interface=".interfaces.IProcessEntity"
+        class="Products.ZenModel.OSProcessClass.OSProcessClass"
+        />
+
+    <five:implements
+        interface=".interfaces.IComponent"
+        class="Products.ZenModel.OSComponent.OSComponent"
+        />
+
+    <five:implements
+        interface=".interfaces.IComponent"
+        class="Products.ZenModel.HWComponent.HWComponent"
+        />
+
+    <five:implements
+        interface=".interfaces.IProcessEntity"
+        class="Products.ZenModel.OSProcessOrganizer.OSProcessOrganizer"
+        />
+
+    <five:implements
+        interface=".interfaces.IServiceEntity"
+        class="Products.ZenModel.ServiceClass.ServiceClass"
+        />
+
+    <five:implements
+        interface=".interfaces.IServiceEntity"
+        class="Products.ZenModel.ServiceOrganizer.ServiceOrganizer"
+        />
+
+    <five:implements
+        interface=".interfaces.IMibEntity"
+        class="Products.ZenModel.MibOrganizer.MibOrganizer"
+        />
+
+    <five:implements
+        interface=".interfaces.IMibEntity"
+        class="Products.ZenModel.MibModule.MibModule"
+        />
+
+    <five:implements
+        interface=".interfaces.IDevice"
+        class="Products.ZenModel.Device.Device"
+        />
+
+    <five:implements
+        interface=".interfaces.IMarshallable"
+        class="Products.ZenModel.GraphDefinition.GraphDefinition"
+        />
+
+    <adapter factory=".facades.DeviceFacade"
+             provides=".interfaces.IDeviceFacade"
+             name="device"
+             for="*"
+             />
+
+    <adapter factory=".facades.ZepFacade"
+             provides=".interfaces.IZepFacade"
+             name="zep"
+             for="*"
+             />
+
+    <adapter factory=".facades.NetworkFacade"
+             provides=".interfaces.INetworkFacade"
+             name="network"
+             for="*"
+             />
+
+    <adapter factory=".facades.Network6Facade"
+             provides=".interfaces.INetworkFacade"
+             name="network6"
+             for="*"
+             />
+
+    <adapter factory=".facades.ProcessFacade"
+             provides=".interfaces.IProcessFacade"
+             name="process"
+             for="*"
+             />
+
+    <adapter factory=".facades.ServiceFacade"
+             provides=".interfaces.IServiceFacade"
+             name="service"
+             for="*"
+             />
+
+    <adapter factory=".facades.MibFacade"
+             provides=".interfaces.IFacade"
+             name="mibs"
+             for="*"
+             />
+
+    <adapter factory=".facades.ReportFacade"
+             provides=".interfaces.IFacade"
+             name="reports"
+             for="*"
+             />
+
+    <adapter factory=".facades.ZenPackFacade"
+             provides=".interfaces.IFacade"
+             name="zenpack"
+             for="*"
+             />
+
+    <adapter factory=".facades.TemplateFacade"
+             provides=".interfaces.IFacade"
+             name="template"
+             for="*"
+             />
+
+    <utility component=".utils.get_dmd"
+             provides=".interfaces.IDataRootFactory"
+             />
+
+    <adapter provides=".interfaces.IUnmarshaller"
+             for=".interfaces.IMarshallable"
+             factory=".marshalling.DefaultUnmarshaller"
+             />
+
+    <adapter provides=".interfaces.IMarshaller"
+             for=".interfaces.IMarshallable"
+             factory=".marshalling.Marshaller"
+             />
+
+    <adapter provides=".interfaces.IMarshaller"
+             for=".interfaces.IInfo"
+             factory=".marshalling.InfoMarshaller"
+             />
+
+    <adapter provides=".interfaces.IMarshaller"
+             for=".interfaces.ITreeNode"
+             factory=".marshalling.TreeNodeMarshaller"
+             />
+
+
+    <adapter provides=".interfaces.ICatalogTool"
+             for="*"
+             factory=".tree.CatalogTool"
+             />
+
+    <adapter factory=".facades.TriggersFacade"
+             provides=".interfaces.IFacade"
+             name="triggers"
+             for="*"
+             />
+
+    <adapter factory=".facades.JobsFacade"
+             provides=".interfaces.IFacade"
+             name="jobs"
+             for="*"
+             />
+
+    <include package=".routers"/>
+    <include package=".catalog"/>
+    <include package=".search"/>
+    <include package=".form"/>
+    <include package=".infos"/>
+
+</configure>

@@ -1,0 +1,396 @@
+<!-- ======================================================
+    This page is used as the page-level templates
+    and associated macros
+ ====================================================== -->
+
+<!-- ======================================================
+    Page1 - page template that has slots for
+            breadCrumb and content
+ ====================================================== -->
+<tal:block metal:define-macro="page1">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.0//EN"
+"http://www.w3.org/TR/xhtml-basic/xhtml-basic10.dtd">
+<html>
+    <head>
+    <title>
+        <tal:block tal:content="here/dmd/instanceIdentifier"/>:
+        <tal:block metal:define-slot="title">
+            <tal:block tal:content="here/titleOrId"/>
+        </tal:block>
+    </title>
+        <tal:block metal:use-macro="here/templates/macros/head1"/>
+        <tal:block metal:define-slot="head-local"/>
+        <tal:block metal:use-macro="here/zenuimacros/macros/jsutils"/>
+        <link rel="stylesheet" type="text/css" href="/++resource++extjs/resources/css/ext-all.css" />
+        <link rel="stylesheet" type="text/css" href="/++resource++zenui/css/xtheme-zenoss.css" />
+        <link rel="stylesheet" type="text/css" href="/++resource++zenui/css/zenoss.css" />
+        <link rel="stylesheet" type="text/css" href="/++resource++zenui/css/zenui3.css" />
+        <link type="text/css" rel="stylesheet" href="/++resource++zenui/css/backcompat.css"/>
+
+        <script>
+        (function() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.indexOf("firefox/3.6") > -1) {
+                Ext.toArray = function(a, i, j, res) {
+                    res = [];
+                    Ext.each(a, function(v) { res.push(v); });
+                    return res.slice(i || 0, j || res.length);
+                }
+            }
+        })();
+        </script>
+        <script type="text/javascript" id="extall" src="/++resource++extjs/ext-all.js"></script>
+
+        <script>
+        // Fix an IE bug
+        Ext.override(Ext.Shadow, {
+            realign: Ext.Function.createInterceptor(Ext.Shadow.prototype.realign,
+                function(l, t, w, h) {
+                    if (Ext.isIE) {
+                        var a = this.adjusts;
+                        a.h = Math.max(a.h, 0);
+                    }
+                }
+            )
+        });
+        Ext.ns('Zenoss.util');
+        Zenoss.util.registerBackCompatMenu = function(menu, btn, align, offsets){
+
+            align = align || 'bl';
+            offsets = offsets || [0, 0];
+
+            var layer = new Ext.Panel({
+                floating: true,
+                contentEl: menu,
+                border: false,
+                shadow: !Ext.isIE,
+                bodyCls: menu.id=='contextmenu_items' ? 'z-bc-z-menu z-bc-page-menu' : 'z-bc-z-menu'
+            });
+
+            layer.render(Ext.getBody());
+
+            function showMenu() {
+                var xy = layer.getEl().getAlignToXY(btn.getEl(), align, offsets);
+                layer.setPagePosition(xy[0], xy[1]);
+                menu.dom.style.display = 'block';
+                layer.show();
+            }
+
+            function hideMenu() {
+                layer.hide();
+            }
+
+            function menuClicked(e) {
+                var link = e.getTarget('a');
+                if (link) {
+                    // Fake a click
+                    location.href = link.href;
+                }
+            }
+
+            btn.on('menushow', showMenu);
+            btn.on('menuhide', hideMenu);
+            menu.on('mousedown', menuClicked);
+
+        }
+        if (window.location.href.indexOf("/zport/dmd/Reports") != -1) {
+            Ext.onReady(function(){
+                var anchors = window.document.getElementsByTagName('a');
+                for (var idx = 0; idx < anchors.length; idx++) {
+                    if (!/\/zport\/dmd\/[rR]eports\//.test(anchors[idx].href)) {
+                        anchors[idx].target = "_top";
+                        anchors[idx].onclick = function() {
+                            window.top.location.href = this.href;
+                        };
+                    }
+                }
+            });
+
+        }
+        </script>
+    </head>
+    <body class="yui-skin-sam">
+    <tal:block metal:use-macro="here/dialogmacros/macros/proxyForm"/>
+    <tal:block metal:use-macro="here/dialogmacros/macros/dialog_with_buttons"/>
+    <tal:block metal:define-slot="frameSlot">
+        <div id="frame">
+            <tal:block metal:define-slot="rightPane">
+                <div id="contentPane">
+                    <tal:block metal:define-slot="contentPane">
+                        CONTENT GOES HERE
+                    </tal:block>
+                </div>
+            </tal:block>
+       </div>
+    </tal:block>
+    </body>
+</html>
+</tal:block>
+
+
+<!-- ======================================================
+    Pointer to new leftPane macro
+ ====================================================== -->
+<tal:block metal:define-macro="leftPane">
+    <tal:block metal:use-macro="here/leftPane/macros/leftPane"/>
+</tal:block>
+
+<!-- ======================================================
+    pageClean - page template that has none of the ornamentation
+    of the regular templates
+ ====================================================== -->
+<tal:block metal:define-macro="pageClean">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>
+            <tal:block tal:content="here/dmd/instanceIdentifier"/>:
+            <tal:block metal:define-slot="title">
+                <tal:block tal:content="here/titleOrId"/>
+            </tal:block>
+        </title>
+        <tal:block metal:use-macro="here/templates/macros/head1"/>
+        <tal:block metal:define-slot="head-local"/>
+    </head>
+    <body>
+        <div id="contentPane">
+            <tal:block metal:define-slot="contentPane">
+                CONTENT GOES HERE
+            </tal:block>
+        </div>
+    </body>
+</html>
+</tal:block>
+
+
+<!-- ======================================================
+    Page2 - page template that adds standard
+        breadCrumb and nav tabs automatically
+ ====================================================== -->
+<tal:block metal:define-macro="page2">
+    <html metal:use-macro="here/templates/macros/page1" >
+        <tal:block metal:fill-slot="title">
+            <tal:block metal:define-slot="title">
+                <tal:block tal:content="here/titleOrId"/>
+            </tal:block>
+        </tal:block>
+        <tal:block metal:fill-slot="head-local">
+        <tal:block metal:define-slot="head-local"/>
+        </tal:block>
+        <tal:block metal:fill-slot="breadcrumbs">
+            <div id="breadCrumbPane">
+            <tal:block metal:define-slot="breadcrumbs">
+                   <span metal:use-macro="here/miscmacros/macros/breadCrumbs" />
+            </tal:block>
+            </div>
+        </tal:block>
+        <tal:block metal:fill-slot="rightPane">
+            <div metal:use-macro="here/templates/macros/tabsPane"/>
+            <div id="contentPane">
+                <tal:block metal:define-slot="contentPane">
+                        CONTENT GOES HERE
+               </tal:block>
+            </div>
+        </tal:block>
+    </html>
+</tal:block>
+
+<!-- ======================================================
+    Page3 - page template with std BreadCrumbs and no tabs
+ ====================================================== -->
+<tal:block metal:define-macro="page3">
+    <html metal:use-macro="here/templates/macros/page1" >
+        <tal:block metal:fill-slot="rightPane">
+            <div id="contentPane">
+                <tal:block metal:define-slot="contentPane">
+                        CONTENT GOES HERE
+               </tal:block>
+            </div>
+        </tal:block>
+    </html>
+</tal:block>
+
+
+<!-- ======================================================
+    Page4 - page template that adds standard
+        breadCrumb even on a backcompat panel
+ ====================================================== -->
+<tal:block metal:define-macro="page4">
+    <html metal:use-macro="here/templates/macros/page1" >
+        <tal:block metal:fill-slot="title">
+            <tal:block metal:define-slot="title">
+                <tal:block tal:content="here/titleOrId"/>
+            </tal:block>
+        </tal:block>
+        <tal:block metal:fill-slot="head-local">
+        <tal:block metal:define-slot="head-local"/>
+        </tal:block>
+        <tal:block metal:fill-slot="frameSlot">
+        <div id="frame">
+            <div metal:define-slot="breadcrumbs" id="breadCrumbPane">
+               <span metal:use-macro="here/miscmacros/macros/breadCrumbs" />
+            </div>
+            <tal:block metal:define-slot="rightPane">
+                <div id="contentPane">
+                    <tal:block metal:define-slot="contentPane">
+                        CONTENT GOES HERE
+                    </tal:block>
+                </div>
+            </tal:block>
+        </div>
+        </tal:block>
+    </html>
+</tal:block>
+
+
+<!-- ======================================================
+    Page5 - page template that adds
+        upToOrganizerBreadCrumbs even on a backcompat panel
+ ====================================================== -->
+<tal:block metal:define-macro="page5">
+    <html metal:use-macro="here/templates/macros/page1" >
+        <tal:block metal:fill-slot="title">
+            <tal:block metal:define-slot="title">
+                <tal:block tal:content="here/titleOrId"/>
+            </tal:block>
+        </tal:block>
+        <tal:block metal:fill-slot="head-local">
+        <tal:block metal:define-slot="head-local"/>
+        </tal:block>
+        <tal:block metal:fill-slot="frameSlot">
+        <div id="frame">
+            <div metal:define-slot="breadcrumbs" id="breadCrumbPane" style="margin-left: 0px;">
+               <span metal:use-macro="here/miscmacros/macros/upToOrganizerBreadCrumbs" />
+            </div>
+            <tal:block metal:define-slot="rightPane">
+                <div id="contentPane">
+                    <tal:block metal:define-slot="contentPane">
+                        CONTENT GOES HERE
+                    </tal:block>
+                </div>
+            </tal:block>
+        </div>
+        </tal:block>
+    </html>
+</tal:block>
+
+<!-- ======================================================
+    head1 - standard header
+ ====================================================== -->
+<tal:block metal:define-macro="head1">
+    <tal:block metal:use-macro="here/maintemplate-extras/macros/head1"/>
+</tal:block>
+
+
+<!-- ======================================================
+    topPane - standard top area with logo, etc...
+ ====================================================== -->
+<div id="topPane" metal:define-macro="topPane">
+    <a href="/zport/dmd/Dashboard">
+    <div class="logo">
+    </div>
+    </a>
+    <div id="settings">
+    <ul>
+        <li>
+        <span id="header-username">
+        <tal:block tal:content="request/AUTHENTICATED_USER"/>
+        </span>
+        </li>
+        <li>
+        <a tal:attributes="href here/dmd/ZenUsers/getUserSettingsUrl">
+            Preferences</a>
+        </li>
+        <li>
+        <a href="/zport/dmd/logoutUser">Logout</a>
+        </li>
+        <li>
+        <a tal:attributes="href string:
+            http://www.zenoss.com/help?version=${here/dmd/About/getZenossVersionShort}
+        " target="_blank">Help</a>
+        </li>
+    </ul>
+    <tal:block metal:use-macro="here/searchMacro/macros/searchbox"/>
+    </div>
+    <div id="system_clock_container">Zenoss server time:
+    <span id="system_clock">Now o'clock</span>
+    <script tal:content="string: var start_time = '${here/server_time}';">
+    var x;
+    </script>
+    <script>
+    var server_time = isoTimestamp(start_time).getTime();
+    function server_now() {
+        return new Date(server_time);
+    }
+    function getServerTime() {
+        return toISOTime(server_now());
+    }
+    function getServerTimestamp() {
+        return toISOTimestamp(server_now());
+    }
+    function updateTime(){
+        server_time += 1000;
+        $('system_clock').innerHTML = getServerTime();
+        callLater(1, updateTime)
+    }
+    addLoadEvent(updateTime);
+    </script>
+    </div>
+</div>
+
+<!-- ======================================================
+    BreadCrumbsPane
+ ====================================================== -->
+<div id="breadCrumbPane" metal:define-macro="breadCrumbPane"
+    style="position:relative">
+    <span metal:use-macro="here/miscmacros/macros/breadCrumbs" />
+</div>
+
+<!-- ======================================================
+    tabsPane
+ ====================================================== -->
+<div id="tabsPane" metal:define-macro="tabsPane">
+</div>
+
+<!-- ======================================================
+    newTabsPane
+ ====================================================== -->
+<div id="newTabsPane" metal:define-macro="newTabsPane"
+        tal:define="ztabs python:here.zentinelTabs(None, request);
+                    tabnames python:[x['name'] for x in ztabs];"
+        tal:condition="python:(ztabs and not getattr(request, 'notabs', False))">
+    <ul class="tabtable">
+       <li tal:repeat="tab ztabs"
+           tal:attributes="class python:tab.get('selected', None) and 'selected' or ''">
+           <a class="tabletitle" tal:content="tab/name"
+               tal:attributes="href python:
+               '%s/%s'% (here.absolute_url_path(),tab['action']);">
+               TabName
+           </a>
+        </li>
+    </ul>
+    <div tal:define="menu_ids menu_ids |
+        python:['More','Manage','Edit', 'Actions','Add','TopLevel']">
+        <tal:block tal:condition="python:hasattr(here, 'getMenus')">
+            <tal:block tal:define="hasMenus python:here.getMenus(menu_ids, here)">
+                <div class="contextmenutab" tal:condition="hasMenus">
+                    <span metal:use-macro="here/zenuimacros/macros/basemenu"/>
+                </div>
+            </tal:block>
+        </tal:block>
+    </div>
+</div>
+
+<!-- ======================================================
+     contentSeparator
+ ====================================================== -->
+<tal:block metal:define-macro="contentSeparator">
+    <br/>
+</tal:block>
+
+<!-- ======================================================
+     infoBarExtra - place to put extra stuff in infobar
+ ====================================================== -->
+<tal:block metal:define-macro="infoBarExtra">
+</tal:block>

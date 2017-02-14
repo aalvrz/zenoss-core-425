@@ -1,0 +1,183 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane">
+<tal:block define="msie python:'MSIE' in here.REQUEST.HTTP_USER_AGENT">
+
+<tal:block tal:condition="not:msie">
+    <script src="/zport/js/MochiKit.js"></script>
+</tal:block>
+
+<form method="post"
+    tal:attributes="action string:${request/URL1}">
+<input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+
+<tal:block tal:define="props here/zenPropertyIds;
+                       tabletitle string:Configuration Properties;">
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+<tal:block metal:fill-slot="zentablecontents">
+
+<!-- BEGIN TABLE CONTENTS -->
+    <tr>
+      <th class="tableheader" align="center">Property</th>
+      <th class="tableheader" align="center">Value</th>
+      <th class="tableheader" align="center">Type</th>
+      <th class="tableheader" align="center">Path</th>
+    </tr>
+    <tal:block tal:repeat="prop props"> 
+    <tr tal:define="odd repeat/prop/odd"
+        tal:attributes="class python:odd and 'odd' or 'even'" 
+        tal:on-error="string:Invalid property ${prop}" >
+      <td class="tablevalues" tal:content="prop">
+        zPingInterfaceRegex
+      </td>
+      <td class="tablevalues" tal:condition="python: not here.isManager(here)"
+        tal:content="python: here.zenPropertyString(prop)"/>
+      <td class="tablevalues" tal:condition="python: here.isManager(here)"
+        tal:define="ptype python:here.getPropertyType(prop);
+                    pvalue python:here.zenPropertyString(prop);
+                    popts python:here.zenPropertyOptions(prop);">
+            <span tal:condition="python: ptype=='boolean'">
+                <select class="tablevalues" 
+                    tal:attributes="name python:prop">
+                    <option tal:repeat="e python:(True,False)" tal:content="e"
+                    tal:attributes="value e; selected python:e==pvalue"/>
+                </select>
+            </span>
+        <span tal:condition="python: ptype=='lines'">
+        <tal:block tal:condition="python:msie or not popts">
+            <textarea class="tablevalues" rows='3' cols="33"
+            tal:attributes="name python:prop+':'+ptype"
+            tal:content="pvalue">
+            </textarea>        
+        </tal:block>
+        <!-- =========== swoopy sortable selector ============ -->
+        <tal:block tal:condition="python:not msie and popts"
+               tal:define="propName python:prop;
+                                       ta python:'ta_' + prop;
+                       ul python:'ul_' + prop;">
+        <a tal:attributes="href string:${request/URL1}/zSortableProperty?prop=${prop}">
+            Edit
+                </a>
+        </tal:block>
+        <!-- =========== swoopy sortable selector =============== -->
+        </span>
+            <span tal:condition="python: prop=='zEventSeverity'">
+            <select class="tablevalues" 
+                tal:attributes="name python:prop">
+                <option tal:repeat="sev here/dmd/getEventSeverities"
+                    tal:content="python:sev[0]"
+                    tal:attributes="value python:sev[1]; selected python:sev[1]==pvalue" />
+            </select>
+            </span>
+            <span tal:condition="python: prop=='zFlappingSeverity'">
+                <select class="tablevalues"
+                    tal:attributes="name python:prop">
+                        <option tal:repeat="sev here/dmd/getEventSeverities"
+                        tal:content="python:sev[0]"
+                        tal:attributes="value python:sev[1]; selected python:sev[1]==pvalue" />
+                </select>
+            </span>
+            <span tal:condition="python: prop=='zFailSeverity'">
+            <select class="tablevalues" 
+                tal:attributes="name python:prop">
+                <option tal:repeat="sev here/dmd/ZenEventManager/getSeverities"
+                    tal:content="python:sev[0]"
+                    tal:attributes="value python:sev[1]; selected python:sev[1]==pvalue" />
+            </select>
+            </span>
+            <span tal:condition="python: prop=='zEventAction'">
+            <select class="tablevalues" 
+                tal:attributes="name python:prop">
+                <option tal:repeat="a here/dmd/ZenEventManager/getEventActions"
+                    tal:content="a"
+                    tal:attributes="value a; selected python:a==pvalue" />
+            </select>
+            </span>
+            <span tal:condition="python: here.zenPropIsPassword(prop)" >
+            <input class="tablevalues" size="40" autocomplete="off" type="password"
+                tal:attributes="value pvalue;name python:prop"/>
+            </span>
+            <span tal:condition="python: ptype not in 'boolean lines text'.split() and prop not in 'zEventSeverity zEventAction zFailSeverity zFlappingSeverity'.split() and not here.zenPropIsPassword(prop)">
+            <input class="tablevalues" 
+               tal:condition="not:popts"
+               type="text" size="40"
+                tal:attributes="value pvalue;name python:prop"/>
+            <select tal:condition="popts" 
+                class="tablevalues" 
+                tal:attributes="name python:prop">
+        <option tal:repeat="e python:popts" tal:content="e"
+               tal:attributes="value e; selected python:e==pvalue"/>
+            </select>
+            </span>
+      </td>
+      <td class="tablevalues"
+        tal:content="python: here.getPropertyType(prop)"> 
+        int
+      </td>
+      <td class="tablevalues" 
+        tal:content="python: here.zenPropertyPath(prop)"> 
+        /Devices/Servers
+      </td>
+    </tr>
+    </tal:block>
+    <tr class="tableheader" tal:condition="python: here.isManager(here)">
+    <td colspan="5">
+        <input class="tableheader" type="submit" 
+            name="saveZenProperties:method" value=" Save " />
+    </td>
+    </tr>
+<!-- END TABLE CONTENTS -->
+
+</tal:block>
+</tal:block>
+</tal:block>
+
+</form>
+
+<form tal:condition="python: here.isManager(here)" method="post"
+    tal:attributes="action string:${request/URL1}">
+<input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+
+
+<tal:block tal:define="
+tabletitle string:Delete Local Property;
+                      ">
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+<!--==================== 
+Optional titlebar stuff
+
+<tal:block metal:fill-slot="menuslot">
+</tal:block>
+<tal:block metal:fill-slot="filterslot">
+</tal:block>
+
+  ====================-->
+
+<tal:block metal:fill-slot="zentablecontents">
+
+<!-- BEGIN TABLE CONTENTS -->
+<tr class="tableheader">
+    <td>
+        <select name="propname" class="tableheader">
+            <option tal:repeat="
+                propname python:here.zenPropertyIds(False)"
+                tal:content="propname" tal:attributes="value propname">
+                    propname
+            </option>
+        </select>
+        <input class="tableheader" type="submit" 
+            name="deleteZenProperty:method" value=" Delete " />
+    </td>
+</tr>
+<!-- END TABLE CONTENTS -->
+
+</tal:block>
+</tal:block>
+</tal:block>
+
+</form>
+
+</tal:block>
+</tal:block>
+</tal:block>

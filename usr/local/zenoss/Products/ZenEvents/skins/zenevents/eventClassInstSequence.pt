@@ -1,0 +1,100 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane">
+
+<tal:block tal:define="objects here/sameKey;
+        tableName string:eventinstsequence;
+        batch python:here.ZenTableManager.getBatch(tableName,objects,
+                                                    sortedHeader='sequence'); 
+            tabletitle string:Sequence">
+<form method="post" tal:attributes="action here/absolute_url_path">
+
+
+        <input type='hidden' name='tableName' tal:attributes="value tableName" />
+        <input type="hidden" name="zenScreenName" 
+                tal:attributes="value template/id"/>
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'sequence','Sequence')">
+            Snmp
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'getId','Id')">
+            Id 
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'getEventClass','EventClass')">
+            EventClass 
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'ruleOrRegex','Evaluation')">
+            Evaluation 
+        </th>
+    </tr>
+    <tr tal:repeat="evinst batch">
+        <td class="tablevalues" width="5%">
+            <input tal:condition="here/isManager" 
+                type="hidden" name="seqid:list" size="2"
+                tal:attributes="value evinst/getPrimaryUrlPath"/>
+            <input tal:condition="here/isManager" 
+                type="text" name="seqmap:list" size="2"
+                tal:attributes="value evinst/sequence"/>
+            <span tal:condition="not:here/isManager" 
+                tal:replace="evinst/sequence"/>
+        </td>
+        <td class="tablevalues">
+            <a tal:attributes="href evinst/getPrimaryUrlPath"
+            tal:content="evinst/id">Name</a>
+        </td>
+        <td class="tablevalues" tal:define="evclass evinst/eventClass">
+            <a tal:attributes="href evclass/getPrimaryUrlPath"
+            tal:content="evinst/getOrganizerName">Name</a>
+        </td>
+        <td class="tablevalues" tal:content="python:evinst.ruleOrRegex(60)"/>
+    </tr>
+    <tr tal:condition="here/isManager">
+        <td class="tableheader" colspan="4">
+        <input type="submit" name="manage_resequence:method" value=" Save "/>
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+
+    <table class="zentable">
+    <tr>
+        <td colspan="4" class="tableheader">
+            <form method="post" tal:attributes="action request/URL">
+                <input type='hidden' name='tableName' tal:attributes="value tableName" />
+                <input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+                <span metal:use-macro="here/zenTableNavigation/macros/navbody" />
+            </form>
+        </td>
+    </tr>
+    </table>
+        
+
+</tal:block>
+
+</tal:block>
+</tal:block>

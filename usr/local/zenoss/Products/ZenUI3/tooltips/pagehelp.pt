@@ -1,0 +1,55 @@
+<tal:block tal:condition="view/tip">
+<div id="page-help" i18n:translate="">Page Tips</div>
+<textarea id="page-help-title" style="display:none" tal:content="view/tip/title" class="dontexpand"/>
+<textarea id="page-help-tip" style="display:none" tal:content="view/tip/tip" class="dontexpand"/>
+<script>
+Ext.onReady(function(){
+    var toolTip = new Ext.ToolTip({
+        id: 'page-level-help-tip',
+        autoHide: false,
+        closable: true,
+        draggable: true,
+        showDelay: 0,
+        target: 'page-help',
+        title: Ext.get('page-help-title').dom.innerHTML,
+        items: [{
+            xtype: 'box',
+            id: 'page-level-help-content',
+            autoScroll: true,
+            html: Ext.get('page-help-tip').dom.value
+        }],
+        listeners: {
+            show: function(){
+                Ext.get('page-level-help-tip').alignTo(toolTip.target, 'tl-tl');
+                var tip = Ext.getCmp('page-level-help-tip');
+                tip.setHeight(Math.min(tip.getHeight(), Ext.getBody().getViewSize().height - 50));
+                Ext.getCmp('page-level-help-content').setHeight(tip.getHeight() - 30);
+                this.target.hide();
+            },        
+            hide: function(toolTip) {
+                toolTip.target.show();
+            }
+        },
+        setTarget: function(target) {
+            // override method from ToolTip to monitor click instead of
+            // mouseover, mouseout, and mousemove
+            var t;
+            if((t = Ext.get(target))){
+                if(this.target){
+                    var tg = Ext.get(this.target);
+                    this.mun(tg, 'click', this.onTargetOver, this);
+                }
+                this.mon(t, {
+                    click: this.onTargetOver,
+                    scope: this
+                });
+                this.target = t;
+            }
+            if(this.anchor){
+                this.anchorTarget = this.target;
+            }
+        }
+    });
+});
+</script>
+</tal:block>

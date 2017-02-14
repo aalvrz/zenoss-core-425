@@ -1,0 +1,61 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+<script type="text/javascript" src="/zport/js/MochiKit.js"></script>
+<script type="text/javascript" 
+    src="/zport/portal_skins/zenmodel/getProdSelectList.js"></script>
+
+<form method=post 
+    tal:attributes="action string:${here/absolute_url_path}">
+    <input type="hidden" name="zenScreenName" 
+        tal:attributes="value template/id" /> 
+
+
+<tal:block tal:define="device python: here.meta_type != 'DeviceLoader' 
+                                    and here or None;
+                    tabletitle string:Edit Device;
+                    message request/message | string:Device State at time:">
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+<tal:block metal:fill-slot="filterslot">
+        <span tal:content="string:${message} ${here/getNowString}"
+                style="margin-left:20px;"/>
+</tal:block>
+<tal:block metal:fill-slot="zentablecontents"
+        tal:define="submitViaEnter string:return submitViaEnter(event,'manage_editDevice')">
+
+<!-- BEGIN TABLE CONTENTS -->
+    <tr>
+      <td class="tableheader" align="left">Collector</td>
+      <td class="tablevalues" align="left">
+        <select class="tablevalues" name="performanceMonitor"
+        tal:define="
+            crks python:here.getDmdRoot('Monitors').getPerformanceMonitorNames();
+            curcrk here/getPerformanceServerName | request/performanceMonitor |
+            string:localhost"
+        >
+      <option tal:repeat="crk crks" 
+          tal:attributes="value crk; 
+          selected python:curcrk and crk in curcrk"
+              tal:content="crk">localhost</option>
+    </select>
+      </td>
+    </tr>
+    <span metal:use-macro="here/addDevice/macros/body" />
+    <tr>
+        <td class=tableheader align="left" >
+        </td>
+        <td align="left"  class="tableheader" colspan=3>
+            <input class="tableheader" type="submit" value=" Save "
+                name="manage_editDevice:method" />
+        </td>
+    </tr>
+<!-- END TABLE CONTENTS -->
+
+</tal:block>
+</tal:block>
+</tal:block>
+</form>
+
+</tal:block>
+</tal:block>

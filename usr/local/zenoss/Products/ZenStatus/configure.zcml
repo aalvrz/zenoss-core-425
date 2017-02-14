@@ -1,0 +1,37 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="Products.ZenStatus">
+
+    <utility
+        factory=".nmap.NmapPingTask.NPingTaskFactory"
+        provides=".interfaces.IPingTaskFactory"
+        name="nmap"
+        />
+
+    <utility
+        factory=".ping.CmdPingTask.CmdPingTaskFactory"
+        provides=".interfaces.IPingTaskFactory"
+        name="ping"
+        />
+
+    <utility
+        factory=".nmap.NmapPingTask.NmapPingCollectionPreferences"
+        provides=".interfaces.IPingCollectionPreferences"
+        name="nmap"
+        />
+
+    <utility
+        factory=".ping.CmdPingTask.CmdPingCollectionPreferences"
+        provides=".interfaces.IPingCollectionPreferences"
+        name="ping"
+        />
+
+    <utility
+        factory=".SimpleCorrelator.SimpleCorrelator"
+        provides=".interfaces.IPingTaskCorrelator"
+        name="simple"
+        />
+
+</configure>

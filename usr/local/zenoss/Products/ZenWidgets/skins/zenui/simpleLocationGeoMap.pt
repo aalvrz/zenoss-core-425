@@ -1,0 +1,92 @@
+<html><body>
+<script type="text/javascript" src="js/MochiKit.js"></script>
+<script> var YAHOO_config={load:{base: '/zport/dmd/yui/'}};</script>
+<script src="/zport/dmd/yui/yuiloader/yuiloader-min.js"></script>
+<script src="/zport/dmd/yui/yahoo/yahoo-min.js"></script>
+<script src="/zport/dmd/javascript/zenoss-core.js"></script>
+<link type="text/css" rel="stylesheet" href='css/zenoss.css'/>
+<link type="text/css" rel="stylesheet" href='css/geomap.css'/>
+<link type="text/css" rel="stylesheet" href='/++resource++zenui/css/zenoss.css'/>
+<style>
+body {margin:0;padding:0;background-color:#bbb}
+</style>
+<style type="text/css">
+v\:* {
+  behavior:url(#default#VML);
+}
+</style>
+<tal:block tal:condition="here/dmd/geomapapikey">
+    <script type="text/javascript"
+        tal:condition="here/dmd/geomapapikey"
+        tal:define="apikey here/dmd/geomapapikey"
+        tal:attributes="
+            src string:http://maps.googleapis.com/maps/api/js?key=${apikey}&sensor=false"></script>                       
+    <script tal:content="string:
+        var eventsdb=true,
+            geocodecache = ${here/getGeoCache};
+    " tal:on-error="string:var eventsdb=false;"></script>                        
+   
+<script>
+
+var IS_MAP_PORTLET = true;
+
+(function(){ // Private namespace
+    var errorCount = 0;
+    function launchMap(){
+        google.maps.event.addDomListener(window, 'load', function(){
+             if(typeof geocodecache == 'undefined') geocodecache = null;
+             if (eventsdb) { 
+                loader = YAHOO.zenoss.getLoader();                  
+                loader.require(['geomap']);     
+                loader.insert(
+                {onSuccess:function(){  
+                        YAHOO.zenoss.geomap.initialize('geomapcontainer'); 
+                    }
+                });     
+            }         
+        });    
+    }
+    function checkGoogleStatus(){
+        if(typeof google == 'undefined'){
+            errorCount++;  
+            if(errorCount >= 5){
+                alert("The server returned an error while trying to retrieve a map from Google. Please reload and try again.");
+                return false; // no google object returned so something was wrong
+            }
+            setTimeout(function(){checkGoogleStatus()}, 1200);     
+        }else{
+            launchMap(); 
+        }
+    }
+    checkGoogleStatus(); 
+})(); // End private namespace
+</script>
+</tal:block>
+
+
+<div id="geomapcontainer" 
+    tal:on-error="structure python:here.dmd.error_handler(error)"
+    tal:attributes="class python:test(here.dmd.geomapapikey, '', 'noapikey')">
+    
+    <!-- Google Maps javascript adds map here -->
+
+    <div tal:condition="python:not here.dmd.geomapapikey" id="geomaperrormsg">
+        You haven't yet specified a <br/>Google Maps API key. <br/>
+        Please visit the 
+        <a href="/zport/dmd/editSettings"
+           onclick="currentWindow().parent.location.href=this.href">Settings</a> 
+       page <br/>to set one up.
+    </div>
+
+</div>
+
+<div id='geocodingdialog' 
+     style="width:100%;height:100px;
+            text-align:center;font-size:16px;
+            position:absolute;top:40%;left:0;
+            background:rgba(220, 220, 220, 0.7);z-index:9000;
+            padding:20px;display:none;">
+    Geocoding, please wait...            
+</div>
+
+</body></html>

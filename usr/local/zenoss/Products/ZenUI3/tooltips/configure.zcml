@@ -1,0 +1,24 @@
+<configure xmlns="http://namespaces.zope.org/browser">
+
+<include package="Products.ZenUtils.extdirect.zope" file="meta.zcml"/>
+
+<resourceDirectory
+    name="pagehelp"
+    directory="resources"
+    />
+
+<page
+    name="tooltips.js"
+    class=".tooltips.Tooltips"
+    for="*"
+    permission="zope2.Public"
+    />
+
+<page
+    name="page-level-help"
+    class=".tooltips.PageLevelHelp"
+    for="*"
+    permission="zope2.Public"
+    />
+
+</configure>

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.0//EN"
+"http://www.w3.org/TR/xhtml-basic/xhtml-basic10.dtd">
+<html> 
+    <head metal:use-macro="here/templates/macros/head1"/>
+	<body>
+    <div id="frame">
+    <div metal:use-macro="here/templates/macros/topPane"/>
+    <div id="infoBar">
+        <div id="leftPaneToggle"></div>
+        <div id="breadCrumbPane">
+           <span metal:use-macro="here/miscmacros/macros/breadCrumbs" />
+        </div>
+        <tal:block metal:use-macro="here/templates/macros/infoBarExtra"/>
+    </div>
+    <div id="paneToggle"></div>
+    <style tal:condition="python:'Zenoss_Collapsed_Menu' in
+                           here.REQUEST.HTTP_COOKIE">              
+                #leftPane { display:none;}
+                #rightPane { margin-left:12px;}
+                #paneToggle { 
+                    background-image: url('paneToggle_bg_collapsed.gif');
+                    border-right: medium none;
+                }
+                #leftPaneToggle{ display:block;
+                    background:transparent url(img/leftpanetoggle_bg.gif) top
+                    left repeat-x;
+                    height: 30px;
+                    width: 30px;
+                }
+                #breadCrumbPane{ padding-left: 35px;}
+
+    </style>
+    <div metal:use-macro="here/leftPane/macros/leftPane"/>
+    <div id="rightPane"/>
+    <div metal:use-macro="here/templates/macros/tabsPane"/>
+    <div id="contentPane">
+
+        <table class=" zentable">
+        <tr>
+        <th class="tabletitle" colspan="1">
+        <div class="tabletitlecontainer">
+        <div class="leftcorner">&nbsp;</div>
+        <span class="tabletitletext">Add Device</span>
+        <div class="rightcorner">&nbsp;</div>
+        </div>
+        </th>
+        </tr>
+        <tr>
+        <td style="padding:0px;">
+        <table class="innerzentable" cellpadding="3" cellspacing="1">
+        <tr>
+            <th class="tableheader">Time</th>
+            <th class="tableheader">Level</th>
+            <th class="tableheader">Module</th>
+            <th class="tableheader">Message</th>
+        </tr>

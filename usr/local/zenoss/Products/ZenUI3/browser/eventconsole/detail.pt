@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css"
+            href="/++resource++extjs/resources/css/ext-all.css" />
+        <link rel="stylesheet" type="text/css"
+            href="/++resource++zenui/css/xtheme-zenoss.css" />
+        <link rel="stylesheet" type="text/css"
+            href="/++resource++zenui/css/zenoss.css" />
+        <tal:block tal:content="structure provider:js-security"/>
+        <tal:block tal:content="structure provider:all-js"/>
+        <tal:block tal:content="structure provider:head-extra"/>
+    </head>
+    <body class="zenui3">
+
+
+
+<!--The following is using a python statement to avoid permission issues for non-global roles -->
+<script tal:content="python: 'Ext.onReady(function() { Zenoss.env.EVENTSGRID_STATEID = \'' + here.id + '_evconsole\';  });'" >
+</script>
+
+<script tal:content="python: 'var EVENT_ID = ' + '\'' + request.form['evid'].replace('\'', '') + '\';'">
+</script>
+
+<style>
+#evdetail-tools { display:none; }
+</style>
+<script>
+Ext.onReady(function(){
+    var vp = new Ext.Viewport({
+        layout: 'fit',
+        renderTo: Ext.getBody().dom,
+        items: [{
+            xtype: 'detailpanel',
+            showActions: true,
+            id: 'dpanelcontainer'
+        }]
+    });
+    vp.doLayout();
+    Ext.getCmp('dpanelcontainer').load(EVENT_ID);
+});
+</script>
+    </body>
+</html>

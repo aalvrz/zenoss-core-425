@@ -1,0 +1,57 @@
+<tal:block metal:use-macro="context/page_macros/masterdetail-new">
+
+<tal:block metal:fill-slot="breadcrumbs">
+<div id="breadCrumbPane" class="bc-notabs">
+<span metal:use-macro="here/miscmacros/macros/breadCrumbs" />
+</div>
+</tal:block>
+
+<tal:block metal:fill-slot="master_panel_content">
+</tal:block>
+
+<tal:block metal:fill-slot="detail_panel_content">
+</tal:block>
+
+
+<tal:block metal:fill-slot="script_beforeLayout">
+
+<script>Zenoss.env.pageHasBreadCrumbs = true;</script>
+</tal:block>
+
+<tal:block metal:fill-slot="script_layout">
+
+<script tal:content="string:
+    Ext.onReady(function(){
+        Zenoss.env.EVENTSGRID_STATEID = 'evconsole';
+    });
+"></script>
+<script tal:content="view/prefetchEvents"></script>
+<script tal:content="string:
+    Zenoss.env.CURRENT_CONTEXT = '${context/getPrimaryId}';
+" tal:on-error="string:"></script> 
+<script src="/++resource++zenui/js/zenoss/EvConsole.js">
+</script>
+<script>
+Ext.onReady(function(){
+    var toolbar_items = [{
+            xtype: 'tbtext',
+            text: '<a href="viewHistoryEvents'+location.search+'">Event Archive...<'+'/a'+'>',
+            style: {
+                marginTop: '4px'
+            }
+        }, {
+            xtype: 'tbfill'
+        },
+        Ext.create('Zenoss.LiveGridInfoPanel', {
+            grid: 'events_grid'
+        })
+    ];
+
+    Ext.each(toolbar_items,
+             function(item) {this.add(item);},
+             Ext.getCmp('footer_bar'));
+});
+</script>
+</tal:block>
+
+</tal:block>

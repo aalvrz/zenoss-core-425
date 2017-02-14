@@ -1,0 +1,201 @@
+2014-04-25T10:32:35.133 [main] WARN  org.springframework.beans.factory.config.PropertiesFactoryBean - Could not load properties from URL [file:etc/zeneventserver.conf]: etc/zeneventserver.conf (No such file or directory)
+2014-04-25T10:32:35.628 [main] INFO  org.zenoss.zep.dao.ConfigDao - Maximum archive days: 1000
+2014-04-25T10:32:36.619 [AmqpConnectionManager] INFO  org.zenoss.amqp.AmqpConnectionManager - Attempting to connect to message broker at amqp://zenoss@localhost:5672/zenoss
+2014-04-25T10:32:36.697 [main] INFO  org.zenoss.zep.impl.PluginServiceImpl - No external plug-ins found.
+2014-04-25T10:32:36.784 [AmqpConnectionManager] INFO  org.zenoss.amqp.impl.ConnectionFactoryImpl - No AMQP connection heartbeat
+2014-04-25T10:32:36.985 [AmqpConnectionManager] INFO  org.zenoss.amqp.AmqpConnectionManager - Connected to message broker at amqp://zenoss@localhost:5672/zenoss
+2014-04-25T10:32:37.842 [main] INFO  org.zenoss.zep.impl.PluginServiceImpl - Starting plug-in: EventFlappingPlugin
+2014-04-25T10:32:37.842 [main] INFO  org.zenoss.zep.impl.EventFlappingPlugin - Event flapping detection plugin loading configuration
+2014-04-25T10:32:37.844 [main] INFO  org.zenoss.zep.impl.PluginServiceImpl - Starting plug-in: TriggerPlugin
+2014-04-25T10:32:37.855 [main] INFO  org.zenoss.zep.impl.PluginServiceImpl - Starting plug-in: EventFanOutPlugin
+2014-04-25T10:32:37.856 [main] INFO  org.zenoss.zep.impl.PluginServiceImpl - Initialized plug-ins
+2014-04-25T10:32:37.857 [main] INFO  org.zenoss.zep.impl.Application - Initializing ZEP
+2014-04-25T10:32:37.879 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140126_000000 to table event_archive
+2014-04-25T10:32:37.879 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140127_000000 to table event_archive
+2014-04-25T10:32:37.879 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140128_000000 to table event_archive
+2014-04-25T10:32:37.879 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140129_000000 to table event_archive
+2014-04-25T10:32:37.879 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140130_000000 to table event_archive
+2014-04-25T10:32:37.880 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140131_000000 to table event_archive
+2014-04-25T10:32:37.880 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140201_000000 to table event_archive
+2014-04-25T10:32:37.880 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140202_000000 to table event_archive
+2014-04-25T10:32:37.880 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140203_000000 to table event_archive
+2014-04-25T10:32:37.880 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140204_000000 to table event_archive
+2014-04-25T10:32:37.880 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140205_000000 to table event_archive
+2014-04-25T10:32:37.880 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140206_000000 to table event_archive
+2014-04-25T10:32:37.880 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140207_000000 to table event_archive
+2014-04-25T10:32:37.881 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140208_000000 to table event_archive
+2014-04-25T10:32:37.881 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140209_000000 to table event_archive
+2014-04-25T10:32:37.881 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140210_000000 to table event_archive
+2014-04-25T10:32:37.881 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140211_000000 to table event_archive
+2014-04-25T10:32:37.881 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140212_000000 to table event_archive
+2014-04-25T10:32:37.881 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140213_000000 to table event_archive
+2014-04-25T10:32:37.881 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140214_000000 to table event_archive
+2014-04-25T10:32:37.881 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140215_000000 to table event_archive
+2014-04-25T10:32:37.882 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140216_000000 to table event_archive
+2014-04-25T10:32:37.882 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140217_000000 to table event_archive
+2014-04-25T10:32:37.882 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140218_000000 to table event_archive
+2014-04-25T10:32:37.882 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140219_000000 to table event_archive
+2014-04-25T10:32:37.882 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140220_000000 to table event_archive
+2014-04-25T10:32:37.882 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140221_000000 to table event_archive
+2014-04-25T10:32:37.882 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140222_000000 to table event_archive
+2014-04-25T10:32:37.883 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140223_000000 to table event_archive
+2014-04-25T10:32:37.883 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140224_000000 to table event_archive
+2014-04-25T10:32:37.883 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140225_000000 to table event_archive
+2014-04-25T10:32:37.883 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140226_000000 to table event_archive
+2014-04-25T10:32:37.883 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140227_000000 to table event_archive
+2014-04-25T10:32:37.883 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140228_000000 to table event_archive
+2014-04-25T10:32:37.883 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140301_000000 to table event_archive
+2014-04-25T10:32:37.883 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140302_000000 to table event_archive
+2014-04-25T10:32:37.884 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140303_000000 to table event_archive
+2014-04-25T10:32:37.884 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140304_000000 to table event_archive
+2014-04-25T10:32:37.884 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140305_000000 to table event_archive
+2014-04-25T10:32:37.884 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140306_000000 to table event_archive
+2014-04-25T10:32:37.884 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140307_000000 to table event_archive
+2014-04-25T10:32:37.884 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140308_000000 to table event_archive
+2014-04-25T10:32:37.884 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140309_000000 to table event_archive
+2014-04-25T10:32:37.884 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140310_000000 to table event_archive
+2014-04-25T10:32:37.885 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140311_000000 to table event_archive
+2014-04-25T10:32:37.885 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140312_000000 to table event_archive
+2014-04-25T10:32:37.885 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140313_000000 to table event_archive
+2014-04-25T10:32:37.885 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140314_000000 to table event_archive
+2014-04-25T10:32:37.885 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140315_000000 to table event_archive
+2014-04-25T10:32:37.885 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140316_000000 to table event_archive
+2014-04-25T10:32:37.885 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140317_000000 to table event_archive
+2014-04-25T10:32:37.885 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140318_000000 to table event_archive
+2014-04-25T10:32:37.885 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140319_000000 to table event_archive
+2014-04-25T10:32:37.886 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140320_000000 to table event_archive
+2014-04-25T10:32:37.886 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140321_000000 to table event_archive
+2014-04-25T10:32:37.886 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140322_000000 to table event_archive
+2014-04-25T10:32:37.886 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140323_000000 to table event_archive
+2014-04-25T10:32:37.887 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140324_000000 to table event_archive
+2014-04-25T10:32:37.887 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140325_000000 to table event_archive
+2014-04-25T10:32:37.887 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140326_000000 to table event_archive
+2014-04-25T10:32:37.887 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140327_000000 to table event_archive
+2014-04-25T10:32:37.887 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140328_000000 to table event_archive
+2014-04-25T10:32:37.887 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140329_000000 to table event_archive
+2014-04-25T10:32:37.888 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140330_000000 to table event_archive
+2014-04-25T10:32:37.888 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140331_000000 to table event_archive
+2014-04-25T10:32:37.888 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140401_000000 to table event_archive
+2014-04-25T10:32:37.888 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140402_000000 to table event_archive
+2014-04-25T10:32:37.888 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140403_000000 to table event_archive
+2014-04-25T10:32:37.888 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140404_000000 to table event_archive
+2014-04-25T10:32:37.888 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140405_000000 to table event_archive
+2014-04-25T10:32:37.888 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140406_000000 to table event_archive
+2014-04-25T10:32:37.888 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140407_000000 to table event_archive
+2014-04-25T10:32:37.889 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140408_000000 to table event_archive
+2014-04-25T10:32:37.889 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140409_000000 to table event_archive
+2014-04-25T10:32:37.889 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140410_000000 to table event_archive
+2014-04-25T10:32:37.889 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140411_000000 to table event_archive
+2014-04-25T10:32:37.889 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140412_000000 to table event_archive
+2014-04-25T10:32:37.889 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140413_000000 to table event_archive
+2014-04-25T10:32:37.889 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140414_000000 to table event_archive
+2014-04-25T10:32:37.889 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140415_000000 to table event_archive
+2014-04-25T10:32:37.890 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140416_000000 to table event_archive
+2014-04-25T10:32:37.890 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140417_000000 to table event_archive
+2014-04-25T10:32:37.890 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140418_000000 to table event_archive
+2014-04-25T10:32:37.890 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140419_000000 to table event_archive
+2014-04-25T10:32:37.890 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140420_000000 to table event_archive
+2014-04-25T10:32:37.890 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140421_000000 to table event_archive
+2014-04-25T10:32:37.890 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140422_000000 to table event_archive
+2014-04-25T10:32:37.890 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140423_000000 to table event_archive
+2014-04-25T10:32:37.891 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140424_000000 to table event_archive
+2014-04-25T10:32:37.891 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140425_000000 to table event_archive
+2014-04-25T10:32:37.891 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140426_000000 to table event_archive
+2014-04-25T10:32:37.891 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140427_000000 to table event_archive
+2014-04-25T10:32:37.891 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140428_000000 to table event_archive
+2014-04-25T10:32:39.111 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140425_160000 to table event_time
+2014-04-25T10:32:39.112 [main] INFO  org.zenoss.utils.dao.impl.MySqlRangePartitioner - Adding partition p20140425_170000 to table event_time
+2014-04-25T10:32:39.126 [main] INFO  org.zenoss.zep.impl.Application - Starting event aging at interval: 60000 milliseconds(s), inclusive severity: false
+2014-04-25T10:32:39.127 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Index rebuilding thread started for: event_summary
+2014-04-25T10:32:39.129 [INDEX_REBUILDER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Index rebuilding thread started for: event_archive
+2014-04-25T10:32:39.130 [main] INFO  org.zenoss.zep.impl.Application - Validating that event_summary table is in a good state
+2014-04-25T10:32:39.134 [main] INFO  org.zenoss.zep.impl.Application - Starting event archiving at interval: 60000 milliseconds(s)
+2014-04-25T10:32:39.145 [main] INFO  org.zenoss.zep.impl.Application - Starting database table optimization at interval: 720 minutes(s)
+2014-04-25T10:32:39.212 [main] INFO  org.zenoss.zep.impl.Application - Completed ZEP initialization
+2014-04-25T10:32:39.268 [zenoss.queues.zep.migrated.archive] INFO  org.zenoss.amqp.AmqpConnectionManager$QueueWorker - Worker started, consuming messages on queue: zenoss.queues.zep.migrated.archive
+2014-04-25T10:32:39.269 [zenoss.queues.zep.heartbeats] INFO  org.zenoss.amqp.AmqpConnectionManager$QueueWorker - Worker started, consuming messages on queue: zenoss.queues.zep.heartbeats
+2014-04-25T10:32:39.272 [zenoss.queues.zep.zenevents] INFO  org.zenoss.amqp.AmqpConnectionManager$QueueWorker - Worker started, consuming messages on queue: zenoss.queues.zep.zenevents
+2014-04-25T10:32:39.274 [zenoss.queues.zep.migrated.summary] INFO  org.zenoss.amqp.AmqpConnectionManager$QueueWorker - Worker started, consuming messages on queue: zenoss.queues.zep.migrated.summary
+2014-04-25T10:32:39.281 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.location (PATH)
+2014-04-25T10:32:39.281 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.device_class (PATH)
+2014-04-25T10:32:39.281 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.priority (INTEGER)
+2014-04-25T10:32:39.281 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.systems (PATH)
+2014-04-25T10:32:39.281 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.groups (PATH)
+2014-04-25T10:32:39.281 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.production_state (INTEGER)
+2014-04-25T10:32:39.281 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.ip_address (IP_ADDRESS)
+2014-04-25T10:32:39.294 [INDEX_REBUILDER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Empty index detected.
+2014-04-25T10:32:39.302 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Empty index detected.
+2014-04-25T10:32:39.320 [zenoss.queues.zep.modelchange] INFO  org.zenoss.amqp.AmqpConnectionManager$QueueWorker - Worker started, consuming messages on queue: zenoss.queues.zep.modelchange
+2014-04-25T10:32:39.328 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Recreating index for table event_summary
+2014-04-25T10:32:39.330 [INDEXER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexerImpl - Indexing thread started for: event_summary
+2014-04-25T10:32:39.333 [INDEX_REBUILDER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Recreating index for table event_archive
+2014-04-25T10:32:39.342 [INDEXER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexerImpl - Indexing thread started for: event_archive
+2014-04-25T10:32:39.468 [INDEX_REBUILDER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Finished recreating index for 0 events on table: event_archive
+2014-04-25T10:32:39.469 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Finished recreating index for 0 events on table: event_summary
+2014-04-25T10:33:39.195 [ZEP_EVENT_ARCHIVE_PURGER] INFO  org.zenoss.zep.index.impl.EventIndexDaoImpl - Purging events older than Sat Jan 25 09:33:39 CST 2014
+2014-04-25T10:34:22.429 [INDEXER_EVENT_SUMMARY] INFO  org.zenoss.zep.impl.TriggerPlugin - Initializing Jython
+2014-04-25T10:34:24.971 [INDEXER_EVENT_SUMMARY] INFO  org.zenoss.zep.impl.TriggerPlugin - Completed Jython initialization
+2014-04-25T10:37:00.474 [Thread-2] INFO  org.zenoss.zep.impl.Application - Scheduled tasks finished
+2014-04-25T10:37:00.475 [INDEXER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexerImpl - Indexing thread stopped for: event_summary
+2014-04-25T10:37:00.479 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Index rebuilding thread stopped for: event_summary
+2014-04-25T10:37:00.480 [INDEXER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexerImpl - Indexing thread stopped for: event_archive
+2014-04-25T10:37:00.481 [INDEX_REBUILDER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Index rebuilding thread stopped for: event_archive
+2014-04-25T10:37:00.497 [Thread-2] INFO  org.zenoss.amqp.AmqpConnectionManager - Shutting down...
+2014-04-25T10:37:00.503 [Thread-2] INFO  org.zenoss.zep.impl.PluginServiceImpl - Stopping plug-in: EventFlappingPlugin
+2014-04-25T10:37:00.503 [Thread-2] INFO  org.zenoss.zep.impl.PluginServiceImpl - Stopping plug-in: TriggerPlugin
+2014-04-25T10:37:00.505 [Thread-2] INFO  org.zenoss.zep.impl.PluginServiceImpl - Stopping plug-in: EventFanOutPlugin
+2014-04-25T10:37:00.505 [Thread-2] INFO  org.zenoss.zep.impl.PluginServiceImpl - Shutdown plug-ins
+2014-04-25T10:38:21.338 [main] WARN  org.springframework.beans.factory.config.PropertiesFactoryBean - Could not load properties from URL [file:etc/zeneventserver.conf]: etc/zeneventserver.conf (No such file or directory)
+2014-04-25T10:38:21.917 [main] INFO  org.zenoss.zep.dao.ConfigDao - Maximum archive days: 1000
+2014-04-25T10:38:22.930 [main] WARN  org.zenoss.utils.impl.ZenPackImpl - No egg-info found for ZenPack in /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.PySamba-1.0.2-py2.7-linux-x86_64.egg/ZenPacks/zenoss/PySamba/lib.
+2014-04-25T10:38:23.238 [AmqpConnectionManager] INFO  org.zenoss.amqp.AmqpConnectionManager - Attempting to connect to message broker at amqp://zenoss@localhost:5672/zenoss
+2014-04-25T10:38:23.286 [AmqpConnectionManager] INFO  org.zenoss.amqp.impl.ConnectionFactoryImpl - No AMQP connection heartbeat
+2014-04-25T10:38:23.294 [main] WARN  org.zenoss.utils.impl.ZenPackImpl - No egg-info found for ZenPack in /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.PySamba-1.0.2-py2.7-linux-x86_64.egg/ZenPacks/zenoss/PySamba/lib.
+2014-04-25T10:38:23.300 [main] INFO  org.zenoss.zep.impl.PluginServiceImpl - No external plug-ins found.
+2014-04-25T10:38:23.510 [AmqpConnectionManager] INFO  org.zenoss.amqp.AmqpConnectionManager - Connected to message broker at amqp://zenoss@localhost:5672/zenoss
+2014-04-25T10:38:24.301 [main] INFO  org.zenoss.zep.impl.PluginServiceImpl - Starting plug-in: EventFlappingPlugin
+2014-04-25T10:38:24.301 [main] INFO  org.zenoss.zep.impl.EventFlappingPlugin - Event flapping detection plugin loading configuration
+2014-04-25T10:38:24.304 [main] INFO  org.zenoss.zep.impl.PluginServiceImpl - Starting plug-in: TriggerPlugin
+2014-04-25T10:38:24.316 [main] INFO  org.zenoss.zep.impl.PluginServiceImpl - Starting plug-in: EventFanOutPlugin
+2014-04-25T10:38:24.317 [main] INFO  org.zenoss.zep.impl.PluginServiceImpl - Initialized plug-ins
+2014-04-25T10:38:24.318 [main] INFO  org.zenoss.zep.impl.Application - Initializing ZEP
+2014-04-25T10:38:24.358 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Index rebuilding thread started for: event_summary
+2014-04-25T10:38:24.359 [main] INFO  org.zenoss.zep.impl.Application - Starting event aging at interval: 60000 milliseconds(s), inclusive severity: false
+2014-04-25T10:38:24.366 [INDEX_REBUILDER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Index rebuilding thread started for: event_archive
+2014-04-25T10:38:24.368 [main] INFO  org.zenoss.zep.impl.Application - Validating that event_summary table is in a good state
+2014-04-25T10:38:24.372 [main] INFO  org.zenoss.zep.impl.Application - Starting event archiving at interval: 60000 milliseconds(s)
+2014-04-25T10:38:24.386 [main] INFO  org.zenoss.zep.impl.Application - Starting database table optimization at interval: 720 minutes(s)
+2014-04-25T10:38:24.452 [main] INFO  org.zenoss.zep.impl.Application - Completed ZEP initialization
+2014-04-25T10:38:24.481 [zenoss.queues.zep.migrated.archive] INFO  org.zenoss.amqp.AmqpConnectionManager$QueueWorker - Worker started, consuming messages on queue: zenoss.queues.zep.migrated.archive
+2014-04-25T10:38:24.481 [zenoss.queues.zep.heartbeats] INFO  org.zenoss.amqp.AmqpConnectionManager$QueueWorker - Worker started, consuming messages on queue: zenoss.queues.zep.heartbeats
+2014-04-25T10:38:24.484 [zenoss.queues.zep.migrated.summary] INFO  org.zenoss.amqp.AmqpConnectionManager$QueueWorker - Worker started, consuming messages on queue: zenoss.queues.zep.migrated.summary
+2014-04-25T10:38:24.485 [zenoss.queues.zep.zenevents] INFO  org.zenoss.amqp.AmqpConnectionManager$QueueWorker - Worker started, consuming messages on queue: zenoss.queues.zep.zenevents
+2014-04-25T10:38:24.506 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.location (PATH)
+2014-04-25T10:38:24.506 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.device_class (PATH)
+2014-04-25T10:38:24.506 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.priority (INTEGER)
+2014-04-25T10:38:24.506 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.systems (PATH)
+2014-04-25T10:38:24.506 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.groups (PATH)
+2014-04-25T10:38:24.506 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.production_state (INTEGER)
+2014-04-25T10:38:24.506 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.IndexedDetailsConfigurationImpl - Indexed event detail: zenoss.device.ip_address (IP_ADDRESS)
+2014-04-25T10:38:24.517 [INDEX_REBUILDER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Empty index detected.
+2014-04-25T10:38:24.525 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Index version changed: previous=0, new=8
+2014-04-25T10:38:24.553 [zenoss.queues.zep.modelchange] INFO  org.zenoss.amqp.AmqpConnectionManager$QueueWorker - Worker started, consuming messages on queue: zenoss.queues.zep.modelchange
+2014-04-25T10:38:24.798 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Recreating index for table event_summary
+2014-04-25T10:38:24.800 [INDEXER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexerImpl - Indexing thread started for: event_summary
+2014-04-25T10:38:24.803 [INDEX_REBUILDER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Recreating index for table event_archive
+2014-04-25T10:38:24.812 [INDEXER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexerImpl - Indexing thread started for: event_archive
+2014-04-25T10:38:24.889 [INDEX_REBUILDER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Finished recreating index for 0 events on table: event_archive
+2014-04-25T10:38:25.230 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Finished recreating index for 34 events on table: event_summary
+2014-04-25T10:39:24.415 [ZEP_EVENT_ARCHIVE_PURGER] INFO  org.zenoss.zep.index.impl.EventIndexDaoImpl - Purging events older than Sat Jan 25 09:39:24 CST 2014
+2014-04-25T10:39:44.808 [INDEXER_EVENT_SUMMARY] INFO  org.zenoss.zep.impl.TriggerPlugin - Initializing Jython
+2014-04-25T10:39:46.912 [INDEXER_EVENT_SUMMARY] INFO  org.zenoss.zep.impl.TriggerPlugin - Completed Jython initialization
+2014-04-25T10:40:15.475 [Thread-2] INFO  org.zenoss.zep.impl.Application - Scheduled tasks finished
+2014-04-25T10:40:15.478 [INDEXER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexerImpl - Indexing thread stopped for: event_summary
+2014-04-25T10:40:15.479 [INDEX_REBUILDER_EVENT_SUMMARY] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Index rebuilding thread stopped for: event_summary
+2014-04-25T10:40:15.480 [INDEXER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexerImpl - Indexing thread stopped for: event_archive
+2014-04-25T10:40:15.481 [INDEX_REBUILDER_EVENT_ARCHIVE] INFO  org.zenoss.zep.index.impl.EventIndexRebuilderImpl - Index rebuilding thread stopped for: event_archive
+2014-04-25T10:40:15.505 [Thread-2] INFO  org.zenoss.amqp.AmqpConnectionManager - Shutting down...
+2014-04-25T10:40:15.512 [Thread-2] INFO  org.zenoss.zep.impl.PluginServiceImpl - Stopping plug-in: EventFlappingPlugin
+2014-04-25T10:40:15.512 [Thread-2] INFO  org.zenoss.zep.impl.PluginServiceImpl - Stopping plug-in: TriggerPlugin
+2014-04-25T10:40:15.514 [Thread-2] INFO  org.zenoss.zep.impl.PluginServiceImpl - Stopping plug-in: EventFanOutPlugin
+2014-04-25T10:40:15.514 [Thread-2] INFO  org.zenoss.zep.impl.PluginServiceImpl - Shutdown plug-ins

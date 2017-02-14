@@ -1,0 +1,169 @@
+2014-04-25 10:33:44,015 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.PySamba-1.0.2-py2.7-linux-x86_64.egg/ZenPacks/zenoss/PySamba/reports
+2014-04-25 10:33:48 INFO zen.windowsmonitor: Removing Packables from previous zenpacks
+2014-04-25 10:33:48 INFO zen.windowsmonitor: Migrating WinPerfDataSources to new class
+2014-04-25 10:33:49 INFO zen.windowsmonitor: Converting 0 datasources
+2014-04-25 10:33:49,105 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.WindowsMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/WindowsMonitor/objects/objects.xml
+2014-04-25 10:33:49,489 INFO zen.AddToPack: End loading objects
+2014-04-25 10:33:49,490 INFO zen.AddToPack: Processing links
+2014-04-25 10:33:49,747 INFO zen.AddToPack: Loaded 92 objects into the ZODB database
+2014-04-25 10:33:49,775 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.WindowsMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/WindowsMonitor/reports
+2014-04-25 10:33:57,137 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.WindowsMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/WindowsMonitor/objects/objects.xml
+2014-04-25 10:33:57,282 INFO zen.AddToPack: End loading objects
+2014-04-25 10:33:57,282 INFO zen.AddToPack: Processing links
+2014-04-25 10:33:57,487 INFO zen.AddToPack: Loaded 22 objects into the ZODB database
+2014-04-25 10:34:03,060 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.ActiveDirectory-2.1.0-py2.7.egg/ZenPacks/zenoss/ActiveDirectory/objects/objects.xml
+2014-04-25 10:34:04,218 INFO zen.AddToPack: End loading objects
+2014-04-25 10:34:04,219 INFO zen.AddToPack: Processing links
+2014-04-25 10:34:04,361 INFO zen.AddToPack: Loaded 277 objects into the ZODB database
+2014-04-25 10:34:04,398 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.ActiveDirectory-2.1.0-py2.7.egg/ZenPacks/zenoss/ActiveDirectory/reports
+2014-04-25 10:34:05,489 INFO zen.ActiveDirectory: Enabling monitoring for Intersite Messaging
+2014-04-25 10:34:05,492 INFO zen.ActiveDirectory: Enabling monitoring for Net Logon
+2014-04-25 10:34:05,495 INFO zen.ActiveDirectory: Enabling monitoring for File Replication
+2014-04-25 10:34:05,498 INFO zen.ActiveDirectory: Enabling monitoring for Remote Procedure Call (RPC)
+2014-04-25 10:34:05,500 INFO zen.ActiveDirectory: Enabling monitoring for Security Accounts Manager
+2014-04-25 10:34:05,503 INFO zen.ActiveDirectory: Enabling monitoring for Windows Time
+2014-04-25 10:34:05,506 INFO zen.ActiveDirectory: Enabling monitoring for Kerberos Key Distribution Center
+2014-04-25 10:34:12,412 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.IISMonitor-2.0.2-py2.7.egg/ZenPacks/zenoss/IISMonitor/objects/objects.xml
+2014-04-25 10:34:12,663 INFO zen.AddToPack: End loading objects
+2014-04-25 10:34:12,663 INFO zen.AddToPack: Processing links
+2014-04-25 10:34:12,762 INFO zen.AddToPack: Loaded 75 objects into the ZODB database
+2014-04-25 10:34:12,794 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.IISMonitor-2.0.2-py2.7.egg/ZenPacks/zenoss/IISMonitor/reports
+2014-04-25 10:34:13,205 INFO zen.IISMonitor: Enabling monitoring for IIS Admin Service
+2014-04-25 10:34:17,837 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.MSExchange-2.0.4-py2.7.egg/ZenPacks/zenoss/MSExchange/objects/objects.xml
+2014-04-25 10:34:19,534 INFO zen.AddToPack: End loading objects
+2014-04-25 10:34:19,535 INFO zen.AddToPack: Processing links
+2014-04-25 10:34:19,796 INFO zen.AddToPack: Loaded 83 objects into the ZODB database
+2014-04-25 10:34:19,825 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.MSExchange-2.0.4-py2.7.egg/ZenPacks/zenoss/MSExchange/reports
+2014-04-25 10:34:19,841 INFO zen.HookReportLoader: loading: /MSExchange/MSExchangeAvailability
+2014-04-25 10:34:19,975 INFO zen.ZPLoader: Creating trigger: MSExchangeISWMTotal16MBFreeBlocks
+2014-04-25 10:34:20,023 INFO zen.ZPLoader: Creating notification: MSExchangeISWMTotal16MBFreeBlocks
+2014-04-25 10:34:20,512 INFO zen.ActiveDirectory: Enabling monitoring for Microsoft Exchange Event
+2014-04-25 10:34:20,512 INFO zen.ActiveDirectory: Enabling monitoring for Microsoft Exchange Information Store
+2014-04-25 10:34:20,513 INFO zen.ActiveDirectory: Enabling monitoring for Microsoft Exchange Management
+2014-04-25 10:34:20,513 INFO zen.ActiveDirectory: Enabling monitoring for Microsoft Exchange MTA Stacks
+2014-04-25 10:34:20,513 INFO zen.ActiveDirectory: Enabling monitoring for Microsoft Exchange System Attendant
+2014-04-25 10:34:20,514 INFO zen.ActiveDirectory: Enabling monitoring for Microsoft Exchange Site Replication Service
+2014-04-25 10:34:25,517 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.MSMQMonitor-1.2.1-py2.7.egg/ZenPacks/zenoss/MSMQMonitor/objects/objects.xml
+2014-04-25 10:34:25,584 INFO zen.AddToPack: End loading objects
+2014-04-25 10:34:25,584 INFO zen.AddToPack: Processing links
+2014-04-25 10:34:25,658 INFO zen.AddToPack: Loaded 9 objects into the ZODB database
+2014-04-25 10:34:25,681 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.MSMQMonitor-1.2.1-py2.7.egg/ZenPacks/zenoss/MSMQMonitor/reports
+2014-04-25 10:34:29,811 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.MSSQLServer-2.0.3-py2.7.egg/ZenPacks/zenoss/MSSQLServer/objects/objects.xml
+2014-04-25 10:34:30,104 INFO zen.AddToPack: End loading objects
+2014-04-25 10:34:30,105 INFO zen.AddToPack: Processing links
+2014-04-25 10:34:30,304 INFO zen.AddToPack: Loaded 61 objects into the ZODB database
+2014-04-25 10:34:30,344 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.MSSQLServer-2.0.3-py2.7.egg/ZenPacks/zenoss/MSSQLServer/reports
+2014-04-25 10:34:30,861 INFO zen.MSSQLServer: Enabling monitoring for MSSQLSERVER
+2014-04-25 10:34:30,862 INFO zen.MSSQLServer: Enabling monitoring for SQL Server Analysis Services (MSSQLSERVER)
+2014-04-25 10:34:30,863 INFO zen.MSSQLServer: Enabling monitoring for SQL Server Integration Services
+2014-04-25 10:34:30,863 INFO zen.MSSQLServer: Enabling monitoring for SQL Server Browser
+2014-04-25 10:34:30,864 INFO zen.MSSQLServer: Enabling monitoring for SQLSERVERAGENT
+2014-04-25 10:34:30,864 INFO zen.MSSQLServer: Enabling monitoring for Microsoft SQL Server
+2014-04-25 10:34:30,865 INFO zen.MSSQLServer: Enabling monitoring for SQL Server VSS Writer
+2014-04-25 10:34:30,866 INFO zen.MSSQLServer: Enabling monitoring for SQL Server FullText Search (MSSQLSERVER)
+2014-04-25 10:34:35,600 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.ApacheMonitor-2.1.4-py2.7.egg/ZenPacks/zenoss/ApacheMonitor/objects/objects.xml
+2014-04-25 10:34:35,768 INFO zen.AddToPack: End loading objects
+2014-04-25 10:34:35,768 INFO zen.AddToPack: Processing links
+2014-04-25 10:34:36,368 INFO zen.AddToPack: Loaded 33 objects into the ZODB database
+2014-04-25 10:34:36,403 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.ApacheMonitor-2.1.4-py2.7.egg/ZenPacks/zenoss/ApacheMonitor/reports
+2014-04-25 10:34:36,581 INFO zen.migrate: Removing ignoreParameters from OSProcessClass object
+2014-04-25 10:34:40,693 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.DellMonitor-2.2.0-py2.7.egg/ZenPacks/zenoss/DellMonitor/objects/objects.xml
+2014-04-25 10:34:41,541 INFO zen.AddToPack: End loading objects
+2014-04-25 10:34:41,541 INFO zen.AddToPack: Processing links
+2014-04-25 10:34:41,584 INFO zen.AddToPack: Loaded 3 objects into the ZODB database
+2014-04-25 10:34:41,612 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.DellMonitor-2.2.0-py2.7.egg/ZenPacks/zenoss/DellMonitor/reports
+2014-04-25 10:34:45,848 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.DigMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/DigMonitor/objects/objects.xml
+2014-04-25 10:34:45,948 INFO zen.AddToPack: End loading objects
+2014-04-25 10:34:45,949 INFO zen.AddToPack: Processing links
+2014-04-25 10:34:46,035 INFO zen.AddToPack: Loaded 8 objects into the ZODB database
+2014-04-25 10:34:46,068 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.DigMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/DigMonitor/reports
+2014-04-25 10:34:49,960 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.DnsMonitor-2.1.0-py2.7.egg/ZenPacks/zenoss/DnsMonitor/objects/objects.xml
+2014-04-25 10:34:50,031 INFO zen.AddToPack: End loading objects
+2014-04-25 10:34:50,032 INFO zen.AddToPack: Processing links
+2014-04-25 10:34:50,153 INFO zen.AddToPack: Loaded 5 objects into the ZODB database
+2014-04-25 10:34:50,188 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.DnsMonitor-2.1.0-py2.7.egg/ZenPacks/zenoss/DnsMonitor/reports
+2014-04-25 10:34:54,127 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.FtpMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/FtpMonitor/objects/objects.xml
+2014-04-25 10:34:54,191 INFO zen.AddToPack: End loading objects
+2014-04-25 10:34:54,191 INFO zen.AddToPack: Processing links
+2014-04-25 10:34:54,315 INFO zen.AddToPack: Loaded 6 objects into the ZODB database
+2014-04-25 10:34:54,351 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.FtpMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/FtpMonitor/reports
+2014-04-25 10:34:58,265 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.HPMonitor-2.1.0-py2.7.egg/ZenPacks/zenoss/HPMonitor/objects/objects.xml
+2014-04-25 10:34:58,753 INFO zen.AddToPack: End loading objects
+2014-04-25 10:34:58,754 INFO zen.AddToPack: Processing links
+2014-04-25 10:34:58,848 INFO zen.AddToPack: Loaded 19 objects into the ZODB database
+2014-04-25 10:34:58,891 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.HPMonitor-2.1.0-py2.7.egg/ZenPacks/zenoss/HPMonitor/reports
+2014-04-25 10:35:04,014 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.HttpMonitor-2.1.0-py2.7.egg/ZenPacks/zenoss/HttpMonitor/objects/objects.xml
+2014-04-25 10:35:04,117 INFO zen.AddToPack: End loading objects
+2014-04-25 10:35:04,117 INFO zen.AddToPack: Processing links
+2014-04-25 10:35:04,227 INFO zen.AddToPack: Loaded 10 objects into the ZODB database
+2014-04-25 10:35:04,260 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.HttpMonitor-2.1.0-py2.7.egg/ZenPacks/zenoss/HttpMonitor/reports
+2014-04-25 10:35:08,280 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.IRCDMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/IRCDMonitor/objects/objects.xml
+2014-04-25 10:35:08,371 INFO zen.AddToPack: End loading objects
+2014-04-25 10:35:08,372 INFO zen.AddToPack: Processing links
+2014-04-25 10:35:08,486 INFO zen.AddToPack: Loaded 6 objects into the ZODB database
+2014-04-25 10:35:08,519 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.IRCDMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/IRCDMonitor/reports
+2014-04-25 10:35:12,550 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.JabberMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/JabberMonitor/objects/objects.xml
+2014-04-25 10:35:12,644 INFO zen.AddToPack: End loading objects
+2014-04-25 10:35:12,645 INFO zen.AddToPack: Processing links
+2014-04-25 10:35:12,728 INFO zen.AddToPack: Loaded 6 objects into the ZODB database
+2014-04-25 10:35:12,757 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.JabberMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/JabberMonitor/reports
+2014-04-25 10:35:16,654 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.LDAPMonitor-1.4.0-py2.7.egg/ZenPacks/zenoss/LDAPMonitor/objects/objects.xml
+2014-04-25 10:35:16,717 INFO zen.AddToPack: End loading objects
+2014-04-25 10:35:16,717 INFO zen.AddToPack: Processing links
+2014-04-25 10:35:16,791 INFO zen.AddToPack: Loaded 8 objects into the ZODB database
+2014-04-25 10:35:16,828 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.LDAPMonitor-1.4.0-py2.7.egg/ZenPacks/zenoss/LDAPMonitor/reports
+2014-04-25 10:35:20 ERROR zen.ZenPackCmd: Zenpack /tmp/opt/zenoss/packs/ZenPacks.zenoss.MySqlMonitor-3.0.0-py2.7.egg requires ZenPacks.zenoss.PythonCollector>=1.1
+2014-04-25 10:35:20 ERROR zen.ZenPackCmd: zenpack stopped: /tmp/opt/zenoss/packs/ZenPacks.zenoss.MySqlMonitor-3.0.0-py2.7.egg not installed
+2014-04-25 10:35:23,945 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.NNTPMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/NNTPMonitor/reports
+2014-04-25 10:35:27,764 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.NtpMonitor-2.2.0-py2.7.egg/ZenPacks/zenoss/NtpMonitor/objects/objects.xml
+2014-04-25 10:35:27,863 INFO zen.AddToPack: End loading objects
+2014-04-25 10:35:27,863 INFO zen.AddToPack: Processing links
+2014-04-25 10:35:27,959 INFO zen.AddToPack: Loaded 6 objects into the ZODB database
+2014-04-25 10:35:27,991 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.NtpMonitor-2.2.0-py2.7.egg/ZenPacks/zenoss/NtpMonitor/reports
+2014-04-25 10:35:32,035 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.ZenJMX-3.9.6-py2.7.egg/ZenPacks/zenoss/ZenJMX/objects/objects.xml
+2014-04-25 10:35:32,226 INFO zen.AddToPack: End loading objects
+2014-04-25 10:35:32,226 INFO zen.AddToPack: Processing links
+2014-04-25 10:35:32,353 INFO zen.AddToPack: Loaded 45 objects into the ZODB database
+2014-04-25 10:35:32,379 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.ZenJMX-3.9.6-py2.7.egg/ZenPacks/zenoss/ZenJMX/reports
+2014-04-25 10:35:43,119 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.LinuxMonitor-1.2.1-py2.7.egg/ZenPacks/zenoss/LinuxMonitor/objects/objects.xml
+2014-04-25 10:35:43,318 INFO zen.AddToPack: End loading objects
+2014-04-25 10:35:43,319 INFO zen.AddToPack: Processing links
+2014-04-25 10:35:43,477 INFO zen.AddToPack: Loaded 66 objects into the ZODB database
+2014-04-25 10:35:43,508 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.LinuxMonitor-1.2.1-py2.7.egg/ZenPacks/zenoss/LinuxMonitor/reports
+2014-04-25 10:35:48,283 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.ZenossVirtualHostMonitor-2.4.0-py2.7.egg/ZenPacks/zenoss/ZenossVirtualHostMonitor/objects/objects.xml
+2014-04-25 10:35:48,329 INFO zen.AddToPack: End loading objects
+2014-04-25 10:35:48,329 INFO zen.AddToPack: Processing links
+2014-04-25 10:35:48,427 INFO zen.AddToPack: Loaded 2 objects into the ZODB database
+2014-04-25 10:35:48,462 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.ZenossVirtualHostMonitor-2.4.0-py2.7.egg/ZenPacks/zenoss/ZenossVirtualHostMonitor/reports
+2014-04-25 10:35:52,375 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.EsxTop-1.1.0-py2.7.egg/ZenPacks/zenoss/EsxTop/objects/objects.xml
+2014-04-25 10:35:52,501 INFO zen.AddToPack: End loading objects
+2014-04-25 10:35:52,501 INFO zen.AddToPack: Processing links
+2014-04-25 10:35:52,645 INFO zen.AddToPack: Loaded 40 objects into the ZODB database
+2014-04-25 10:35:52,678 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.EsxTop-1.1.0-py2.7.egg/ZenPacks/zenoss/EsxTop/reports
+2014-04-25 10:35:56,968 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.XenMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/XenMonitor/objects/objects.xml
+2014-04-25 10:35:57,035 INFO zen.AddToPack: End loading objects
+2014-04-25 10:35:57,035 INFO zen.AddToPack: Processing links
+2014-04-25 10:35:57,228 INFO zen.AddToPack: Loaded 6 objects into the ZODB database
+2014-04-25 10:35:57,262 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.XenMonitor-1.1.0-py2.7.egg/ZenPacks/zenoss/XenMonitor/reports
+2014-04-25 10:36:01,315 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.DeviceSearch-1.2.0-py2.7.egg/ZenPacks/zenoss/DeviceSearch/reports
+2014-04-25 10:36:05,262 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.PythonCollector-1.2.0-py2.7.egg/ZenPacks/zenoss/PythonCollector/objects/objects.xml
+2014-04-25 10:36:05,263 INFO zen.AddToPack: End loading objects
+2014-04-25 10:36:05,264 INFO zen.AddToPack: Processing links
+2014-04-25 10:36:05,328 INFO zen.AddToPack: Loaded 0 objects into the ZODB database
+2014-04-25 10:36:05,361 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.PythonCollector-1.2.0-py2.7.egg/ZenPacks/zenoss/PythonCollector/reports
+2014-04-25 10:36:15,422 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.WBEM-1.0.0-py2.7.egg/ZenPacks/zenoss/WBEM/objects/objects.xml
+2014-04-25 10:36:15,423 INFO zen.AddToPack: End loading objects
+2014-04-25 10:36:15,423 INFO zen.AddToPack: Processing links
+2014-04-25 10:36:15,483 INFO zen.AddToPack: Loaded 0 objects into the ZODB database
+2014-04-25 10:36:15,523 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.WBEM-1.0.0-py2.7.egg/ZenPacks/zenoss/WBEM/reports
+2014-04-25 10:36:19,622 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.Microsoft.Windows-2.0.2-py2.7.egg/ZenPacks/zenoss/Microsoft/Windows/objects/objects.xml
+2014-04-25 10:36:21,620 INFO zen.AddToPack: End loading objects
+2014-04-25 10:36:21,620 INFO zen.AddToPack: Processing links
+2014-04-25 10:36:21,952 INFO zen.AddToPack: Loaded 499 objects into the ZODB database
+2014-04-25 10:36:22,002 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.Microsoft.Windows-2.0.2-py2.7.egg/ZenPacks/zenoss/Microsoft/Windows/reports
+2014-04-25 10:39:38,970 INFO zen.ZPLoader: Loading /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.MySqlMonitor-3.0.0-py2.7.egg/ZenPacks/zenoss/MySqlMonitor/objects/objects.xml
+2014-04-25 10:39:40,193 INFO zen.AddToPack: End loading objects
+2014-04-25 10:39:40,193 INFO zen.AddToPack: Processing links
+2014-04-25 10:39:40,455 INFO zen.AddToPack: Loaded 194 objects into the ZODB database
+2014-04-25 10:39:40,492 INFO zen.HookReportLoader: Loading reports from /usr/local/zenoss/ZenPacks/ZenPacks.zenoss.MySqlMonitor-3.0.0-py2.7.egg/ZenPacks/zenoss/MySqlMonitor/reports
+2014-04-25 10:39:40,966 INFO zen.MySqlMonitor: Adding MySqlMonitor relationships to existing devices

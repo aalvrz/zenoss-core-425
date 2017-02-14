@@ -1,0 +1,32 @@
+<!--
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2009, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+-->
+
+
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <utility
+    component=".notify.BATCH_NOTIFIER"
+    provides=".interfaces.IBatchNotifier"
+    />
+
+    <adapter factory=".zenhub.DefaultConfProvider"/>
+    <adapter factory=".zenhub.DefaultHubHeartBeatCheck"/>
+
+    <utility factory=".WorkerSelection.InOrderSelection"
+             provides=".interfaces.IWorkerSelectionAlgorithm"
+             name="sendEvents"/>
+    <utility factory=".WorkerSelection.ReversedReservationAwareSelection"
+             provides=".interfaces.IWorkerSelectionAlgorithm"
+             name="applyDataMaps"/>
+    <utility factory=".WorkerSelection.ReservationAwareSelection"
+             provides=".interfaces.IWorkerSelectionAlgorithm"/>
+
+</configure>

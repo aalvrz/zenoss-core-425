@@ -1,0 +1,151 @@
+Fixed Bugs
+==========
+
+Here are demonstrations of various bugs that have been fixed in Manuel.  If you
+encounter a bug in a previous version of Manuel, check here in the newest
+version to see if your bug has been addressed.
+
+
+Start and End Coinciding
+------------------------
+
+If a line of text matches both a "start" and "end" regular expression, no
+exception should be raised.
+
+    >>> source = """\
+    ... Blah, blah.
+    ...
+    ... xxx
+    ... some text
+    ... xxx
+    ...
+    ... """
+    >>> import manuel
+    >>> document = manuel.Document(source)
+    >>> import re
+    >>> start = end = re.compile(r'^xxx$', re.MULTILINE)
+    >>> document.find_regions(start, end)
+    [<manuel.Region object at ...]
+
+
+Code-block Options
+------------------
+
+The code-block handler didn't originally allow reST options, so blocks like the
+one below would generate a syntax error during parsing.
+
+    .. code-block:: python
+        :linenos:
+
+        class Foo(object):
+            pass
+
+.. -> source
+
+.. code-block:: python
+
+    import manuel.codeblock
+    m = manuel.codeblock.Manuel()
+    manuel.Document(source).parse_with(m)
+
+
+Empty documents
+---------------
+
+While empty documents aren't useful, they are still documents containing
+no tests, and shouldn't break the test suite.
+
+    >>> document = manuel.Document('')
+    >>> document.source
+    '\n'
+
+
+Glob lifecycle
+--------------
+
+Anything put into the globs during a doctest run should still be in there
+afterward.
+
+        >>> a
+        1
+
+        >>> b = 2
+
+.. -> source
+
+.. code-block:: python
+
+    import manuel.doctest
+    m = manuel.doctest.Manuel()
+    globs = {'a': 1}
+    document = manuel.Document(source)
+    document.process_with(m, globs=globs)
+
+The doctest in the `source` variable ran with no errors.
+
+    >>> print document.formatted()
+
+And now the globs dictionary reflects the changes made when the doctest ran.
+
+    >>> globs['b']
+    2
+
+
+zope.testing.module
+-------------------
+
+At one point, because of the way manuel.doctest handles glob dictionaries,
+zope.testing.module didn't work.
+
+We need a globs dictionary.
+
+    >>> globs = {'foo': 1}
+
+To call the setUp and tearDown functions, we need to set up a fake test
+object that uses our globs dict from above.
+
+.. code-block:: python
+
+    class FakeTest(object):
+        def __init__(self):
+           self.globs = globs
+
+    test = FakeTest()
+
+
+Now we will use the globs as a module.
+
+    >>> import zope.testing.module
+    >>> zope.testing.module.setUp(test, 'fake')
+
+Now if we run this test through Manuel, the fake module machinery works.
+
+    The items put into the globs before the test are here.
+
+        >>> import fake
+        >>> fake.foo
+        1
+
+    And if we create new bindings, they appear in the module too.
+
+        >>> bar = 2
+        >>> fake.bar
+        2
+
+.. -> source
+
+.. code-block:: python
+
+    import manuel.doctest
+    m = manuel.doctest.Manuel()
+    document = manuel.Document(source)
+    document.process_with(m, globs=globs)
+
+The doctest in the `source` variable ran with no errors.
+
+    >>> print document.formatted()
+
+We should clean up now.
+
+    >>> import zope.testing.module
+    >>> zope.testing.module.tearDown(test)

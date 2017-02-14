@@ -1,0 +1,9 @@
+2014-04-25 10:14:00 INFO zen.migrate: Installing AddMissedRunsMonitorGraph (4.2.5)
+2014-04-25 10:14:01 INFO zen.migrate: Installing EventFlapping (4.2.5)
+2014-04-25 10:14:01 INFO zen.migrate: Installing EventsAppZenoss (4.2.5)
+2014-04-25 10:14:01 INFO zen.migrate: Installing ProcessCountThreshold (4.2.5)
+2014-04-25 10:14:02 INFO zen.migrate: Installing RemoveIgnoreParametersFromOsProcessClass (4.2.5)
+2014-04-25 10:14:02 INFO zen.migrate: Removing ignoreParameters and ignoreParametersWhenModeling from all OSProcessClass objects
+2014-04-25 10:14:02 INFO zen.migrate: Installing addLockingToProcesses (4.2.5)
+2014-04-25 10:14:02 INFO zen.migrate: Installing zSnmpDiscoveryPorts (4.2.5)
+2014-04-25 10:14:03 INFO zen.migrate: Loading Reports

@@ -1,0 +1,47 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+<table width=100% cellpadding="3" border="0" 
+    align="center" cellspacing="1" bgcolor="#ffffff">
+<tr>
+    <th class=tabletitle colspan=2>Management Functions</th>
+</tr>
+<tr>
+    <th class=tableheader>Function</th><th class=tableheader>Description</th>
+</tr>
+<tr>
+    <td class=tablevalues>
+        <a class=tablevalues href="/zport/dmd/DeviceLoader/addDevice">
+            Device Loader
+        </a>
+    </td>
+    <td class=tablevalues>Load devices into the system</td>
+</tr>
+<tr>
+    <td class=tablevalues>
+        <a class=tablevalues href="/zport/dmd/ZenEventManager">
+            Event Manager
+        </a>
+    </td>
+    <td class=tablevalues>Load devices into the system</td>
+</tr>
+<tr>
+    <td class=tablevalues>
+        <a class=tablevalues href="/zport/dmd/ZenClassifier/manageClassifiers">
+            Manage Classifiers
+        </a>
+    </td>
+    <td class=tablevalues>Manage device classifiers</td>
+</tr>
+<tr>
+    <td class=tablevalues>
+        <a class=tablevalues href="/zport/acl_users/manageUserFolder">
+            Manage Users
+        </a>
+    </td>
+    <td class=tablevalues>Add, remove, or change user settings</td>
+</tr>
+</table>
+
+</tal:block>
+</tal:block>

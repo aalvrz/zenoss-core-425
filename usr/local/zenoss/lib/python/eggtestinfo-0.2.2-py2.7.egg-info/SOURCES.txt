@@ -1,0 +1,12 @@
+CHANGES.txt
+README.txt
+eggtestinfo.py
+setup.cfg
+setup.py
+eggtestinfo.egg-info/PKG-INFO
+eggtestinfo.egg-info/SOURCES.txt
+eggtestinfo.egg-info/dependency_links.txt
+eggtestinfo.egg-info/entry_points.txt
+eggtestinfo.egg-info/test_info.txt
+eggtestinfo.egg-info/top_level.txt
+eggtestinfo.egg-info/zip-safe

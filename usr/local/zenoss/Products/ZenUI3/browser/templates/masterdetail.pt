@@ -1,0 +1,89 @@
+<!--
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2009, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+-->
+
+
+<tal:block metal:define-macro="masterdetail">
+<tal:block metal:use-macro="context/page_macros/base">
+
+<tal:block metal:fill-slot="title">
+    <tal:block metal:define-slot="title">
+        <tal:block tal:content="here/titleOrId"/>
+    </tal:block>
+</tal:block>
+
+<tal:block metal:fill-slot="breadcrumbs">
+    <tal:block metal:define-slot="breadcrumbs">
+        <span metal:use-macro="here/miscmacros/macros/breadCrumbs" />
+    </tal:block>
+</tal:block>
+
+<tal:block metal:fill-slot="center_panel_content">
+<div id="master_panel_content">
+    <tal:block metal:define-slot="master_panel_content"/>
+</div>
+<div id="detail_panel_content">
+    <tal:block metal:define-slot="detail_panel_content"/>
+</div>
+</tal:block>
+
+<!-- Chain the slots -->
+<tal:block metal:fill-slot="script_beforeLayout">
+    <tal:block metal:define-slot="script_beforeLayout"/>
+</tal:block>
+
+<tal:block metal:fill-slot="script_layout">
+<script>
+Ext.onReady(function(){
+    Ext.getCmp('center_panel').add(new Ext.Panel({
+        id: 'center_panel_container',
+        layout: 'border',
+        defaults: {
+            'border': false
+        },
+        items: [{
+            id: 'master_panel',
+            cls: 'x-zenoss-master-panel',
+            contentEl: 'master_panel_content',
+            layout: 'fit',
+            region: 'center',
+            split: true
+        },{
+            split: true,
+            width: '50%',
+            id: 'detail_panel',
+            contentEl: 'detail_panel_content',
+            region: 'east',
+            layout: 'fit'
+        }]
+    }));
+});
+</script>
+<!-- Chain the macro -->
+<tal:block metal:define-slot="script_layout">
+<script>
+Ext.onReady(function(){
+    Ext.getCmp('master_panel').add(new Zenoss.PlaceholderPanel({
+        text: 'Ext.getCmp("master_panel"), metal:fill-slot="master_panel_content"'
+    }));
+    Ext.getCmp('detail_panel').add(new Zenoss.PlaceholderPanel({
+        text: 'Ext.getCmp("detail_panel"), metal:fill-slot="detail_panel_content"'
+    }));
+});
+</script>
+</tal:block>
+</tal:block>
+
+<tal:block metal:fill-slot="script_afterLayout">
+    <tal:block metal:define-slot="script_afterLayout"/>
+</tal:block>
+
+</tal:block>
+</tal:block>

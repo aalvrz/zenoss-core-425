@@ -1,0 +1,201 @@
+<tal:comment replace="nothing">
+<!-- ========================================================
+    This page is used as the default view for Devices
+    and Device collections (e.g. Locations, Groups, etc).
+ ======================================================== -->
+</tal:comment>
+
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+<!-- Status Table -->
+
+<form method="post" tal:attributes="action here/absolute_url_path" name="deviceOrganizerStatus">
+<input type="hidden" name="zenScreenName" value="deviceOrganizerStatus" />
+<tal:block metal:define-macro="status">
+<tal:block tal:define="
+            tabletitle string:Summary;
+            tblcolspan string:6;">
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable-slidingdoors">
+<tal:block metal:fill-slot="title">Summary</tal:block>
+<tal:block metal:fill-slot="body">
+
+<table style="margin-top:4px;border-collapse:collapse;width:100%">
+<!-- BEGIN TABLE CONTENTS -->
+<tr>
+          <td class="tableheader" align="left">Events</td>
+          <td class="tablevalues rainbow" align="left" width="300"
+          style="padding:3px;">
+            <table metal:use-macro="here/rainbows/macros/horizontal" />
+          </td>
+          <th class="tableheader" align="left">Sub Count</th>
+          <td class="tablevalues" tal:content="here/countChildren">100</td>
+          <th class="tableheader" align="left">Device Count</th>
+          <td class="tablevalues" tal:content="here/countDevices">100</td>
+        </tr>
+     <tr tal:condition="python:here.id != here.dmdRootName">
+        <td class="tableheader">Description 
+                <span tal:condition="here/isManager"> 
+            <a style="color:darkgrey;text-decoration:none;"
+               href="javascript:toggleElement('descriptioneditform')">[Edit]</a>
+        </span>
+ </td>
+        <td class="tablevalues" colspan='5'>
+        <span
+            tal:content="structure python:here.description.replace('\n','<br/>')"/>
+            <br tal:condition="here/description"  />
+    </tr>
+        <tbody id="descriptioneditform" tal:condition="here/isManager" 
+            visible="1" style="display:none;">
+    <tr>
+        <td class="tableheader">New Description</td>
+        <td class="tablevalues" colspan='5'> 
+            <textarea tal:condition="here/isManager" name="description"
+                    rows="4" cols="50" tal:content="here/description"/>
+            <tal:block tal:condition="not: here/isManager"
+                    tal:replace="here/description" />
+     </tr>
+    <tr>
+        <td class="tableheader" align="left">
+        </td>
+        <td align="left" class="tableheader" colspan='5'>
+            <input class="tableheader" type="submit" value=" Save "
+                name="zmanage_editProperties:method:method" />
+            <input class="tableheader" type="button" value=" Cancel "
+                onclick="javascript:toggleElement('descriptioneditform')"/>
+        </td>
+    </tr>
+     </tbody>
+
+     <tal:block tal:condition="python:hasattr(here, 'address')">
+     <tr tal:condition="python:here.id != here.dmdRootName">
+        <td class="tableheader">Address 
+                <span tal:condition="here/isManager"> 
+            <a style="color:darkgrey;text-decoration:none;"
+               href="javascript:toggleElement('addresseditform')">[Edit]</a>
+        </span>
+ </td>
+        <td class="tablevalues" colspan='5'>
+        <span
+            tal:content="structure python:here.address.replace('\n','<br/>')"/>
+            <br tal:condition="here/address"  />
+    </tr>
+        <tbody id="addresseditform" tal:condition="here/isManager" 
+            visible="1" style="display:none;">
+    <tr>
+        <td class="tableheader">New Address</td>
+        <td class="tablevalues" colspan='5'> 
+            <textarea tal:condition="here/isManager" name="address"
+                    rows="4" cols="50" tal:content="here/address"/>
+            <tal:block tal:condition="not: here/isManager"
+                    tal:replace="here/address" />
+     </tr>
+    <tr>
+        <td class="tableheader" align="left">
+        </td>
+        <td align="left" class="tableheader" colspan='5'>
+            <input class="tableheader" type="submit" value=" Save "
+                name="zmanage_editProperties:method:method" />
+            <input class="tableheader" type="button" value=" Cancel "
+                onclick="javascript:toggleElement('addresseditform')"/>
+        </td>
+    </tr>
+    </tbody>
+    </tal:block>
+<!-- END TABLE CONTENTS -->
+    </table>
+
+</tal:block>
+</tal:block>
+</tal:block>
+</tal:block>
+
+
+</form>
+    <span metal:use-macro="here/templates/macros/contentSeparator"/>
+
+
+
+<div class="yui-g">
+<div class="yui-u first">
+
+
+    <!-- Sub-Devices Table -->
+    <form method="post" tal:attributes="action here/absolute_url_path"
+		name="subdeviceForm">
+    <tal:block tal:define="objects here/children;
+            tableName string:children;
+            menu_id string:Organizer_list;
+            batch python:here.ZenTableManager.getBatch(tableName,objects);
+            showfilterbox python:True;
+            tblcolspan string:6;
+            tabletitle string:Sub-${here/dmdRootName}">
+        <input type='hidden' name='tableName' tal:attributes="value tableName"/>
+        <input type="hidden" name="zenScreenName" 
+                tal:attributes="value template/id"/>
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+<tal:block metal:fill-slot="zentablecontents">
+        <tr>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'primarySortKey','Name')">
+            Name 
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'countChildren','Subs')">
+            Subs
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'countDevices','Devices')">
+            Devices
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'omniEventCount','Events')">
+            Snmp </th>
+        </tr>
+        <tal:block tal:repeat="devorg batch">
+          <tr tal:define = "odd repeat/devorg/odd" 
+              tal:attributes="class python:test(odd, 'odd','even');">
+            <td class="tablevalues" >
+                <input tal:condition="here/isManager" 
+                    type="checkbox" name="organizerPaths:list" 
+                    tal:attributes="value devorg/getId"/>
+                <a href="_" class="tablevalues"
+                tal:attributes="href string: ${devorg/getPrimaryUrlPath}/deviceOrganizerStatus"
+                tal:content="devorg/id">Name</a>
+            </td>
+            <td class="tablevalues" align=center 
+                tal:content="devorg/countChildren"/>
+            <td class="tablevalues" align=center 
+                tal:content="devorg/countDevices"/>
+            <td class="tablevalues rainbow">
+            <table width="100%" cellspacing='1' cellpadding='3'
+                tal:on-error="structure string:
+                    <span class='errorvalues'>Events unavailable</span>">
+                <tr>
+                    <td tal:content="structure devorg/getEventPill"/>
+              </tr>
+            </table>
+            </td>
+        </tr>
+        </tal:block>
+        <tr>
+            <td colspan="4" class="tableheader"> 
+                <span metal:use-macro="here/zenTableNavigation/macros/navbody"/>
+            </td>
+        </tr>
+</tal:block>
+</tal:block>
+</tal:block>
+    </form>
+</div>
+<div class="yui-u">
+
+    <tal:block tal:define="showPageSize python:False">
+    <table metal:use-macro="here/deviceListMacro/macros/devList"></table>
+    </tal:block>
+
+</div>
+</div>
+
+</tal:block>
+</tal:block>

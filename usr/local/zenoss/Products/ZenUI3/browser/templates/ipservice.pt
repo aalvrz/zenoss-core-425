@@ -1,0 +1,50 @@
+<!--
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2009, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+-->
+
+
+<tal:block metal:use-macro="context/page_macros/base-new">
+
+<tal:block metal:fill-slot="title">IP Services</tal:block>
+
+  <tal:block metal:fill-slot="script_layout">
+
+<script
+    tal:attributes="src python: context.zport.getVersionedResourcePath('/++resource++zenui/js/zenoss/service/grid.js')"
+>
+</script>
+
+<script
+    tal:attributes="src python: context.zport.getVersionedResourcePath('/++resource++zenui/js/zenoss/service/tree.js')"
+>
+</script>
+
+
+<script
+    tal:attributes="src python: context.zport.getVersionedResourcePath('/++resource++zenui/js/zenoss/service/nav.js')"
+>
+</script>
+
+
+<script
+    tal:attributes="src python: context.zport.getVersionedResourcePath('/++resource++zenui/js/zenoss/service/detailform.js')"
+>
+</script>
+
+
+<script
+    tal:attributes="src python: context.zport.getVersionedResourcePath('/++resource++zenui/js/zenoss/service/ipservice.js')"
+>
+</script>
+
+
+  </tal:block> <!-- metal:fill-slot="script_layout" -->
+
+</tal:block> <!-- metal:use-macro="context/page_macros/masterdetailsplit2" -->

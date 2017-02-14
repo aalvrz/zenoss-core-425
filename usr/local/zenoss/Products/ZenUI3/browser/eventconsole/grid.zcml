@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five">
+
+    <browser:viewlet
+        name="evconsole_coldefs"
+        manager="..interfaces.IMainSnippetManager"
+        class=".grid.GridColumnDefinitions"
+        permission="zope2.Public"
+        />
+
+    <browser:viewlet
+        name="evconsole_evclasses"
+        manager="..interfaces.IMainSnippetManager"
+        class=".grid.EventClasses"
+        permission="zope2.Public"
+        />
+
+</configure>

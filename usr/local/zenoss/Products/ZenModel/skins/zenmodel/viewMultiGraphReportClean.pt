@@ -1,0 +1,89 @@
+<tal:block metal:use-macro="here/templates/macros/pageClean">
+
+<tal:block metal:fill-slot="head-local">
+<style>
+<!--
+body {
+    background: #ffffff;
+    color: black;
+    font-family:  Verdana, Arial, Helvetica, sans-serif;
+    font-size:  9pt;
+    margin: 0px;
+}
+
+#contentPane {
+    border: 0px;
+    background-color: #ffffff;
+}
+}
+-->
+</style>
+</tal:block>
+
+
+
+<tal:block metal:fill-slot="contentPane">
+
+<tal:block tal:content="structure python:here.auditRunReport()"/>
+<div style="float: right;"><img src="img/onwhitelogo.png"></div>
+<div style="font-size: 16pt;"
+    tal:content="here/id">
+</div>
+<div style="font-size:12pt;" tal:define="now python:DateTime()">
+    <tal:block tal:replace="string:${now/aDay} ${now/aMonth} ${now/day}, ${now/year}" /><br />
+    <tal:block tal:replace="string:${now/AMPMMinutes}" />
+
+</div>
+<div style="clear: both" />
+<br />
+<table border="0">
+
+    <tal:block tal:condition="python: request.has_key('numGraphs')"
+        tal:repeat="index python: range(int(request['numGraphs']))">
+
+    <tal:block tal:condition="python:path('repeat/index/index') % getattr(here, 'numColumns', 1) == 0"
+        tal:replace="structure string:<tr>"/>
+        <td>
+        <table>
+        <tr>
+            <td class="tableheader"
+                tal:content="python:request['title_%s' % index]">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img tal:attributes="src python:request['graph_%s' % index]" />
+            </td>
+        </tr>
+        </table>
+        </td>
+    <tal:block tal:condition="python:(path('repeat/index/index')+1) % getattr(here, 'numColumns', 1) == 0"
+        tal:replace="structure string:</tr>"/>
+    </tal:block>
+    <tal:block tal:condition="python: not request.has_key('numGraphs')"
+     tal:repeat="graph python:here.getDefaultGraphDefs(request.get('drange'))">
+
+    <tal:block tal:condition="python:path('repeat/graph/index') % getattr(here, 'numColumns', 1) == 0"
+        tal:replace="structure string:<tr>"/>
+        <td>
+        <table>
+        <tr>
+            <td class="tableheader"
+                tal:content="graph/title">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img tal:attributes="src graph/url" />
+            </td>
+        </tr>
+        </table>
+        </td>
+    <tal:block tal:condition="python:(path('repeat/graph/index')+1) % getattr(here, 'numColumns', 1) == 0"
+        tal:replace="structure string:</tr>"/>
+    </tal:block>
+
+</table>
+
+</tal:block>
+</tal:block>

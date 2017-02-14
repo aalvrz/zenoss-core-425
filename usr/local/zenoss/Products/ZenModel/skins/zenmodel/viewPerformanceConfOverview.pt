@@ -1,0 +1,110 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane">
+
+
+
+        <tal:block tal:define=" tabletitle string:Performance Collector Configuration">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr>
+      <td class="tableheader">Event Log Cycle Interval (secs)</td>
+      <td class="tablevalues" tal:content="here/eventlogCycleInterval" />
+    </tr>
+    <tr>
+      <td class="tableheader">Process Cycle Interval (secs)</td>
+      <td class="tablevalues" tal:content="here/processCycleInterval" />
+    </tr>
+    <tr>
+      <td class="tableheader">Process Parallel Jobs</td>
+      <td class="tablevalues" tal:content="here/zenProcessParallelJobs" />
+    </tr>
+    <tr>
+      <td class="tableheader">Status Cycle Interval (secs)</td>
+      <td class="tablevalues" tal:content="here/statusCycleInterval" />
+    </tr>
+    <tr>
+      <td class="tableheader">Windows Service Cycle Interval (secs)</td>
+      <td class="tablevalues" tal:content="here/winCycleInterval" />
+    </tr>
+    <tr>
+      <td class="tableheader">Windows WMI batch size (data objects)</td>
+      <td class="tablevalues" tal:content="here/wmibatchSize" />
+    </tr>
+    <tr>
+      <td class="tableheader">Windows WMI query timeout (millisecs)</td>
+      <td class="tablevalues" tal:content="here/wmiqueryTimeout" />
+    </tr>
+    <tr>
+      <td class="tableheader">Config Cycle Interval (mins)</td>
+      <td class="tablevalues" tal:content="here/configCycleInterval" />
+    </tr>
+    <tr>
+      <td class="tableheader">Ping Time Out (secs)</td>
+      <td class="tablevalues" tal:content="here/pingTimeOut" />
+    </tr>
+    <tr>
+      <td class="tableheader">Ping Tries</td>
+      <td class="tablevalues" tal:content="here/pingTries" />
+    </tr>
+    <tr>
+      <td class="tableheader">Maximum Ping Packets in Flight</td>
+      <td class="tablevalues" tal:content="here/pingChunk" />
+    </tr>
+    <tr>
+      <td class="tableheader">Ping Cycle Time (secs)</td>
+      <td class="tablevalues" tal:content="here/pingCycleInterval" />
+    </tr>
+    <tr>
+      <td class="tableheader">Maximum Ping Failures</td>
+      <td class="tablevalues" tal:content="here/maxPingFailures" />
+    </tr>
+    <tr>
+      <td class="tableheader">Modeler Cycle Interval (mins)</td>
+      <td class="tablevalues" tal:content="here/modelerCycleInterval" />
+    </tr>
+    <tr>
+      <td class="tableheader">Default Discovery Networks</td>
+      <td class="tablevalues">
+      	<span tal:condition="here/discoveryNetworks" 
+	      tal:content="python:', '.join(here.discoveryNetworks)">
+	</span>
+      	<span tal:condition="not:here/discoveryNetworks">None</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Render URL</td>
+      <td class="tablevalues" tal:content="here/renderurl" />
+    </tr>
+    <tr>
+      <td class="tableheader">Render User</td>
+      <td class="tablevalues" tal:content="here/renderuser"/>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+
+<span metal:use-macro="here/templates/macros/contentSeparator"/>
+
+<table metal:use-macro="here/deviceListMacro/macros/devList"></table>
+
+</tal:block>
+</tal:block>

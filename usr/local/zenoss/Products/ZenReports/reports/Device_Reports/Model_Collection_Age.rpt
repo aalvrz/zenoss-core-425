@@ -1,0 +1,64 @@
+<tal:block tal:define="
+	objects  python:here.getDmdRoot('Devices').getSubDevices(
+           lambda x: x.snmpAgeCheck(48) and x.productionState > x.getZ('zProdStateThreshold') and not x.getZ('zSnmpMonitorIgnore'));
+	tableName string: modelcollreport;
+	batch python:here.ZenTableManager.getBatch(tableName,objects,
+                                   sortedHeader='getSnmpLastCollection');
+	exportFields python:['titleOrId', 'getDeviceClassPath', 'getCreatedTimeString',
+						'getSnmpLastCollectionString', 'getLastChangeString']
+	">
+<tal:block metal:use-macro="here/reportMacros/macros/exportableReport">
+<tal:block metal:fill-slot="report">
+
+<tal:block metal:use-macro="here/templates/macros/page1">
+<tal:block metal:fill-slot="breadCrumbPane">
+    <span metal:use-macro="here/miscmacros/macros/reportBreadCrumbsList"/>    
+</tal:block>
+<tal:block metal:fill-slot="contentPane">
+
+<form method="POST" tal:attributes="action request/URL;"
+			tal:define="tabletitle string:Model Collection Age;
+                        showfilterbox python:True;
+						tblcolspan string:5">
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+<tal:block metal:fill-slot="zentablecontents">
+
+    <tr>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                            tableName,'primarySortKey','Name')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                            tableName,'getDeviceClassPath','Class')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                tableName,'createdTime','First Seen','cmp')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                tableName,'getSnmpLastCollection','Collection','cmp')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'getLastChange','Change','cmp')"/>
+	</tr>
+	<tr tal:repeat="device batch">
+		<td class="tablevalues" align="left">
+            <a class="tablevalues" tal:attributes="href device/getDeviceUrl"
+                tal:content="device/titleOrId">device</a>
+        </td>
+		<td class="tablevalues" tal:content="device/getDeviceClassPath"/>
+		<td class="tablevalues" tal:content="device/getCreatedTimeString"/>
+		<td class="tablevalues" 
+            tal:content="device/getSnmpLastCollectionString"/>
+		<td class="tablevalues" tal:content="device/getLastChangeString"/>
+    </tr>
+    <tr>
+        <td colspan="5" class="tableheader" align='center'>
+            <span metal:use-macro="here/zenTableNavigation/macros/navtool" />
+        </td>
+    </tr>
+
+</tal:block>
+</tal:block>
+</form>
+
+</tal:block>
+</tal:block>
+
+</tal:block>
+</tal:block>
+</tal:block>

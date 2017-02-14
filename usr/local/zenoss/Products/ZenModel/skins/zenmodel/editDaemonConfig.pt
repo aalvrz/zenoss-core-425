@@ -1,0 +1,68 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane" tal:define="
+    url string:${here/absolute_url_path};
+    query here/REQUEST/QUERY_STRING;
+    daemon  python:query.split('&')[0].split('=')[-1]">
+<form action="" method="post" 
+    tal:attributes="
+        actionx string:${url}/viewDaemonConfig?${query};
+        action url">
+
+
+        <tal:block tal:define="
+            url string:${here/absolute_url_path};
+            data python:here.getConfigData(daemon);
+            tabletitle string:${daemon} Configuration File">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    <thead>
+        
+    </thead>
+    <tbody tal:define="
+            url string:${here/absolute_url_path};
+            data python:here.getConfigData(daemon);
+            ">
+        <tr>
+            <td class="tablevalues" colspan="2"> 
+                <textarea cols="80" rows="30" name="data"
+                    tal:content="data">
+                </textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableheader" />
+            <td class="tablevalues">
+                <input type="hidden" name="daemon" tal:attributes="
+                    value daemon" />
+                <input type="hidden" name="zenScreenName" tal:attributes="
+                    value string:viewDaemonConfig?${query}"/>
+                <input type="submit" value="Save" 
+                    name="manage_saveConfigData:method"/>
+            </td>
+        </tr>
+    </tbody>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+</tal:block>
+</tal:block>
+

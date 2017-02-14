@@ -1,0 +1,185 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane">
+
+<form method=post 
+    tal:attributes="action string:${here/absolute_url_path}">
+    <input type="hidden" name="zenScreenName" 
+        tal:attributes="value template/id" /> 
+
+
+        <tal:block tal:define="message request/message | string:State at time:; 
+                    tabletitle string:${message} ${here/getNowString}">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+    <tr>
+      <td class="tableheader">Event Log Cycle Interval (secs)</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="eventlogCycleInterval" 
+            size="10" tal:attributes="value here/eventlogCycleInterval"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Process Cycle Interval (secs)</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="processCycleInterval" 
+            size="10" tal:attributes="value here/processCycleInterval"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align="left">Process Parallel Jobs</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="zenProcessParallelJobs" 
+            size="10" tal:attributes="value here/zenProcessParallelJobs" />
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Status Cycle Interval (secs)</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="statusCycleInterval" 
+            size="10" tal:attributes="value here/statusCycleInterval"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Windows Service Cycle Interval (secs)</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="winCycleInterval" 
+            size="10" tal:attributes="value here/winCycleInterval"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Windows WMI batch size (data objects)</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="wmibatchSize" 
+            size="10" tal:attributes="value here/wmibatchSize"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Windows WMI query timeout (millisecs)</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="wmiqueryTimeout" 
+            size="10" tal:attributes="value here/wmiqueryTimeout"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Config Cycle Interval (mins)</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="configCycleInterval" 
+            size="10" tal:attributes="value here/configCycleInterval"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Ping Time Out (secs)</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="pingTimeOut:float" 
+            size="10" tal:attributes="value here/pingTimeOut"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Ping Tries</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="pingTries" 
+            size="10" tal:attributes="value here/pingTries"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Maximum Ping Packets in Flight</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="pingChunk" 
+            size="10" tal:attributes="value here/pingChunk"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Ping Cycle Time (secs)</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="pingCycleInterval" 
+            size="10" tal:attributes="value here/pingCycleInterval"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Maximum Ping Failures</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="maxPingFailures" 
+            size="10" tal:attributes="value here/maxPingFailures"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Modeler Cycle Interval (mins)</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="modelerCycleInterval" 
+            size="10" tal:attributes="value here/modelerCycleInterval"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">
+	Default Discovery Networks
+	<br/>
+	(eg: 10.1.2.0/24)
+      </td>
+      <td class="tablevalues">
+	<textarea class="tablevalues" title="" name="discoveryNetworks:lines"
+		  rows="3" cols="35"
+		  tal:content="python: '\n'.join(here.discoveryNetworks)"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align="left">Render URL</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="renderurl" size="50"
+            tal:attributes="value here/renderurl" />
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align="left">Render User</td>
+      <td class="tablevalues">
+        <input class="tablevalues" autocomplete="off" type="text" name="renderuser" 
+            tal:attributes="value here/renderuser" />
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align="left">Render Password</td>
+      <td class="tablevalues">
+        <input class="tablevalues" autocomplete="off" type="password" name="renderpass" 
+            tal:attributes="value here/renderpass" />
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader" align="left">Default RRD Create Command</td>
+      <td class="tablevalues">
+          <textarea class="tablevalues" rows=5 cols=60
+                name="defaultRRDCreateCommand:lines" 
+                tal:content="python:'\n'.join(here.defaultRRDCreateCommand)">
+        </textarea>
+      </td>
+    </tr>
+    <tr>
+        <td class=tableheader align="left" >
+        </td>
+        <td align="left"  class="tableheader" colspan=3>
+            <input class="tableheader" type="submit" value=" Save "
+                name="zmanage_editProperties:method" />
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+
+</tal:block>
+</tal:block>

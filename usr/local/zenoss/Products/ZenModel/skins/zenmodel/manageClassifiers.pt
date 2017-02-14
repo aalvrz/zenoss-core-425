@@ -1,0 +1,7 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+<h1>Classifiers</h1>
+
+</tal:block>
+</tal:block>

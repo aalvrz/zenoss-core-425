@@ -1,0 +1,7 @@
+test_module = None
+test_suite = nose.collector
+test_loader = None
+tests_require = nose
+   nose-cover3
+   sqlalchemy
+   mock

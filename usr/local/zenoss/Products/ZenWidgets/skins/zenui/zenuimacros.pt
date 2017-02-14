@@ -1,0 +1,331 @@
+
+<tal:block metal:define-macro="basemenu" tal:condition="python:hasattr(here, 'getMenus')">
+
+<div class="menu" tal:define="
+        menu_ids menu_ids | python:['More','Manage','Actions','Add'];
+        basepath here/absolute_url_path">
+
+<div id="contextmenu_items" class="contextmenuitems">
+<ul class="zenMenu">
+<tal:block tal:repeat="menu menu_ids">
+<tal:block tal:condition="python:menu != 'TopLevel'"
+        tal:define="menus python:here.getMenus(menu, here)">
+
+<tal:block tal:define="items menus" tal:condition="menus">
+    <tal:block tal:define="dummy items/sort"/>
+    <li tal:repeat="item items">
+    <a tal:define="mypath python:test(item.action.startswith('javascript'),
+                                item.action,
+                                '%s/%s' % (basepath, item.action));
+                   actionpath python:test(item.isdialog,
+                    'javascript:$(\'dialog\').show(this.event, \'%s\')' % mypath,
+                    mypath)"
+       tal:attributes="href actionpath"
+       tal:content="item/description">description</a>
+       <tal:block tal:condition="python:getattr(request, 'showMenuOrder', None)"
+                  tal:content="item/ordering"/>
+    </li>
+</tal:block>
+</tal:block>
+</tal:block>
+
+<tal:block metal:use-macro="here/userCommandsMacros/macros/runCommandMenu"/>
+
+<tal:block tal:define="items python:here.getMenus('TopLevel', here)">
+<tal:block tal:condition="items">
+        <tal:block tal:define="dummy items/sort"/>
+</tal:block>
+<li tal:repeat="item items" class="toplevelmenu">
+    <a tal:define="mypath python:test(item.action.startswith('javascript'),
+        item.action,
+        '%s/%s' % (basepath, item.action));
+        actionpath python:test(item.isdialog,
+        'javascript:$(\'dialog\').show(this.event, \'%s\')' % mypath,
+        mypath)"
+        tal:attributes="href actionpath"
+        tal:content="item/description">description</a>
+    <tal:block tal:condition="python:getattr(request, 'showMenuOrder', None)"
+            tal:content="item/ordering"/>
+</li>
+</tal:block>
+
+</ul>
+</div>
+</div>
+<script>
+Ext.onReady(function(){
+
+    var footer = Ext.get('footer_extra'),
+        menus = [], hrefs,
+        menu = Ext.get('contextmenu_items'),
+        btn;
+
+        hrefs = menu.select('a');
+        Ext.each(hrefs.elements, function(elem) {
+            menus.push({
+                text: elem.innerHTML,
+                href: elem.href
+            });
+        });
+        btn = new Ext.Button({
+            renderTo: footer,
+            iconCls: 'customize',
+            menu: {cls: 'z-bc-menu', items: menus}
+        });
+});
+</script>
+</tal:block>
+
+<!-- TABLE HEADER MACRO -->
+
+<tal:block metal:define-macro="tabletitle">
+<th class="tabletitle" tal:attributes="colspan tblcolspan|string:1">
+<div class="tabletitlecontainer x-toolbar">
+
+<table class="tabletitle_layout"><tr>
+<td>
+<tal:block metal:define-slot="titleslot">
+    <span class="tabletitletext" tal:content="tabletitle | string:Items">
+        Title
+    </span>
+</tal:block>
+</td>
+<td>
+<span class="xtb-sep">&nbsp;</span>
+</td>
+<td>
+<tal:block metal:define-slot="menuslot">
+    <tal:block tal:condition="menu_id | python:False">
+        <div tal:attributes="id string:menuslot_${menu_id}"></div>
+        <tal:block metal:use-macro="here/zenuimacros/macros/devmovemenu"/>
+        <script tal:content="string:
+
+Ext.onReady(function(){
+
+    var menu_id = '${menu_id}';
+
+    var container = Ext.get('menuslot_'+menu_id),
+        menu = Ext.get(menu_id+'_items');
+
+    if (menu) {
+        var menus = [];
+        var hrefs = menu.select('a');
+        Ext.each(hrefs.elements, function(elem) {
+            menus.push({
+                text: elem.innerHTML,
+                href: elem.href
+            });
+        });
+
+        var btn = new Ext.Button({
+            renderTo: container,
+            iconCls: 'customize',
+            menu: {cls: 'z-bc-menu', items: menus}
+        });
+    }
+});
+
+"></script>
+    </tal:block>
+</tal:block>
+</td>
+</table>
+
+
+<div class="filterslot">
+<tal:block metal:define-slot="filterslot">
+    <tal:block tal:condition="showfilterbox | python:False">
+        <tal:block metal:use-macro="here/zenuimacros/macros/filterbox"/>
+    </tal:block>
+</tal:block>
+</div>
+</div>
+</th>
+</tal:block>
+
+<!-- END TABLE HEADER MACRO -->
+
+
+
+<!-- FILTERBOX MACRO -->
+
+<tal:block metal:define-macro="filterbox">
+<div class="filterbox"
+     tal:define=" tableName tableName | nothing;
+                 ts python:test(
+                  tableName, here.ZenTableManager.getTableState(tableName),
+                  request);
+                 message request/SESSION/message | nothing;">
+ <div class="filterbox-left">
+     <div class="filterbox-right">
+         <div class="filterbox-middle">
+             <input type="text" name="filter" id="filter"
+             onfocus="select(this)"
+             tal:attributes="value ts/filter | string:;
+             onkeypress string:submitViaEnter(event)" />
+         </div>
+     </div>
+ </div>
+</div>
+</tal:block>
+
+<tal:block metal:define-macro="filterboxinline">
+<tal:block metal:use-macro="here/zenuimacros/macros/filterbox"/>
+<style>.filterbox{position:relative;top:0px;
+left:0px;right:0px;bottom:0px;display:inline;
+padding-right:20px;margin-left:20px;}</style>
+</tal:block>
+
+<!-- END FILTERBOX MACRO -->
+
+
+<tal:block metal:define-macro="devmovemenu">
+
+<tal:block tal:condition="python:hasattr(here, 'getMenus')">
+<div class="littlemenu" tal:attributes="id menu_id"
+    tal:define="menuitems python:here.getMenus(menu_id, here);
+                basepath here/absolute_url_path;"
+    tal:condition="menuitems">
+
+        <tal:block tal:condition="menuitems">
+                <tal:block tal:define="dummy menuitems/sort"/>
+        </tal:block>
+
+        <!--
+        <div class="devmovemenu" tal:attributes="id string:${menu_id}_btn">
+           &nbsp;
+        </div>
+        -->
+
+        <div class="devmovemenuitems"
+            tal:attributes="id string:${menu_id}_items">
+        <ul class="zenMenu" tal:attributes="id string:${menu_id}_list">
+            <li tal:repeat="item menuitems">
+<tal:block tal:define="
+mypath python:test(item.action.startswith('javascript'),
+                            item.action,
+                            '%s/%s' % (basepath, item.action));
+               thisid python:''.join(filter(lambda x:x.isalnum(), menu_id+item.id));
+               actionpath python:test(item.isdialog,
+                    'javascript:$(\'dialog\').show($(\'%sinput\').form,
+                    \'%s\')' % (thisid,mypath),
+               mypath)">
+   <input tal:attributes="id string:${thisid}input" type="hidden"/>
+   <a class="menu_item" tal:attributes="id thisid; href actionpath"
+      tal:content="item/description">description</a>
+   <tal:block tal:condition="python:getattr(request, 'showMenuOrder', None)"
+              tal:content="item/ordering"/>
+</tal:block>
+
+            </li>
+        </ul>
+        </div>
+
+    </div>
+</tal:block>
+</tal:block>
+
+<!--===================================
+            Zentable macro
+====================================-->
+<tal:block metal:define-macro="zentable">
+    <table class=" zentable">
+        <tr tal:define="tabletitle tabletitle|string:">
+        <tal:block metal:use-macro="here/zenuimacros/macros/tabletitle">
+            <tal:block metal:fill-slot="filterslot">
+              <tal:block metal:define-slot="filterslot">
+    <tal:block tal:condition="showfilterbox | python:False">
+        <tal:block metal:use-macro="here/zenuimacros/macros/filterbox"/>
+    </tal:block>
+              </tal:block>
+            </tal:block>
+            <!--
+            <tal:block metal:fill-slot="menuslot">
+                <tal:block metal:define-slot="menuslot">
+    <tal:block tal:condition="menu_id | python:False">
+        <tal:block metal:use-macro="here/zenuimacros/macros/devmovemenu"/>
+    </tal:block>
+                </tal:block>
+            </tal:block>
+            -->
+
+        </tal:block>
+        </tr>
+        <tr>
+            <td style="padding:0px;">
+                <table class="innerzentable" tal:attributes="noselectionbar python:True">
+<!-- The main body into which we dump rows -->
+<tbody tal:attributes="id python:''.join(filter(lambda x:x.isalnum(),tabletitle))">
+                        <tal:block metal:define-slot="zentablecontents">
+
+                        </tal:block>
+</tbody>
+<!-- End main row body -->
+                    <tal:block metal:define-slot="zentableextra">
+                    </tal:block>
+                </table>
+            </td>
+        </tr>
+    </table>
+</tal:block>
+
+<!--================================================
+        New Zentable macro, with sliding doors
+=================================================-->
+<tal:block metal:define-macro="zentable-slidingdoors">
+<div class="zentable-modified">
+    <div class="zentable-modified">
+            <div class="zentable-header">
+                <div class="tabletitle-container">
+                    <div class="tabletitle-left">
+                        <div class="tabletitle-right">
+                            <div class="tabletitle-center" style="height: 37px; padding-top: 2px;">
+                            <tal:block metal:define-slot="title">
+                                Table Title
+                            </tal:block>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="zentable-body">
+            <tal:block metal:define-slot="body">
+                Here's some body.
+            </tal:block>
+            </div>
+    </div>
+</div>
+</tal:block>
+
+<!--=================================================
+    Javascript utilities that are easier with templating
+    =================================================-->
+
+<tal:block metal:define-macro="jsutils">
+<script
+tal:define="templateFreeUrl python:here.absolute_url_path()"
+tal:content="string:
+
+var submitFormToMethod = function(formname, method) {
+//Basically for use in menu items, to obviate creating dummy forms
+//or menu items that are actually buttons.
+   f = document.forms[formname];
+   f.action = '${here/absolute_url_path}/' + method;
+   f.submit();
+}
+
+addLoadEvent(function() {
+
+    YAHOO.zenoss.templateFreeURL = '${templateFreeUrl}';
+    YAHOO.zenoss.ZENOSS_VERSION = '${here/dmd/getZenossVersionShort}';
+    YAHOO.zenoss.ZENOSS_PRODUCT = '${here/dmd/productName | string:core}';
+
+});
+
+
+
+">s</script>
+</tal:block>
+
+
+

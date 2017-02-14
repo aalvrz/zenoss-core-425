@@ -1,0 +1,310 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane"
+    tal:define="editable python:here.isManager">
+
+<form method="get" enctype="multipart/form-data"
+    tal:attributes="action string:${here/absolute_url_path}">
+    <input type="hidden" name="zenScreenName" 
+        tal:attributes="value template/id" /> 
+
+
+        <tal:block tal:define="message request/message | string:State at time:; 
+            tabletitle string:${message} ${here/getNowString};
+            menu_id python:'SimpleDataPoint_list' if here.sourcetype=='SNMP' else None;">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    <tr>
+        <td class="tableheader">Name</td>
+        <td class="tablevalues" tal:condition="editable">
+            <input class="tablevalues" type="text" name="newId" size="40"
+                tal:attributes="value here/id" />
+        </td>
+        <td class="tablevalues" tal:condition="not:editable"
+            tal:content="here/id"/>
+    </tr>
+    <tr>
+      <td class="tableheader">Source Type</td>
+	  <td class="tablevalues" tal:content="here/sourcetype"></td>
+    </tr>
+    <tr>
+        <td class="tableheader">Enabled</td>
+        <td class="tablevalues" tal:condition="editable">
+        <select class="tablevalues" name="enabled:boolean">
+            <option tal:repeat="e python:(True,False)" tal:content="e"
+                    tal:attributes="value e; selected python:e==here.enabled"/>
+        </select>
+        </td>
+        <td class="tablevalues" tal:condition="not:editable" 
+            tal:content="here/enabled"/>
+    </tr>
+    
+    <tr tal:condition="python:here.sourcetype=='SNMP'">
+        <td class="tableheader">OID</td>
+        <td class="tablevalues" tal:condition="editable">
+        <input class="tablevalues" type="text" name="oid" size="40"
+            tal:attributes="value here/oid" />
+        </td>
+      <td class="tablevalues" tal:condition="not:editable"
+        tal:content="here/oid"/>
+    </tr>
+        
+        <tr tal:condition="python:here.sourcetype=='SNMP'">
+          <td class="tableheader">Type</td>
+          <td class="tablevalues" tal:condition="here/isManager">
+            <select class="tablevalues" name="rrdtype"
+            tal:define="curtype python:here.soleDataPoint().rrdtype">
+                <option tal:repeat="type python:here.soleDataPoint().rrdtypes" 
+                    tal:attributes="value type; 
+                        selected python:curtype == type"
+                    tal:content="python:type">localhost</option>
+            </select>
+            </td>
+          <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="python:here.soleDataPoint().rrdtype"/>
+        </tr>
+        <tr tal:condition="python:here.sourcetype=='SNMP'">
+            <td class="tableheader">RRD Min</td>
+            <td class="tablevalues" tal:condition="here/isManager">
+            <input class="tablevalues" type="text" name="rrdmin" size="40"
+                tal:attributes="value python:here.soleDataPoint().rrdmin" />
+            </td>
+          <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="python:here.soleDataPoint().rrdmin"/>
+        </tr>
+        <tr tal:condition="python:here.sourcetype=='SNMP'">
+            <td class="tableheader">RRD Max</td>
+            <td class="tablevalues" tal:condition="here/isManager">
+            <input class="tablevalues" type="text" name="rrdmax" size="40"
+                tal:attributes="value python:here.soleDataPoint().rrdmax" />
+            </td>
+          <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="python:here.soleDataPoint().rrdmax"/>
+        </tr>
+        <tr tal:condition="python:here.sourcetype=='SNMP'">
+            <td class="tableheader">Create Cmd</td>
+            <td class="tablevalues" tal:condition="here/isManager">
+            <textarea class="tablevalues" rows="5" cols="50"
+                name="createCmd:text" 
+                tal:content="python:here.soleDataPoint().createCmd">
+            </textarea>
+            </td>
+          <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="python:here.soleDataPoint().createCmd"/>
+        </tr>
+	    <tr tal:condition="python:here.sourcetype!='COMMAND'">
+	      <td class="tableheader">Aliases</td>
+	      <td class="tablevalues">
+	      	<tal:block tal:define="aliases python:here.aliases()">
+	      	<table>
+	      	  <tr tal:repeat="alias aliases">
+		          <td tal:content="alias/id"></td>
+				  <td><b>|</b></td>
+				  <td tal:content="alias/formula"></td>
+			  </tr>
+			</table>
+			</tal:block>
+		  </td>
+	    </tr>
+
+    <tal:block tal:condition="python:here.sourcetype in ('COMMAND')">
+        <tr>
+            <td class="tableheader">Use SSH</td>
+            <td class="tablevalues" tal:condition="editable">
+            <select class="tablevalues" name="usessh:boolean">
+                <option tal:repeat="e python:(True,False)" tal:content="e"
+                        tal:attributes="value e; selected python:e==here.usessh"/>
+            </select>
+            </td>
+            <td class="tablevalues" tal:condition="not:editable" 
+                tal:content="here/usessh"/>
+        </tr>
+
+        <tr>
+            <td class="tableheader">Component</td>
+            <td class="tablevalues" tal:condition="editable">
+            <input class="tablevalues" type="text" name="component" size="50"
+                tal:attributes="value here/component" />
+            </td>
+          <td class="tablevalues" tal:condition="not:editable" 
+                tal:content="here/component"/>
+        </tr>
+        <tr>
+            <td class="tableheader">Event Class</td>
+            <td class="tablevalues" tal:condition="editable">
+            <select class="tablevalues" name="eventClass">
+                <option tal:repeat="evtcls here/getEventClassNames" 
+                        tal:content="evtcls"
+                        tal:attributes="selected python:evtcls==here.eventClass"/>
+            </select>
+            </td>
+          <td class="tablevalues" tal:condition="not:editable" 
+                tal:content="here/eventClass"/>
+        </tr>
+        <tr>
+            <td class="tableheader">Event Key</td>
+            <td class="tablevalues" tal:condition="editable">
+            <input class="tablevalues" type="text" name="eventKey" size="50"
+                tal:attributes="value here/eventKey" />
+            </td>
+          <td class="tablevalues" tal:condition="not:editable" 
+                tal:content="here/eventKey"/>
+        </tr>
+        <tr tal:condition="python:here.sourcetype=='COMMAND'">
+            <td class="tableheader">Severity</td>
+            <td class="tablevalues" tal:condition="editable">
+            <select class="tablevalues" name="severity:int">
+               <option tal:repeat="sev here/ZenEventManager/getSeverities"
+                       tal:content="python:sev[0]"
+                       tal:attributes="selected python:sev[1]==here.severity; value python:sev[1]"/>
+            </select>
+            </td>
+          <td class="tablevalues" tal:condition="not:editable" 
+                tal:content="here/getSeverityString"/>
+        </tr>
+        <tr>
+            <td class="tableheader">Cycle Time</td>
+            <td class="tablevalues" tal:condition="editable">
+            <input class="tablevalues" type="text" name="cycletime" size="10"
+                tal:attributes="value here/cycletime" />
+            </td>
+          <td class="tablevalues" tal:condition="not:editable" 
+                tal:content="here/cycletime"/>
+        </tr>
+        <tr tal:condition="python:here.sourcetype=='COMMAND'">
+            <td class="tableheader">Parser</td>
+            <td class="tablevalues" tal:condition="editable">
+                <select class="tablevalues" name="parser:string">
+                    <option tal:repeat="par here/parsers"
+                            tal:content="par"
+                            tal:attributes="selected python:par==here.parser; value par"/>
+                </select>
+            </td>
+            <td class="tablevalues" tal:condition="not:editable"
+                tal:content="here/parser"/>
+        </tr>
+
+
+        <tr>
+            <td class="tableheader" colspan="2">Command Template</td>
+            </tr>
+            <tr>
+                    <td class="tablevalues" colspan="2" tal:condition='editable'>
+                            <textarea class="tablevalues" rows="3" cols="80" 
+                                    name="commandTemplate:text"
+                                    tal:content="here/commandTemplate">
+                            </textarea>
+                    </td>
+          <td class="tablevalues" tal:condition="not:editable" 
+                tal:content="here/commandTemplate"/>
+        </tr>
+
+    </tal:block>
+
+    <tr>
+        <td class=tableheader align="left" >
+        </td>
+        <td align="left"  class="tableheader" colspan=3>
+            <input class="tableheader" type="submit" value=" Save "
+                name="zmanage_editProperties:method"/>
+        </td>
+    </tr>
+
+    <tal:block tal:condition="python:here.sourcetype in ('COMMAND', 'SNMP')">
+    <tr><td></td></tr>
+    <tr>
+        <td class="tableheader">Test Against Device</td>
+        <td class="tablevalues">
+        <input class="tablevalues" type="text" 
+            name="testDevice:string" size="40" /> 
+        <input class="tablevalues" type="submit" value=" Test "
+            name="manage_testDataSource:method"/>
+    </td>
+    </tr>
+    </tal:block>
+
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+
+<tal:block tal:condition="python:here.sourcetype in ('COMMAND')">
+<form name="dataPointsList" method="post" tal:attributes="action here/absolute_url_path">
+
+
+    <tal:block tal:define="tableName string:rrdtempdplist; 
+        objects here/datapoints;
+        batch python:here.ZenTableManager.getBatch(tableName,objects); 
+        tabletitle string:DataPoints;
+        menu_id string:DataPoint_list;">
+    <input type='hidden' name='tableName' tal:attributes="value tableName"/>
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'getId','Name')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'rrdtype','Type')"/>
+    </tr>
+    <tr class="tablevalues" tal:repeat="dp batch">
+        <td>
+            <input tal:condition="editable" 
+                type="checkbox" name="ids:list" 
+                tal:attributes="value dp/id"/>
+            <a tal:condition="editable"
+                tal:attributes="href dp/getPrimaryUrlPath" 
+                tal:content="dp/id">name</a>
+            <tal:block tal:condition="not:editable" tal:content="dp/getId"/>
+        </td>
+        <td tal:content="dp/rrdtype"/>
+    </tr>
+    <tr>
+        <td colspan="2" class="tableheader">
+            <span metal:use-macro="here/zenTableNavigation/macros/navbody"/>
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+</tal:block>
+
+<!----------------------------------------------------------------->
+</tal:block>
+</tal:block>

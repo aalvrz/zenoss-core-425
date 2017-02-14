@@ -1,0 +1,58 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:meta="http://namespaces.zope.org/meta"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="Products.ZenModel">
+
+    <include file="permissions.zcml"/>
+    <include file="indexing.zcml"/>
+    <include file="zendoc.zcml"/>
+
+    <include package=".browser"/>
+    <browser:page
+        for="*"
+        name="easyAddDevice"
+        class="Products.ZenWidgets.browser.quickstart.views.DeviceAddView"
+        template="./easyAddDevice.pt"
+        permission="zope2.View"
+        />
+
+    <utility
+        factory=".actions.EmailAction"
+        provides=".interfaces.IAction"
+        name="email"
+        />
+
+    <utility
+        factory=".actions.PageAction"
+        provides=".interfaces.IAction"
+        name="page"
+        />
+
+    <utility
+        factory=".actions.CommandAction"
+        provides=".interfaces.IAction"
+        name="command"
+        />
+    
+    <utility
+        factory=".actions.SNMPTrapAction"
+        provides=".interfaces.IAction"
+        name="trap"
+        />
+
+    <utility
+        factory=".actions.SyslogAction"
+        provides=".interfaces.IAction"
+        name="syslog"
+        />
+
+    <meta:provides feature="zenoss:IExpandedLinkProvider" />
+    <!-- Make sure that whenever process classes are removed their
+         instances are as well -->
+    <subscriber handler=".OSProcessClass.onProcessClassRemoved"/>
+    <subscriber handler=".ServiceClass.onServiceClassRemoved"/>
+    <subscriber handler=".subscribers.onInterfaceRemoved" />
+    <subscriber handler=".subscribers.onInterfaceAdded" />
+</configure>

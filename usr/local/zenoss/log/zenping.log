@@ -1,0 +1,16 @@
+2014-04-25 10:32:55,808 INFO zen.zenping: Connecting to localhost:8789
+2014-04-25 10:32:55,827 INFO zen.zenping: Connected to ZenHub
+2014-04-25 10:32:55,883 INFO zen.maintenance: Performing periodic maintenance
+2014-04-25 10:32:55,884 INFO zen.zenping: Counter eventCount, value 1
+2014-04-25 10:32:55,892 INFO zen.zenping: 0 devices processed (0 datapoints)
+2014-04-25 10:32:55,893 INFO zen.collector.scheduler: Tasks: 2 Successful_Runs: 0 Failed_Runs: 0 Missed_Runs: 0 Queued_Tasks: 0 Running_Tasks: 0 
+2014-04-25 10:36:57,130 INFO zen.zenping: Deleting PID file /usr/local/zenoss/var/zenping-localhost.pid ...
+2014-04-25 10:36:57,130 INFO zen.zenping: Daemon CollectorDaemon shutting down
+2014-04-25 10:38:40,533 INFO zen.zenping: Connecting to localhost:8789
+2014-04-25 10:38:40,546 INFO zen.zenping: Connected to ZenHub
+2014-04-25 10:38:40,553 INFO zen.maintenance: Performing periodic maintenance
+2014-04-25 10:38:40,553 INFO zen.zenping: Counter eventCount, value 4
+2014-04-25 10:38:40,554 INFO zen.zenping: 0 devices processed (0 datapoints)
+2014-04-25 10:38:40,554 INFO zen.collector.scheduler: Tasks: 2 Successful_Runs: 0 Failed_Runs: 0 Missed_Runs: 0 Queued_Tasks: 0 Running_Tasks: 0 
+2014-04-25 10:40:11,884 INFO zen.zenping: Deleting PID file /usr/local/zenoss/var/zenping-localhost.pid ...
+2014-04-25 10:40:11,884 INFO zen.zenping: Daemon CollectorDaemon shutting down

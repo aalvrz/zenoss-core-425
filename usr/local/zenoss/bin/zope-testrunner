@@ -1,0 +1,9 @@
+#!/usr/local/zenoss/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'zope.testrunner==4.0.4','console_scripts','zope-testrunner'
+__requires__ = 'zope.testrunner==4.0.4'
+import sys
+from pkg_resources import load_entry_point
+
+sys.exit(
+   load_entry_point('zope.testrunner==4.0.4', 'console_scripts', 'zope-testrunner')()
+)

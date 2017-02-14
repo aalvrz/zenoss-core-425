@@ -1,0 +1,50 @@
+2014-04-25 10:32:47,690 INFO celery.redirected: -------------- celery@ubuntu v2.6.0a3
+---- **** -----
+--- * ***  * -- [Configuration]
+-- * - **** ---   . broker:      amqp://zenoss@localhost:5672//zenoss
+- ** ----------   . loader:      Products.ZenUtils.celeryintegration.loader.ZenossLoader
+- ** ----------   . logfile:     /usr/local/zenoss/log/zenjobs.log@INFO
+- ** ----------   . concurrency: 2
+- ** ----------   . events:      OFF
+- *** --- * ---   . beat:        OFF
+-- ******* ----
+--- ***** ----- [Queues]
+ --------------   . celery:      exchange:celery (direct) binding:celery
+                  
+
+[Tasks]
+  . Products.Jobber.facade.FacadeMethodJob
+  . Products.Jobber.jobs.SubprocessJob
+  . Products.Jobber.zenmodel.DeviceSetLocalRolesJob
+  . Products.ZenModel.IpNetwork.AutoDiscoveryJob
+  . Products.ZenModel.ZDeviceLoader.DeviceCreationJob
+2014-04-25 10:32:47,723 INFO multiprocessing: child process calling self.run()
+2014-04-25 10:32:47,724 INFO multiprocessing: child process calling self.run()
+2014-04-25 10:32:47,740 INFO celery.redirected: celery@ubuntu has started.
+2014-04-25 10:36:57,294 INFO celery.redirected: celeryd: Warm shutdown (MainProcess)
+2014-04-25 10:36:57,957 INFO multiprocessing: process shutting down
+2014-04-25 10:38:32,078 INFO celery.redirected: -------------- celery@ubuntu v2.6.0a3
+---- **** -----
+--- * ***  * -- [Configuration]
+-- * - **** ---   . broker:      amqp://zenoss@localhost:5672//zenoss
+- ** ----------   . loader:      Products.ZenUtils.celeryintegration.loader.ZenossLoader
+- ** ----------   . logfile:     /usr/local/zenoss/log/zenjobs.log@INFO
+- ** ----------   . concurrency: 2
+- ** ----------   . events:      OFF
+- *** --- * ---   . beat:        OFF
+-- ******* ----
+--- ***** ----- [Queues]
+ --------------   . celery:      exchange:celery (direct) binding:celery
+                  
+
+[Tasks]
+  . Products.Jobber.facade.FacadeMethodJob
+  . Products.Jobber.jobs.SubprocessJob
+  . Products.Jobber.zenmodel.DeviceSetLocalRolesJob
+  . Products.ZenModel.IpNetwork.AutoDiscoveryJob
+  . Products.ZenModel.ZDeviceLoader.DeviceCreationJob
+2014-04-25 10:38:32,102 INFO multiprocessing: child process calling self.run()
+2014-04-25 10:38:32,116 INFO multiprocessing: child process calling self.run()
+2014-04-25 10:38:32,128 INFO celery.redirected: celery@ubuntu has started.
+2014-04-25 10:40:12,025 INFO celery.redirected: celeryd: Warm shutdown (MainProcess)
+2014-04-25 10:40:12,245 INFO multiprocessing: process shutting down

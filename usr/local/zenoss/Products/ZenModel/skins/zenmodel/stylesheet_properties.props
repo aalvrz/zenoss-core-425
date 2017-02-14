@@ -1,0 +1,87 @@
+## base content
+base_bg_color:string=white
+base_font_color:string=black
+base_font_size:string=8pt
+base_font_family:string=Verdana, Arial, Helvetica, sans-serif
+
+highlight_color:string=#AAAAAA
+highlight_font_color:string=#000000
+link_color:string=#000040
+vlink_color:string=#000040
+alink_color:string=#777777
+hover_color:string=#000000
+hover_color_light:string=#EEEEEE
+hover_color_dark:string=#AAAAAA
+
+## top pane
+toppane_bg_color:string=black
+toppane_font_color:string=white
+toppane_height:string=35px
+toppane_font_size:string=.8em
+
+## left pane
+leftpane_top_padding:string=35px
+leftpane_width:string=105px
+leftpane_bg_color:string=white
+leftpane_link_font_color:string=black
+leftpane_link_font_size:string=1em
+leftpane_menu_font_color:string=#5a6f8f
+leftpane_menu_font_size:string=1em
+leftpane_selected_font_color:string=black
+leftpane_selected_bg_color:string=#b1bcd2
+leftpane_hover_font_color:string=white
+leftpane_hover_bg_color:string=#5a6f8f
+
+## right pane
+rightpane_left_padding:string=115px
+rightpane_border_width:string=5px
+rightpane_border_color:string=#b1bcd2
+
+## crumb pane
+crumb_font_color:string=#5a6f8f
+crumb_font_color:string=black
+crumb_font_size:string=1.1em
+crumb_padding:string=5px
+
+## tabs table
+tabletitle_font_size:string=12px
+tabletitle_font_color:string=white
+tabletitle_bg_color:string=#5a6f8f
+tabletitleselected_font_color:string=#333333
+tabletitleselected_bg_color:string=#E0E0E0
+
+## content pane
+contentpane_bg_color:string=#E0E0E0
+contentpane_padding:string=5px
+
+## zentable
+zentable_border_top:string=#b1bcd2
+zentable_border_left:string=#b1bcd2
+zentable_border_bottom:string=#3c5274
+zentable_border_right:string=#3c5274
+
+
+## tableheader
+tableheader_font_size:string=12px
+tableheader_font_color:string=#000000
+tableheader_bg_color:string=#CCCCCC
+tableheaderselected_font_color:string=#FFFFFF
+tableheaderselected_bg_color:string=#999999
+
+## tablevalues
+tablevalues_font_size:string=12px
+tablevalues_font_color:string=#000040
+tablevalues_bg_color:string=#EEE
+statusbar_font_size:string=4pt
+
+## color holders
+zdarkblue:string=#5a6f8f
+zdarkerblue:string=#3C527
+zlightblue:string=#b1bcd2
+zlighterblue:string=#dee3ec
+zdarkgrey:string=#ffffff
+zlightgrey:string=#cccccc
+zlightergrey:string=#eeeeef
+
+title:string=Default Zentinel Portal Style
+select_stylesheet_id:string=default_stylesheet

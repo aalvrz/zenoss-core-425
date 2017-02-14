@@ -1,0 +1,29 @@
+<form id="addFileSystem_form" tal:attributes="action context/os/absolute_url_path">
+  <input type="hidden" name="userCreated" value="True">
+    <span id="errmsg" style="color:red;"></span>
+    <p>
+      <span id="new_id_label">ID:&nbsp;</span>
+      <input id="new_id" name="newId">
+      </p>
+    </form>
+    <script tal:content="string:
+                         Zenoss.env.filesystem_context = '${context/os/filesystems/absolute_url_path}';
+    "></script>
+    <script>
+var addfilesystem_form = new Zenoss.dialog.DialogFormPanel({
+    existingFormId: 'addFileSystem_form',
+    submitName: 'addFileSystem:method',
+    jsonResult: false,
+    items: [{
+        context: Zenoss.env.filesystem_context,
+        xtype: 'idfield',
+        name: 'newId',
+        applyTo: 'new_id'
+    }],
+    listeners: {
+        actioncomplete: Zenoss.env.componentReloader('FileSystem')
+    }
+});
+
+Ext.get('new_id').focus();
+</script>

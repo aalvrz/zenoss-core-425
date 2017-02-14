@@ -1,0 +1,25 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+<br/>
+<table metal:use-macro="here/deviceGroupMacros/macros/status"></table>
+<span tal:define="objects here/subclasses/objectValuesAll;
+    tableName string:deviceclasssubclasses;
+    batch python:here.ZenTableManager.getBatch(tableName,objects);"
+    tal:condition="objects">
+<br/>
+<table border="0" cellpadding="3" width="100%" 
+    align="center" bgcolor="#ffffff" cellspacing="1">
+    <tr>
+      <th class="tabletitle" align="left" colspan="4">
+        Sub-Classes
+      </th>
+    </tr>
+    <span metal:use-macro="here/viewDeviceGroupClassOverview/macros/body" />
+</table>
+</span>
+<br>
+<table metal:use-macro="here/deviceListMacro/macros/devList"></table>
+
+</tal:block>
+</tal:block>

@@ -1,0 +1,7 @@
+[distutils.setup_keywords]
+compatZenossVers = zenpacksupport:AssertString
+prevZenPackName = zenpacksupport:AssertString
+
+[egg_info.writers]
+zenpack_info = zenpacksupport:WriteZenPackInfo
+

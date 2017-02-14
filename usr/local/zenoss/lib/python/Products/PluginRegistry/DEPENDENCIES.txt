@@ -1,0 +1,4 @@
+Zope >= 2.9
+
+OPTIONAL:
+GenericSetup >= 1.2beta (http://www.zope.org/Products/GenericSetup)

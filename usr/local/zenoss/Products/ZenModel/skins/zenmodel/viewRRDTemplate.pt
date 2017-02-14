@@ -1,0 +1,156 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane"
+    tal:define="editable python:here.isEditable(here)">
+
+
+<form tal:attributes="method string:post;
+                action here/absolute_url_path;
+                name string:datasourceList">
+<input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+
+
+        <tal:block tal:define="tableName string:rrdtempdslist; 
+        objects here/getRRDDataSources;
+        batch python:here.ZenTableManager.getBatch(tableName,objects); 
+        tabletitle string:Data Sources;
+		menu_id string:DataSource_list;">
+    <input type='hidden' name='tableName' tal:attributes="value tableName" />
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    <tal:block metal:define-macro="dsbody">
+    <tr>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'getId','Name')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'oidorurl','Source')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'sourcetype','Source Type')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'enabled','Enabled')"/>
+    </tr>
+    <tr class="tablevalues" tal:repeat="ds batch">
+        <td>
+            <input tal:condition="editable" 
+                type="checkbox" name="ids:list" 
+                tal:attributes="value ds/getId;
+                    disabled python:ds.id == 'broken';
+                "/>
+            <a tal:condition="editable"
+                tal:attributes="href ds/getPrimaryUrlPath" 
+                tal:on-error="python:'Broken because the %s zenpack is missing' % here.getBrokenPackName(ds)"
+                tal:content="ds/getId">name</a>
+            <tal:block tal:condition="not:editable" tal:content="ds/getId"/>
+        </td>
+        <td tal:content="ds/getDescription" tal:on-error="string:"/>
+        <td tal:content="ds/sourcetype" tal:on-error="string:"/>
+        <td tal:content="ds/enabled" tal:on-error="string:"/>
+    </tr>
+    <tr>
+        <td colspan="4" class="tableheader">
+            <span metal:use-macro="here/zenTableNavigation/macros/navbody"/>
+        </td>
+    </tr>
+    </tal:block>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+<br/>
+<form tal:attributes="method string:post;
+                action here/absolute_url_path;
+                name string:thresholdList">
+<input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+
+
+        <tal:block tal:define="tableName string:rrdthreshsoldist; 
+        objects here/thresholds;
+        batch python:here.ZenTableManager.getBatch(tableName,objects); 
+        tabletitle string:Thresholds;
+		menu_id string:Threshold_list">
+    <input type='hidden' name='tableName' tal:attributes="value tableName" />
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    <tal:block metal:define-macro="threshbody">
+    <tr>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'getId','Name')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'getTypeName','Type')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'dsnames','Data Points')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'severity','Severity')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'enabled','Enabled')"/>
+    </tr>
+    <tr class="tablevalues" tal:repeat="thresh batch">
+        <td>
+            <input tal:condition="editable"
+                type="checkbox" name="ids:list" 
+                tal:attributes="value thresh/getId;
+                    disabled python:thresh.id == 'broken';"
+                />
+            <a tal:condition="editable"     
+                tal:on-error="python:'Broken because the %s zenpack is missing' % here.getBrokenPackName(thresh)"
+                tal:attributes="href thresh/getPrimaryUrlPath" 
+                tal:content="thresh/getId">name</a>
+            <tal:block tal:condition="not:editable" tal:content="thresh/getId"/>
+        </td>
+        <td tal:content="thresh/getTypeName" tal:on-error="string:"/>
+        <td tal:content="structure thresh/getDataPointNamesString" tal:on-error="string:"/>
+        <td tal:content="thresh/getSeverityString" tal:on-error="string:"/>
+        <td tal:content="thresh/enabled" tal:on-error="string:"/>
+    </tr>
+    <tr>
+        <td colspan="5" class="tableheader">
+            <span metal:use-macro="here/zenTableNavigation/macros/navbody"/>
+        </td>
+    </tr>
+    </tal:block>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+<br />
+
+<tal:block metal:use-macro="here/graphDefList/macros/graphDefList">
+</tal:block>
+
+</tal:block>
+</tal:block>

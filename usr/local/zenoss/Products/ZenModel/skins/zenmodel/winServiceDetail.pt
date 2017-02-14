@@ -1,0 +1,174 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+<form method=post 
+    tal:define="manager python:here.has_permission('Change Device', here);
+                userCreated here/isUserCreated"
+    tal:attributes="action string:${here/absolute_url_path}">
+    <input type="hidden" name="zenScreenName" 
+        tal:attributes="value template/id" /> 
+
+
+        <tal:block tal:define="
+            tabletitle string:Windows Service;
+            menu_id string:Lockable;
+            editable python:manager and userCreated">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    <tr>
+        <td class="tableheader">Service Class</td>
+        <td class="tablevalues"
+            tal:content="structure here/getServiceClassLink"/>
+        <td class="tableheader">Status</td>
+        <td class='tablevalues'>
+            <img border="0" tal:attributes="src 
+                python:here.getStatusImgSrc(here.getStatus())" />
+        </td>
+    </tr>
+    <tr>
+        <td class="tableheader">Cmd Name</td>
+        <td class="tablevalues" tal:condition="not:editable"
+                                tal:content="here/id"/>
+        <td class="tablevalues" tal:condition="editable">
+            <input tal:condition="editable"
+                   tal:attributes="class string:tablevalues;
+                                   name string:id;
+                                   value here/id">
+        </td>
+      <td class=tableheader align=left>Locks</td>
+      <td class=tablevalues>
+          <img tal:condition="here/isLockedFromDeletion" 
+              border="0" src="locked-delete-icon.png">
+          <img tal:condition="here/isLockedFromUpdates" 
+              border="0" src="locked-update-icon.png">
+          <img tal:condition="here/sendEventWhenBlocked" 
+              border="0" src="locked-sendevent-icon.png">
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Description</td>
+      <td class="tablevalues" tal:condition="not:editable"
+                              tal:content="here/caption"/>
+      <td class="tablevalues" tal:condition="editable">
+          <input tal:condition="editable"
+                 tal:attributes="class string:tablevalues;
+                                 name string:description;
+                                 value here/caption">
+      </td>
+      <td class="tableheader">Monitor</td>
+      <td class="tablevalues" tal:condition="manager">
+          <select class="tablevalues" name="monitor:boolean">
+          <option tal:repeat="e python:(True,False)" tal:content="e"
+              tal:attributes="value e; selected python:e==here.monitored()"/>
+          </select>
+      </td>        
+      <td class="tablevalues" tal:condition="not:manager"
+          tal:content="here/monitored"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Fail Severity</td>
+        <td class="tablevalues" tal:condition="manager">
+            <select class="tablevalues" name="severity:int">
+                <option tal:repeat="sev here/getSeverities"
+                    tal:content="python:sev[0]"
+                    tal:attributes="value python:sev[1];
+                        selected python:sev[1] == here.getFailSeverity()" />
+            </select>
+        </td>
+        <td class="tablevalues" tal:condition="not:manager"
+            tal:content="here/getFailSeverityString"/>
+
+        <td class="tableheader" rowspan="4">Monitored Start Modes</td>
+        <td class="tablevalues" tal:condition="manager" rowspan="4">
+            <select class="tablevalues" name="monitoredStartModes:list"
+                multiple tal:define="curstates here/getMonitoredStartModes">
+                <option tal:attributes="selected python:'Auto' in curstates"
+                    value="Auto">Auto</option>
+                <option tal:attributes="selected python:'Manual' in curstates"
+                    value="Manual">Manual</option>
+                <option tal:attributes="selected python:'Disabled' in curstates"
+                    value="Disabled">Disabled</option>
+                <option tal:attributes="selected python:'Not Installed' in curstates"
+                    value="Not Installed">Not Installed</option>
+            </select>
+        </td>
+        <td class="tablevalues"  rowspan="4" tal:condition="not:manager"
+            tal:content="python:','.join(here.getMonitoredStartModes)"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Service Type</td>
+        <td class="tablevalues" tal:condition="not:editable"
+                                tal:content="here/serviceType"/>
+        <td class="tablevalues" tal:condition="editable">
+            <input tal:condition="editable"
+                   tal:attributes="class string:tablevalues;
+                                   name string:serviceType;
+                                   value here/serviceType">
+        </td>
+    </tr>
+    <tr>
+        <td class="tableheader">Start Mode</td>
+        <td class="tablevalues" tal:condition="not:editable"
+                                tal:content="here/startMode"/>
+        <td class="tablevalues" tal:condition="editable">
+            <input tal:condition="editable"
+                   tal:attributes="class string:tablevalues;
+                                   name string:startMode;
+                                   value here/startMode">
+        </td>
+    </tr>
+    <tr>
+        <td class="tableheader">Start Name</td>
+        <td class="tablevalues" tal:condition="not:editable"
+                                tal:content="here/startName"/>
+        <td class="tablevalues" tal:condition="editable">
+            <input tal:condition="editable"
+                   tal:attributes="class string:tablevalues;
+                                   name string:startName;
+                                   value here/startName">
+        </td>
+    </tr>
+    <tr>
+        <td class="tableheader">Path Name</td>
+        <td class="tablevalues" colspan='3' 
+            tal:content="here/pathName"
+            tal:condition="not:editable"/>
+        <td class="tablevalues" colspan='3' 
+            tal:condition="editable">
+            <input tal:condition="editable" size=30
+                   tal:attributes="class string:tablevalues;
+                                   name string:pathName;
+                                   value here/pathName"/>
+        </td>
+    </tr>
+    <tr tal:condition="manager">
+        <td align="left"  class="tableheader" colspan="4">
+            <input class="tableheader" type="submit" value=" Save "
+                name="manage_editService:method" />
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+
+</tal:block>
+</tal:block>

@@ -1,0 +1,337 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane">
+
+<tal:block metal:define-macro="componentSelectorJS">
+<script type="text/javascript" src="/zport/js/MochiKit.js"></script>
+<script type="text/javascript">
+    var displayComponentPath= false;
+    
+    function updateSelect(widget, options) {
+        for (var i = widget.length; i < options.length; i++) {
+            widget.options[i] = new Option(options[i],options[i], false, false);
+        }
+    }
+
+    function updateSelectWithDisplay(widget, options) {
+        // Each element of options is an array of [value, display]
+        for (var i = widget.length; i < options.length; i++) {
+            if( displayComponentPath ) {
+              widget.options[i] = new Option(options[i][0], options[i][0], 
+                             false, false); 
+            } else  {
+              widget.options[i] = new Option(options[i][1],options[i][0],
+                                false, false);
+            }
+            //if (findValue(current, options[i][0]) > -1)
+            //    widget.options[i].selected = true;
+        }
+    }
+
+    function getSelection(widget) {
+        var selection = new Array();
+        for (var i=0; i < widget.options.length; i++) {
+            if (widget.options[i].selected) {
+                selection[selection.length] = widget.options[i].value;
+            }
+        }
+        return selection;
+    }
+
+
+    function getDeviceList(e) {
+        var filter = document.getElementById('deviceFilter');
+        var widget = document.getElementById('deviceIds');
+        var url = '/zport/dmd/Devices/jsonGetDeviceNames'
+        var filterValue = filter.value;        
+        if (filterValue)
+            filterValue = '*' + filterValue + '*';
+        var d = loadJSONDoc(url, {'query': filterValue});
+        widget.options.length = 0;
+        d.addBoth(updateSelect, widget);
+        getComponentList();
+    }
+
+    function componentpath(check) { 
+      displayComponentPath = check; 
+      getComponentList(); 
+    } 
+
+    function getComponentList() {
+        var deviceWidget = document.getElementById('deviceIds');
+        var compWidget = document.getElementById('componentPaths');
+        var url = '/zport/dmd/Devices/jsonGetComponentPaths';
+        var deviceIds = getSelection(deviceWidget);
+        var d = loadJSONDoc(url, {'deviceIds': deviceIds});
+        compWidget.options.length = 0;
+        d.addBoth(updateSelectWithDisplay, compWidget);
+        getThirdList();
+    }
+
+
+    function handleDeviceKeys(e) {
+        keyString = e.key().string;
+        if (keyString == 'KEY_ENTER') {
+            // Populate the device list based on the filter
+            getDeviceList();
+        }
+    }
+
+    function connectDeviceFilter() {
+        connect('deviceFilter', 'onkeydown', handleDeviceKeys);
+        connect('filterButton', 'onclick', getDeviceList);
+    }
+
+    addLoadEvent(getDeviceList);
+    addLoadEvent(connectDeviceFilter);
+
+</script>
+</tal:block>
+
+
+
+<form method="post" id="editReportForm"
+    tal:attributes="action string:${here/absolute_url_path}">
+    <input type="hidden" name="zenScreenName" 
+        value="editGraphReport" /> 
+    <input type="hidden" name="redirect" value="true" />
+
+
+        <tal:block tal:define="tabletitle string: Graph Report">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    <tr>
+        <td class="tableheader">Name</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+            <input type="text" name="newId" size="40"
+                tal:attributes="value here/id" />
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="here/id"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Title</td>
+        <td class="tablevalues odd" tal:condition="here/isManager">
+            <input type="text" name="title" size="40"
+                tal:attributes="value here/title" />
+        </td>
+        <td class="tablevalues odd" tal:condition="not:here/isManager"
+            tal:content="here/title"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Number of Columns</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+            <select name="numColumns">
+                <option tal:repeat="a here/numColumnsOptions" tal:content="a"
+                        tal:attributes="value a; 
+                        selected python:a==here.numColumns"/>
+            </select>
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="here/numColumns"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Comments</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+            <textarea name="comments" rows="4" cols="60"
+                tal:content="here/comments"></textarea>
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="here/comments"/>
+    </tr>
+    <tr>
+        <td class="tableheader">
+        </td>
+        <td class="tableheader" colspan="3">
+            <input type="hidden" name="zmanage_editProperties:method"
+                value="1" />
+            <input class="tableheader" type="button" value=" Save "
+                id="saveReportBtn" name="nothing" />
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+</form>
+<br />
+
+<form method="POST" id="addGraphForm"
+    tal:condition="here/isManager"
+    tal:attributes="action string:${here/absolute_url_path}"
+    >
+    <input type="hidden" name="zenScreenName" 
+        value="editGraphReport" /> 
+    <input type="hidden" name="redirect" value="true" />
+
+
+        <tal:block tal:define="tabletitle string:Add New Graph">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+        
+    <tal:block metal:define-macro="componentSelector">
+    <tr>
+        <td class="tableheader" width="100" >Device</td>
+        <td class="tablevalues">
+            <input type="text" name="deviceFilter"
+                 id="deviceFilter" size="20" />
+            <input class="tableheader" type="button" value="Filter"
+                id="filterButton" name="filter" />
+            <br />
+            <select name="deviceIds:list" 
+                id="deviceIds" size="8"
+                class="wide-select"
+                onChange="getComponentList(); getThirdList()" multiple="1">
+            </select>
+            <br />
+            <input type="checkbox" id="component_path" onclick="javascript:componentpath(this.checked);" />Show component path<br/>
+        </td>
+	
+    </tr>
+    <tr>
+        <td class="tableheader">Component</td>
+        <td class="tablevalues">
+            <select name="componentPaths:list" size="6"
+                id="componentPaths" multiple="1"
+                class="wide-select"
+                onChange="getThirdList()">
+            </select>
+        </td>
+    </tr>
+    </tal:block>
+    
+    <tr>
+        <td class="tableheader">Graph</td>
+        <td class="tablevalues">
+            <select name="graphIds:list" size="6"
+                id="graphIds"
+                class="wide-select"
+                multiple="1">
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableheader">
+        </td>
+        <td class="tableheader" colspan="3">
+            <input type="hidden" name="manage_addGraphElement:method"
+                value="1" />
+            <input class="tableheader" type="button" id="addGraphBtn" 
+                value=" Add Graph to Report "
+                name="nothing" />
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+</form>
+<br />
+
+<form tal:attributes="method string:post;
+                action here/absolute_url_path;
+                name string:graphReportElementListform">
+    <input type="hidden" name="zenScreenName" 
+        value="editGraphReport" /> 
+    <input type="hidden" name="redirect" value="true" />
+
+
+        <tal:block tal:define="tableName string:graphReportElementList; 
+        objects here/elements;
+        batch python:here.ZenTableManager.getBatch(tableName,objects,
+                                                sortedHeader='sequence'); 
+        tabletitle string:Graphs;
+		menu_id string:GraphReportElement_list">
+    <input type='hidden' name='tableName' tal:attributes="value tableName" />
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    <tal:block>
+    <tr>
+        <th tal:condition="here/isManager"
+	    tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'sequence','Seq')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'id','Name')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'deviceId','Device')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'componentPath','Component')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'graphId','Graph')"/>
+    </tr>
+    <tr class="tablevalues" tal:repeat="element batch">
+        <td valign="top" tal:condition="here/isManager">
+            <input type="text" name="seqmap:list" size="2" 
+		tal:attributes="value element/sequence"/>
+            <input
+                type="hidden" name="origseq:list"
+                tal:attributes="value element/sequence" />
+        </td>
+        <td valign="top">
+            <input tal:condition="here/isManager"
+                type="checkbox" name="ids:list" 
+                tal:attributes="value element/getId"/>
+            <a tal:attributes="href element/getPrimaryUrlPath" 
+                tal:content="element/getId">name</a>
+        </td>
+        <td valign="top" tal:content="element/deviceId"/>
+        <td valign="top" tal:content="element/getComponentName"/>
+        <td valign="top" tal:content="element/graphId"/>
+    </tr>
+    </tal:block>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+</form>
+
+<script type="text/javascript">
+    function getThirdList() {
+        var deviceWidget = document.getElementById('deviceIds');
+        var compWidget = document.getElementById('componentPaths');
+        var graphWidget = document.getElementById('graphIds');
+        var url = '/zport/dmd/Devices/jsonGetGraphIds';
+        var deviceIds = getSelection(deviceWidget);
+        var compPaths = getSelection(compWidget);
+        var d = loadJSONDoc(url, 
+        {'deviceIds': deviceIds, 'componentPaths': compPaths});
+        graphWidget.options.length = 0;
+        d.addBoth(updateSelect, graphWidget);
+    }
+        
+    function initialize() {
+        // This is what keeps the return/enter key in the device filter
+        // field from submitting the form.
+        $('addGraphForm').onsubmit = function() {return false;}
+    
+        YAHOO.util.Event.addListener($('saveReportBtn'), "click", 
+                function(e){$("editReportForm").submit()});
+        YAHOO.util.Event.addListener($('addGraphBtn'), "click", 
+                function(e){$("addGraphForm").submit()});
+
+        connectTextareas();
+    }
+    
+    var loader = YAHOO.zenoss.getLoader();
+    loader.require(['zenossutils', 'event']);
+    loader.insert({'onSuccess':initialize});
+
+</script>
+
+
+</tal:block>
+</tal:block>

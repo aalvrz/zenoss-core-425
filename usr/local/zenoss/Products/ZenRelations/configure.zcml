@@ -1,0 +1,38 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+    <adapter
+        for=".ToManyContRelationship.ToManyContRelationship"
+        provides="zope.location.interfaces.ISublocations"
+        factory=".ToManyContRelationship.ToManyContSublocations"
+        />
+
+    <subscriber
+        for=".ToManyContRelationship.ToManyContRelationship
+             zope.component.interfaces.IObjectEvent"
+        handler="zope.container.contained.dispatchToSublocations"
+        />
+
+    <subscriber
+        for=".ToManyRelationship.ToManyRelationship
+             OFS.interfaces.IObjectWillBeRemovedEvent"
+        handler=".subscribers.cleanUpRelationships"
+        />
+
+    <subscriber
+        for=".ToOneRelationship.ToOneRelationship
+             OFS.interfaces.IObjectWillBeRemovedEvent"
+        handler=".subscribers.cleanUpRelationships"
+        />
+
+    <subscriber
+        for=".RelationshipManager.RelationshipManager
+             zope.container.interfaces.IObjectMovedEvent"
+        handler=".subscribers.resetUnderscoreOperation"
+        />
+
+    <subscriber
+            for="Products.ZenUtils.events.IZopeApplicationOpenedEvent"
+            handler=".registerDescriptors"
+            />
+
+</configure>

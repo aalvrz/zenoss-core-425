@@ -1,0 +1,49 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="Products.ZenModel">
+
+    <browser:page
+        for="*"
+        name="getRootOrganizerInfo"
+        class=".Portlets.TopLevelOrganizerPortletView"
+        permission="zenoss.Common"
+        />
+
+    <browser:page
+        for="*"
+        name="getDevProdStateJSON"
+        class=".Portlets.ProductionStatePortletView"
+        permission="zenoss.Common"
+        />
+
+    <browser:page
+        for="*"
+        name="getEntityListEventSummary"
+        class=".Portlets.WatchListPortletView"
+        permission="zenoss.Common"
+        />
+
+    <browser:page
+        for="*"
+        name="getHeartbeatIssuesJSON"
+        class=".Portlets.HeartbeatPortletView"
+        permission="zenoss.Common"
+        />
+
+    <browser:page
+        for="*"
+        name="getDeviceIssuesJSON"
+        class=".Portlets.DeviceIssuesPortletView"
+        permission="zenoss.Common"
+        />
+
+    <browser:page
+        for="*"
+        name="userMessageTable"
+        class=".Portlets.UserMessagesPortletView"
+        permission="zenoss.Common"
+        />
+
+</configure>

@@ -1,0 +1,234 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="title">Settings</tal:block>
+<tal:block metal:fill-slot="contentPane">
+
+<script>
+function popupMapHelp() {
+    mySimpleDialog = new YAHOO.widget.SimpleDialog("dlg", {
+        width: "30em",
+        fixedcenter: true,
+        modal:false,
+        visible:false,
+        draggable:true});
+    mySimpleDialog.setHeader("Google Maps API Key");
+    baseurl = currentWindow().location.href.replace(
+        '/zport/dmd/editSettings','');
+    mySimpleDialog.setBody(
+       "To access the free Google Maps API, you must specify an API key linked to a base URL." +
+       "You can obtain a free API key from Google at <"+"a href='" +
+       "https://code.google.com/apis/console' target='blank'>"+
+       "https://code.google.com/apis/console<"+"/a>. ");
+    addElementClass(currentDocument().body, 'yui-skin-sam');
+    mySimpleDialog.render(currentDocument().body);
+    mySimpleDialog.show();
+}
+
+setTimeout(function () {
+    document.getElementById('smtpUser').autocomplete = 'off';
+    document.getElementById('smtpPass').autocomplete = 'off';
+    }, 1);
+
+var loader=YAHOO.zenoss.getLoader();
+loader.require(['container']);
+loader.insert();
+</script>
+
+<form method=post tal:attributes="action string:${here/absolute_url_path}" autocomplete="off">
+<input type="hidden" name="zenScreenName" tal:attributes="value string:editSettings" />
+<input type="hidden" name="redirect" value="true"/>
+
+
+        <tal:block tal:define="message request/message | string:State at time:;
+        noselectionbar python:True;
+            tabletitle string:${message} ${here/getNowString}">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+
+    <tr class="even">
+        <td class="noselect tableheader" align="left">Instance Identifier</td>
+        <td class="tablevalues">
+            <input class="tablevalues" type="text" name="instanceIdentifier"
+                tal:attributes="value here/instanceIdentifier" />
+        </td>
+    </tr>
+    <tr class="odd">
+      <td class="tableheader noselect" title="Simple Mail Transport Protocol (aka E-mail server)" align="left">SMTP Host</td>
+      <td class="tablevalues">
+        <input class="tablevalues" title="Simple Mail Transport Protocol (aka E-mail server)" type="text" name="smtpHost"
+            tal:attributes="value here/smtpHost" />
+      </td>
+    </tr>
+    <tr class="even">
+      <td class="noselect tableheader" title="TCP/IP port to access Simple Mail Transport Protocol (aka E-mail server)" align="left">SMTP Port (usually 25)</td>
+      <td class="tablevalues">
+        <input class="tablevalues" title="TCP/IP port to access Simple Mail Transport Protocol (aka E-mail server)" type="text" name="smtpPort"
+            tal:attributes="value here/smtpPort" />
+      </td>
+    </tr>
+    <tr class="odd">
+      <td class="noselect tableheader" title="Use this only if authentication is required" align="left">SMTP Username (blank for none)</td>
+      <td class="tablevalues">
+        <input class="tablevalues" id="smtpUser" autocomplete="off" title="Use this only if authentication is required" type="text" name="smtpUser"
+            tal:attributes="value here/smtpUser|string:" />
+      </td>
+    </tr>
+    <tr class="even">
+      <td class="noselect tableheader" title="Use this only if authentication is required" align="left">SMTP Password (blank for none)</td>
+      <td class="tablevalues">
+        <input class="tablevalues" id="smtpPass" autocomplete="off" title="Use this only if authentication is required" type="password" name="smtpPass"
+            tal:attributes="value here/smtpPass|string:" />
+      </td>
+    </tr>
+    <tr class="odd">
+      <td class="noselect tableheader" title="Defaults to 'root@localhost.localdomain'" align="left">From Address for Emails</td>
+      <td class="tablevalues">
+        <input class="tablevalues" title="Defaults to 'root@localhost.localdomain'" type="text" name="emailFrom"
+            tal:attributes="value here/emailFrom|string:" />
+      </td>
+    </tr>
+    <tr class="even">
+        <td class="noselect tableheader" title="Use Transport Layer Security for E-mail?" align="left">Use TLS?</td>
+        <td class="tablevalues">
+        <input type="hidden" name="smtpUseTLS:int:default" value="0">
+        <input type="checkbox" value="1" name="smtpUseTLS:int"
+         tal:attributes="checked request/smtpUseTLS | here/smtpUseTLS">
+        </td>
+    </tr>
+    <tr class="odd">
+      <td class="noselect tableheader" title="Command to execute to send a page" align="left">Page Command</td>
+      <td class="tablevalues">
+        <input class="tablevalues" title="Defaults to '$ZENHOME/bin/zensnpp localhost 444 $RECIPIENT" type="text" name="pageCommand"
+            tal:attributes="value here/pageCommand|string:" />
+      </td>
+    </tr>
+
+    <tr class="even">
+      <td class="noselect tableheader" title="" nowrap="nowrap" align="left">Dashboard Production State Threshold</td>
+      <td class="tablevalues">
+        <input class="tablevalues" title="" type="text" name="prodStateDashboardThresh"
+            tal:attributes="value here/prodStateDashboardThresh" />
+      </td>
+    </tr>
+
+    <tr class="odd">
+      <td class="noselect tableheader" title="" align="left">Dashboard Priority Threshold</td>
+      <td class="tablevalues">
+        <input class="tablevalues" title="" type="text" name="priorityDashboardThresh"
+            tal:attributes="value here/priorityDashboardThresh" />
+      </td>
+    </tr>
+
+    <tr class="even">
+      <td class="noselect tableheader" title="" align="left">State Conversions</td>
+      <td class="tablevalues">
+        <textarea class="tablevalues" title="" name="prodStateConversions:lines"
+            rows="6" cols="35"
+            tal:content="python: '\n'.join(here.prodStateConversions)"></textarea>
+      </td>
+     </tr>
+     <tr class="odd">
+      <td class="noselect tableheader" title="" align="left">Priority Conversions</td>
+      <td class="tablevalues">
+        <textarea class="tablevalues" title="" name="priorityConversions:lines"
+            rows="6" cols="35"
+            tal:content="python: '\n'.join(here.priorityConversions)"></textarea>
+      </td>
+    </tr>
+    <!--
+    <tr>
+      <td class="tableheader" title="" align="left">Status Conversions</td>
+      <td class="tablevalues">
+        <textarea class="tablevalues" title="" name="statusConversions:lines"
+            rows="6" cols="35"
+            tal:content="python: '\n'.join(here.statusConversions)"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader" title="" align="left">Interface State Conversions</td>
+      <td class="tablevalues">
+        <textarea class="tablevalues" title="" name="interfaceStateConversions:lines"
+            rows="6" cols="35"
+            tal:content="python: '\n'.join(here.interfaceStateConversions)"></textarea>
+      </td>
+    </tr>
+    -->
+    <tr class="even">
+      <td class="noselect tableheader" title="Site-specific groups and categories of users" align="left">Administrative Roles</td>
+      <td class="tablevalues">
+        <textarea class="tablevalues" title="Site-specific groups and categories of users" name="administrativeRoles:lines"
+            rows="6" cols="35"
+            tal:content="python: '\n'.join(here.administrativeRoles)"></textarea>
+      </td>
+    </tr>
+    <tr tal:condition="python:here.dmd.getProductName()=='core'" class="odd">
+     <td class="tableheader" align="left">Google Maps API Key
+         <a href="javascript:popupMapHelp()" style="font-size:80%">Help</a>
+     </td>
+     <td class="tablevalues">
+       <input class="tablevalues" name="geomapapikey" size="50"
+           tal:attributes="value here/geomapapikey"/>
+     </td>
+   </tr>
+   <tr class="even">
+        <td class="tableheader">Authentication <br /> <i style="clear:both;display:block;">You will have to log off for this setting to take effect.</i></td>
+        <td class="tablevalues" align="left">
+            <input class="tablevalues"
+                   name="userAuthType"
+                   id="cookieAuthentication"
+
+                   group="session"
+                   type="radio"
+                   tal:attributes="checked python:here.userAuthType == here.AUTH_TYPE_COOKIE;
+                                   value here/AUTH_TYPE_COOKIE"
+                   />
+            <label for="cookieAuthentication">
+              Cookie-based Authentication
+            </label>
+            <br />
+            <input class="tablevalues"
+                   name="userAuthType"
+                   id="sessionAuthentication"
+                   group="session"
+                   tal:attributes="checked python:here.userAuthType == here.AUTH_TYPE_SESSION;
+                                   value here/AUTH_TYPE_SESSION"
+                   type="radio" />
+            <label for="sessionAuthentication">
+              Session-based Authentication (More Secure)
+            </label>
+        </td>
+    </tr>
+
+    <tr class="odd">
+        <td class="tableheader"></td>
+        <td class="tableheader" align="left">
+            <input class="tableheader" type="submit" value=" Save "
+                name="zmanage_editProperties:method" />
+        </td>
+    </tr>
+
+
+
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+
+
+</form>
+
+</tal:block>
+</tal:block>

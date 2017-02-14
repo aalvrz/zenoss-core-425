@@ -1,0 +1,201 @@
+@mixin zenoss-window {
+    $ui: 'default';
+    @include extjs-window-ui(
+        $ui,
+        $ui-border-radius: $window-border-radius,
+        $ui-border-color: $window-border-color,
+        $ui-inner-border-color: $window-inner-border-color,
+
+        $ui-header-color: $window-header-color,
+
+        $ui-body-border-color: $window-body-border-color,
+        $ui-body-background-color: $window-body-background-color,
+        $ui-body-color: $window-body-color,
+
+        $ui-background-color: $window-background-color
+
+    );
+
+    
+    .#{$prefix}window-header {
+        .#{$prefix}box-item{
+            top:1px !important;
+        }
+        .#{$prefix}tool-close {
+            @include zenoss-background-image("window/close-button.png");
+        }
+
+        .#{$prefix}tool-over .#{$prefix}tool-close {
+            background-position: 0 0;
+        }
+
+
+    }
+    .#{$prefix}window{
+        .#{$prefix}toolbar{
+            padding-left:0px;
+        }
+        .#{$prefix}form-display-field{
+            color:#fff;
+        }
+    }
+    .#{$prefix}window-body {
+        .#{$prefix}panel-body {
+            background-color: $window-body-background-color;
+            color: $window-body-color;
+        }
+        .#{$prefix}fieldset{
+            border:none;
+        }
+        .#{$prefix}fieldset-header {
+            color: white;
+        }
+    }
+
+
+       /* beat IE back with a stick */
+        .#{$prefix}nbr {
+            .#{$prefix}window-#{$ui}{
+                background-color:transparent;
+            }
+            .#{$prefix}window-header{
+               background-color:#000;
+            }
+            .#{$prefix}window-#{$ui}-tl,
+            .#{$prefix}window-#{$ui}-tr{
+                background:transparent;
+            }
+            .#{$prefix}window-header-#{$ui}-tl{
+                background-position: 0 0 !important;
+            }
+            .#{$prefix}window-header-#{$ui}-tr{
+                background-position: right -16px !important;
+            }
+            .#{$prefix}window-#{$ui}-bl{
+                background-position: 0 -8px !important;
+            }
+            .#{$prefix}window-#{$ui}-br{
+                background-position: right -25px !important;
+            }
+            .#{$prefix}window-header-#{$ui}-top-tc{
+                background-image:none;
+                background:$window-body-background-color;
+                margin:0 5px 0 5px !important;
+            }
+            .#{$prefix}window-header-text{
+                padding-bottom:4px;
+                line-height:18px;
+            }
+            .#{$prefix}window-#{$ui}-ml{
+                padding-bottom:20px !important;
+            }
+            .#{$prefix}window-#{$ui}-bc,
+            .#{$prefix}window-#{$ui}-tc{
+                @include zenoss-background-image("window/bg.png");
+                background-position: 0 0;
+                background-repeat:repeat;
+                margin:0 8px 0 8px;
+            }
+
+            .#{$prefix}window-header-#{$ui}-tl,
+            .#{$prefix}window-header-#{$ui}-tr,
+            .#{$prefix}window-#{$ui}-bl,
+            .#{$prefix}window-#{$ui}-br{
+                padding:0 !important;
+                @include zenoss-background-image("window/window-#{$ui}-corners.png");
+                overflow:hidden;
+            }
+            .#{$prefix}window-#{$ui}-ml{
+                @include zenoss-background-image("window/bg.png");
+                background-position: 0 0;
+                background-repeat:repeat;
+            }
+            .#{$prefix}window-#{$ui}-mc,
+            .#{$prefix}window-header-#{$ui}-top-ml,
+            .#{$prefix}window-header-#{$ui}-top-mr,
+            .#{$prefix}window-#{$ui}-mr{
+                background-image:none;
+                background-color: $window-body-background-color;
+            }
+            .#{$prefix}window-#{$ui}-mr{
+                padding-left:10px;
+            }
+
+
+        }
+
+
+
+
+        //#bindTemplatesDialog for targeting the bind template pop-up
+
+    /*
+    CORE TRIGGER PAGE STUFF
+    */
+
+    .white-background-panel {
+        font-size: 12px;
+        color: #454545;
+        .#{$prefix}window-header {
+            font-size: 12px;
+        }
+        .#{$prefix}window-mc {
+            padding-top: 2px;
+        }
+        .#{$prefix}item-disabled * {
+            color: gray !important;
+        }
+        .#{$prefix}window-body .#{$prefix}panel-body {
+            background : none repeat scroll 0 0 #FAFAFA;
+            color: #454545;
+        }
+        .#{$prefix}box-inner {
+            padding-bottom: 15px;
+            padding-top: 0px !important;
+            left: 0 !important;
+        }
+        .#{$prefix}form-check-wrap .#{$prefix}form-field {
+            margin-top: 5px;
+        }
+        .#{$prefix}fieldset {
+            padding: 0;
+        }
+        .#{$prefix}panel-header {
+            height:25px;
+            .#{$prefix}panel-header-text-container{
+                top:1px !important;
+            }
+            .#{$prefix}box-inner{
+                height:15px !important;
+                padding-top:0 !important;
+                padding-bottom:0 !important;
+            }
+        }
+        .#{$prefix}field{
+            margin-left:5px;
+        }
+        div.xtb-text {
+            line-height: 21px;
+            font-size: 10pt;
+        }
+    }
+
+    .errorbox{
+        .#{$prefix}toolbar .#{$prefix}box-inner{
+            text-align:center;
+        }
+        .#{$prefix}btn{
+            position:static !important;
+        }
+    }
+
+    .errorbox{
+        .#{$prefix}toolbar .#{$prefix}box-inner{
+            text-align:center;
+        }
+        .#{$prefix}btn{
+            position:static !important;
+        }
+}
+
+}

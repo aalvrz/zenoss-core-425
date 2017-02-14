@@ -1,0 +1,223 @@
+ <tal:block metal:use-macro="here/templates/macros/page2">
+  <tal:block metal:fill-slot="contentPane">
+      
+<tal:block condition="request/doDownload | nothing">
+<tal:block tal:replace="structure string:<script type='text/javascript'>
+var downloadUrl = '${here/absolute_url_path}/manage_download';
+</script>" />
+<script type="text/javascript">
+function doDownloadRedirect(evt) {
+    location.href = downloadUrl;
+}
+addLoadEvent(doDownloadRedirect);
+</script>
+</tal:block>
+
+<form method="POST" tal:attributes="action here/absolute_url_path">
+<input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+
+        <tal:block tal:define="tabletitle string:Metadata">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    <tr>
+        <td class="tableheader">Name</td>
+        <td class="tablevalues" tal:content="here/id"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Package</td>
+        <td class="tablevalues" tal:content="here/moduleName"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Version</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+            <input class="tablevalues" type="text" name="version" size="40"
+                tal:attributes="value here/version" />
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="here/version"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Author</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+            <input class="tablevalues" type="text" name="author" size="40"
+                tal:attributes="value here/author" />
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="here/author"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Author Email</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+            <input class="tablevalues" type="text" name="authorEmail" size="40"
+                tal:attributes="value here/authorEmail" />
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="here/authorEmail"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Organization</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+            <input class="tablevalues" type="text" name="organization" size="40"
+                tal:attributes="value here/organization" />
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="here/author"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Maintainer</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+            <input class="tablevalues" type="text" name="maintainer" size="40"
+                tal:attributes="value here/maintainer" />
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="here/maintainer"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Maintainer Email</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+            <input class="tablevalues" type="text" name="maintainerEmail" size="40"
+                tal:attributes="value here/maintainerEmail" />
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="here/maintainerEmail"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Description</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+            <textarea class="tablevalues" rows="3" cols="60"
+                name="description:text" tal:content="here/description">
+            </textarea>
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="here/description"/>
+    </tr>
+
+    <tr>
+        <td class="tableheader" colspan="2">
+            <input class="tableheader" type="submit" value="Save"
+                name="zmanage_editProperties:method" />
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+
+<br/>
+
+
+        <tal:block tal:define="tabletitle string:Dependencies">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+        <tal:block metal:fill-slot="zentablecontents">
+
+    <tr>
+        <td class="tableheader">Required?</td>
+        <td class="tableheader">Name</td>
+        <td class="tableheader">Version(s)</td>
+    </tr>
+    <tr>
+        <td class="tablevalues" tal:condition="here/isManager">
+            <input type="checkbox" disabled="1" checked="1"/>
+        </td>
+        <td class="tablevalues">Zenoss</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+            <input class="tablevalues" type="text" name="version_zenpacksupport"
+                 size="40" tal:attributes="
+                 value python:here.dependencies.get('zenpacksupport', '')" />
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="here/dependencies/zenpacksupport"/>
+    </tr>
+    <tal:block tal:repeat="pack python:here.packs()">
+    <tr tal:condition="python: here.id != pack.id">
+        <td class="tablevalues" tal:condition="here/isManager">
+            <input type="checkbox" name="dependencies" 
+                tal:attributes="
+                    value pack/id;
+                    checked python:here.dependencies.has_key(pack.id)" />
+        </td>
+        <td class="tablevalues" tal:content="pack/id" />
+        <td class="tablevalues" tal:condition="here/isManager">
+            <input class="tablevalues" type="text" size="40" 
+                 tal:attributes="
+                    value python:here.dependencies.get(pack.id, '');
+                    name string:version_${pack/id}" />
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="python: here.dependencies.get(pack.id, '')"/>
+    </tr>
+    </tal:block>
+
+    <tr>
+        <td class="tableheader" colspan="3">
+            <input class="tableheader" type="submit" value="Save"
+                name="zmanage_editProperties:method" />
+        </td>
+    </tr>
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+<br/>
+</form>
+
+
+    <form method="post" name="zenPackObjectsForm" id="zenPackObjectsForm"
+	  tal:attributes="action string:${here/absolute_url_path}"
+	  tal:define="tableName string:packlistdetail;
+		      objects here/packables;
+		      batch python:container.dmd.ZenTableManager.getBatch(tableName,objects);">
+      <input type="hidden" name="zenScreenName" 
+	     tal:attributes="value template/id"/>
+      <input type="hidden" name="tableName" tal:attributes="value tableName"/>
+      
+
+        <tal:block tal:define="tabletitle string:Files in ZenPack">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+        <tal:block metal:fill-slot="zentablecontents"> 
+        <!-- BEGIN TABLE CONTENTS -->
+        <tal:block tal:repeat="filename here/getFilenames">
+        <tr tal:define="odd repeat/filename/odd"
+            tal:attributes="class python:test(odd, 'odd', 'even')">
+           <td class="tablevalues" tal:content="filename"/>
+        </tr>
+        </tal:block>
+        <!-- END TABLE CONTENTS -->
+        </tal:block>
+        </tal:block>
+        </tal:block>
+
+        <tal:block tal:define="tabletitle string:Objects in ZenPack; 
+                               menu_id string:ZenPack;">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+        <tal:block tal:repeat="obj batch">
+        <tr tal:define="odd repeat/obj/odd"
+            tal:attributes="class python:test(odd, 'odd', 'even')">
+           <td class="tablevalues">
+              <input type="checkbox" name="packables:list" 
+                 tal:attributes="value obj/getPrimaryUrlPath"/>
+              <tal:block tal:content="structure 
+                      python:obj.urlLink(text=obj.getPrimaryDmdId(),
+                      attrs={'class':'tablevalues'})"/>
+            </td>
+        </tr>
+        </tal:block>
+        <tr>
+          <td class="tableheader" align='center'>
+            <span metal:use-macro="here/zenTableNavigation/macros/navbody"/>
+          </td>
+        </tr>
+        <!-- END TABLE CONTENTS -->
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+    </form>
+  </tal:block>
+</tal:block>

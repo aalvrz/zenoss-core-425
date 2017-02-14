@@ -1,0 +1,17 @@
+setup.cfg
+setup.py
+Products/__init__.py
+Products.OFolder.egg-info/PKG-INFO
+Products.OFolder.egg-info/SOURCES.txt
+Products.OFolder.egg-info/dependency_links.txt
+Products.OFolder.egg-info/namespace_packages.txt
+Products.OFolder.egg-info/not-zip-safe
+Products.OFolder.egg-info/top_level.txt
+Products/OFolder/LICENSE.txt
+Products/OFolder/OFolder.py
+Products/OFolder/README.txt
+Products/OFolder/VERSION.txt
+Products/OFolder/__init__.py
+Products/OFolder/dtml/main.dtml
+Products/OFolder/dtml/ofolderAdd.dtml
+Products/OFolder/www/Folder_icon.gif

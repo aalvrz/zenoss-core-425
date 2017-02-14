@@ -1,0 +1,9 @@
+#!/usr/local/zenoss/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'RelStorage==1.5.1','console_scripts','zodbpack'
+__requires__ = 'RelStorage==1.5.1'
+import sys
+from pkg_resources import load_entry_point
+
+sys.exit(
+   load_entry_point('RelStorage==1.5.1', 'console_scripts', 'zodbpack')()
+)

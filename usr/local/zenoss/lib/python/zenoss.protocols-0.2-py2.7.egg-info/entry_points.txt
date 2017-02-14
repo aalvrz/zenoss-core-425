@@ -1,0 +1,6 @@
+[console_scripts]
+zenqpush = zenoss.protocols.scripts.zenqpush:main
+zenqload = zenoss.protocols.scripts.zenqload:main
+zenqdump = zenoss.protocols.scripts.zenqdump:main
+zenqdelete = zenoss.protocols.scripts.zenqdelete:main
+

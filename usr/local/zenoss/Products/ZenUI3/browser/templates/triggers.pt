@@ -1,0 +1,36 @@
+<!--
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2010, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+-->
+
+
+<tal:block metal:use-macro="context/page_macros/base-new">
+
+<tal:block metal:fill-slot="center_panel_content">
+</tal:block>
+
+<tal:block metal:fill-slot="script_layout">
+
+  <script
+      tal:attributes="src python: context.zport.getVersionedResourcePath('/++resource++zenui/js/zenoss/triggers.js')"
+      >
+  </script>
+
+        <script>
+        function changeDetail() {
+            var where = window.location.href.split('#'),
+                parts = where[1].split(':'),
+                panelKey = parts[1],
+                contextUid = where[0].substring(where[0].indexOf('/zport/dmd'),
+                        where[0].indexOf('/devicedetail'));
+            Ext.getCmp('detail_card_panel').items.map[panelKey].setContext(contextUid);
+        }
+        </script>
+    </tal:block>
+</tal:block>

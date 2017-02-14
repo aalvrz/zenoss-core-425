@@ -1,0 +1,13 @@
+README.txt
+setup.cfg
+setup.py
+zope/__init__.py
+zope/app/__init__.py
+zope_app_compat.egg-info/PKG-INFO
+zope_app_compat.egg-info/SOURCES.txt
+zope_app_compat.egg-info/dependency_links.txt
+zope_app_compat.egg-info/entry_points.txt
+zope_app_compat.egg-info/namespace_packages.txt
+zope_app_compat.egg-info/not-zip-safe
+zope_app_compat.egg-info/requires.txt
+zope_app_compat.egg-info/top_level.txt

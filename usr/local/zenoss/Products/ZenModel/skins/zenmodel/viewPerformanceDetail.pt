@@ -1,0 +1,87 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+<form method="post"  metal:define-macro="objectperf"
+    tal:attributes="action string:${here/absolute_url_path}/${template/id}">
+
+<script language="javascript" type="text/javascript">
+    var ZenGraphs = {};
+</script>
+<style> 
+    /* Override some uglifying styles */ 
+    table.innerzentable tr td { padding: 0; } 
+</style>
+<script type="text/javascript" src="/zport/javascript/zenoss-utils.js"></script>
+<script type="text/javascript" src="/zport/dmd/zenrrdzoom.js"></script>
+
+<tal:block tal:define="tableName string:perfdetail;
+    tabletitle tabletitle | string:Performance Graphs;
+    drange python: here.ZenTableManager.setReqTableState(
+    tableName,'drange',129600)">
+    <input type='hidden' name='tableName' tal:attributes="value tableName" />
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+<tal:block metal:fill-slot="filterslot">
+        &nbsp;&nbsp;&nbsp;&nbsp;Range
+        <select class="tableheader" name="drange:int" id="drange_select">
+            <option tal:repeat="r here/performanceDateRanges" 
+                tal:content='python:r[0]' 
+                tal:attributes="value python:r[1]; 
+                                selected python:r[1]==drange"/>
+        </select>
+    <input id="graphreset" class="tableheader" type="button" value="Reset" style="margin-left:2em;"/>
+    <span style="margin-left:2em;" id="linkcheck_label">Link graphs?</span>
+    <input type="checkbox" style="border:1px solid black;padding-top:0.5em;" checked id="linkcheck"/>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <input class="navcontrol" type="button" id="refreshButton"
+        name="refresh" 
+        style="width:50px;background:transparent 
+               url(img/refresh_on.png) no-repeat;
+               cursor:pointer;height:20px;"/>
+    <input class="tableheader" type="text" name="refreshRate" 
+        id="refreshRate" size='2' value='300'/>
+    <tal:block metal:define-slot="filterslot">
+    </tal:block>
+</tal:block>
+
+<tal:block metal:fill-slot="zentablecontents">
+
+<!-- BEGIN TABLE CONTENTS -->
+
+    <tal:block metal:define-slot="descriptionSlot">
+    </tal:block>
+
+<tal:block tal:on-error="structure python:here.dmd.error_handler(error)">
+    <tal:block tal:repeat="graph python:here.getDefaultGraphDefs(drange=drange)">
+    <tal:block tal:define="graphid string:graph_${repeat/graph/index}">
+    
+    <tal:block tal:condition="python:path('repeat/graph/index') % getattr(here, 'numColumns', 1) == 0"
+        tal:replace="structure string:<tr>"/>
+        <td>
+        <table>
+        <tr>
+            <td class="tablevalues" tal:attributes="id string:td_${graphid}">
+                <script language="javascript" type="text/javascript"
+                    tal:content="string:ZenGraphs['${graphid}']=['${graph/url}', 
+                                                  '${graph/title}'];">
+                </script>
+            </td>
+        </tr>
+        </table>
+        </td>
+    <tal:block tal:condition="python:(path('repeat/graph/index')+1) % getattr(here, 'numColumns', 1) == 0"
+        tal:replace="structure string:</tr>"/>
+
+    </tal:block>
+    </tal:block>
+</tal:block>
+
+<!-- END TABLE CONTENTS -->
+
+</tal:block>
+</tal:block>
+</tal:block>
+
+</form>
+</tal:block>
+</tal:block>

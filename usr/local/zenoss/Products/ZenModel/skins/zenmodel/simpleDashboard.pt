@@ -1,0 +1,154 @@
+<html>
+    <head>
+    <link rel="stylesheet" type="text/css" title="zenoss" href="/zport/portal_skins/zenoss.css">
+    <link rel="stylesheet" type="text/css" title="zenoss" href="/zport/portal_skins/zenevents.css">
+    <script type="text/javascript">
+        var dashurl='/zport/dmd/ZenEventManager/getSimpleDashboardInfo';
+    </script>
+    <script type="text/javascript" src="/zport/js/MochiKit.js"></script>
+    <script type="text/javascript" 
+        tal:define="userSettings python:here.ZenUsers.getUserSettings()" 
+        tal:content="string:var refresh=${userSettings/dashboardRefresh}; var timeout=${userSettings/dashboardTimeout}"/>
+    <script type="text/javascript" src="dashboard.js"></script>
+    </head>
+<body>
+    <table id="topPane" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+    <td class="logo" width="220px">
+        <img src="logo.gif" alt="Zenoss">
+    </td>
+    <td align="right" id="dashTime">
+    Last Updated: 00:00:00
+    </td>
+    </tr>
+</table>
+<div id="contentPane">
+    <table width=100%>
+    <tr>
+    <!-- Top Left -->
+    <td rowspan="2" width="50%" valign="top">
+	    
+
+        <tal:block tal:define=" tabletitle string:Systems-Level Event Summary">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+            <thead>
+                
+                <tr>
+                    <th class="tableheader">System</th>
+                    <th class="tableheader">Critical</th>
+                    <th class="tableheader">Error</th>
+                    <th class="tableheader">Warn</th>
+                    <th class="tableheader">Info</th>
+                    <th class="tableheader">Debug</th>
+                </tr>
+            </thead>
+            <tbody id="systemevents">
+            </tbody>
+        
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+    </td>
+    <td valign="top">
+        
+
+        <tal:block tal:define=" tabletitle string:Devices with Events (Severity &gt;= Error)">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+            <thead>
+            
+            <tr>
+                <th class="tableheader">Name</th>
+                <th class="tableheader">Acked By</th>
+                <th class="tableheader">Critical</th>
+                <th class="tableheader">Error</th>
+            </tr>
+            </thead>
+            <tbody id="deviceevents">
+            </tbody>
+        
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+    </td>
+    </tr>
+    <tr>
+     <td valign="bottom">
+	    
+
+        <tal:block tal:define=" tabletitle string:Zenoss Infrastructure Issues">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+            <thead>
+            
+            <tr>
+                <th class="tableheader">Device</th>
+                <th class="tableheader">Component</th>
+                <th class="tableheader">Seconds</th>
+            </tr>
+            </thead>
+            <tbody id="heartbeat">
+            </tbody>
+	    
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+     </td>
+    </tr>
+    </table>
+</div>
+</body>
+</html>
+

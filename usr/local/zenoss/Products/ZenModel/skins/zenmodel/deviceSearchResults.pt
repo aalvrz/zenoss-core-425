@@ -1,0 +1,52 @@
+<tal:block metal:use-macro="here/templates/macros/page1">
+<tal:block metal:fill-slot="breadCrumbPane">
+    /<a href="#">Device Search Results</a>
+</tal:block>
+<tal:block metal:fill-slot="contentPane">
+
+<form method="post" tal:attributes="action request/URL">
+
+
+        <tal:block tal:define="
+        tableName string:devicesearchresults;
+        query python: here.ZenTableManager.setReqTableState(
+                           tableName,'query', default='', reset=True);
+        objects python: here.searchDevices(query, request);
+        batch python: here.ZenTableManager.getBatch(tableName,objects);
+        tabletitle string:Results">
+
+        <input type="hidden" name="query" tal:attributes="value query">
+
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tbody metal:use-macro="here/deviceListMacro/macros/devListBody"/>
+	<tr>
+	<td colspan="5" class="tableheader" align='center'>
+	<form metal:use-macro="here/zenTableNavigation/macros/navtool"/>
+	</td>
+	</tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+</tal:block>
+</tal:block>

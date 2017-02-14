@@ -1,0 +1,23 @@
+<!-- BEGIN call home optIn -->
+
+<tal:block metal:define-macro="optIn">
+<tr class="odd">
+    <td class="tableheader">Check For Updates Daily</td>
+    <td class="tablevalues">
+        <input type="checkbox" name="optInOut"
+               tal:attributes="checked here/dmd/versionCheckOptIn; value here/dmd/versionCheckOptIn"
+               onchange="form.submit()"/>
+    </td>
+</tr>
+<tr>
+    <td class="tableheader">
+        Send Anonymous Usage Info with Daily Update Check
+    </td>
+    <td class="tablevalues">
+        <input type="checkbox" name="optInOutMetrics" tal:attributes="checked here/dmd/reportMetricsOptIn; value here/dmd/reportMetricsOptIn" onchange="form.submit()"/>
+    </td>
+</tr    >
+</tal:block>
+
+<!-- END call home optIn -->
+

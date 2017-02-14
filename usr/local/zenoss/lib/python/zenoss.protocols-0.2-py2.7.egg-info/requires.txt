@@ -1,0 +1,9 @@
+setuptools
+httplib2
+zope.dottedname
+zope.interface
+zope.component
+Twisted
+amqplib
+txamqp
+urllib3>=1.3

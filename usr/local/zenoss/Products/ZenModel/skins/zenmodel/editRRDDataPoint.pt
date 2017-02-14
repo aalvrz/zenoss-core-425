@@ -1,0 +1,113 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane">
+
+<form method=post 
+    tal:attributes="action string:${here/absolute_url_path}">
+
+
+
+        <tal:block tal:define="message request/message | string:State at time:; 
+            tabletitle string:${message} ${here/getNowString};
+			menu_id string:DataPointProperties_list">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    <tr>
+        <td class="tableheader">Name</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+            <input class="tablevalues" type="text" name="newId" size="40"
+                tal:attributes="value here/id" />
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isManager"
+            tal:content="here/id"/>
+    </tr>
+    <tr>
+      <td class="tableheader">Type</td>
+      <td class="tablevalues" tal:condition="here/isManager">
+        <select class="tablevalues" name="rrdtype"
+        tal:define="curtype here/rrdtype">
+            <option tal:repeat="type here/rrdtypes" 
+                tal:attributes="value type; 
+                    selected python:curtype == type"
+                tal:content="python:type">localhost</option>
+        </select>
+        </td>
+      <td class="tablevalues" tal:condition="not:here/isManager"
+        tal:content="here/rrdtype"/>
+    </tr>
+    <tr>
+        <td class="tableheader">RRD Min</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+        <input class="tablevalues" type="text" name="rrdmin" size="40"
+            tal:attributes="value here/rrdmin" />
+        </td>
+      <td class="tablevalues" tal:condition="not:here/isManager"
+        tal:content="here/rrdmin"/>
+    </tr>
+    <tr>
+        <td class="tableheader">RRD Max</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+        <input class="tablevalues" type="text" name="rrdmax" size="40"
+            tal:attributes="value here/rrdmax" />
+        </td>
+      <td class="tablevalues" tal:condition="not:here/isManager"
+        tal:content="here/rrdmax"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Create Cmd</td>
+        <td class="tablevalues" tal:condition="here/isManager">
+        <textarea class="tablevalues" rows="5" cols="50"
+            name="createCmd:text" 
+            tal:content="here/createCmd">
+        </textarea>
+        </td>
+      <td class="tablevalues" tal:condition="not:here/isManager"
+        tal:content="here/createCmd"/>
+    </tr>
+        <tr>
+          <td class="tableheader">Aliases</td>
+          <td class="tablevalues">
+            <tal:block tal:define="aliases python:here.aliases()">
+            <table>
+              <tr tal:repeat="alias aliases">
+                  <td tal:content="alias/id"></td>
+				  <td><b>|</b></td>
+                  <td tal:content="alias/formula"></td>
+              </tr>
+            </table>
+            </tal:block>
+          </td>
+        </tr>
+
+    <tr>
+        <td class=tableheader align="left" >
+        </td>
+        <td class="tableheader" colspan="2">
+            <input class="tableheader" type="submit" value=" Save "
+                name="zmanage_editProperties:method" />
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+
+</form>
+</tal:block>
+</tal:block>

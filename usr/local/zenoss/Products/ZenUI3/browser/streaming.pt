@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.0//EN"
+"http://www.w3.org/TR/xhtml-basic/xhtml-basic10.dtd">
+<html>
+<head>
+<link rel="stylesheet" type="text/css"
+      tal:omit-tag="python:request.has_key('no_streaming')"
+      href="/++resource++zenui/css/streaming.css" />
+<link rel="stylesheet" type="text/css"
+      tal:omit-tag="python:not request.has_key('no_streaming')"
+      href="/++resource++zenui/css/not_streaming.css" />
+<!--[if IE]>
+<style>
+html, body{
+    background-color:#222222;   
+}
+</style>
+<![endif]-->      
+
+</head>
+<body>
+<div class="streaming-container">
+*****CONTENT_TOKEN*****
+</div>
+</body>
+</html>

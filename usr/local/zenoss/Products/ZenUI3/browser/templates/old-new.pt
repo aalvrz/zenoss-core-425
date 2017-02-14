@@ -1,0 +1,169 @@
+<!--
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2009, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+-->
+
+
+<tal:block metal:define-macro="old-new-no-tabs">
+<tal:block metal:use-macro="context/page_macros/base-new">
+
+<tal:block metal:fill-slot="title">
+    <tal:block metal:define-slot="title">
+        <tal:block tal:content="here/titleOrId"/>
+    </tal:block>
+</tal:block>
+
+<tal:block metal:fill-slot="head-local">
+    <tal:block metal:use-macro="here/templates/macros/head1"/>
+    <tal:block metal:use-macro="here/zenuimacros/macros/jsutils"/>
+    <link rel="stylesheet" type="text/css"
+              tal:attributes="href python: context.zport.getVersionedResourcePath('/++resource++zenui/css/backcompat.css')"
+            />
+
+    <tal:block metal:define-slot="head-local"/>
+</tal:block>
+
+<tal:block metal:fill-slot="center_panel_content">
+    <tal:block metal:use-macro="here/dialogmacros/macros/proxyForm"/>
+    <tal:block metal:use-macro="here/dialogmacros/macros/dialog_with_buttons"/>
+    <tal:block metal:define-slot="center_content">
+        <div id="contentPaneContainer">
+            <tal:block metal:define-slot="contentPane"/>
+        </div>
+    </tal:block>
+</tal:block>
+
+<tal:block metal:fill-slot="script_layout">
+<script>
+// A little pre-javascript layout hackery to prevent appearance of re-layout.
+// If there are breadcrumbs the tabs pane needs to be bumped up.
+if (Zenoss.env.pageHasBreadCrumbs) {
+    try {
+        Ext.get('newTabsPane').setStyle({
+            top: -23,
+            position: 'relative'
+        });
+    } catch(e) {}
+}
+Ext.onReady(function(){
+    var outerItems = [],
+    innerItems = [{
+        region: 'center',
+        autoScroll: true,
+        bodyCls: 'z-bc-content-pane',
+        contentEl: 'contentPaneContainer',
+        split: true
+    }];
+    if (Zenoss.env.pageHasTabs) {
+        outerItems.push({
+            region: 'west',
+            width: 200,
+            bodyCls: 'z-bc-tab-pane',
+            contentEl: 'newTabsPane',
+            split: true
+        });
+    }
+    if (Zenoss.env.pageHasBreadCrumbs) {
+        innerItems.push({
+            region: 'north',
+            height: 24,
+            bodyCls: 'z-bc-bread-crumb-pane',
+            contentEl: 'breadCrumbPane'
+        });
+    }
+    outerItems.push({
+        region: 'center',
+        layout: 'border',
+        defaults: {
+            border: false
+        },
+        items: innerItems
+    });
+
+    // Undo all the pre-layout css
+    try {
+        Ext.get('contentPaneContainer').setStyle({
+            marginLeft: 0
+        });
+    } catch(e) {}
+    try {
+        Ext.get('newTabsPane').setStyle({
+            top: 0,
+            position: 'static'
+        });
+    } catch(e) {}
+    try {
+        if (Ext.get('breadCrumbPane')) {
+            Ext.get('breadCrumbPane').setStyle({
+                marginLeft: 0,
+                position: 'static'
+            });
+        }
+    } catch(e) {}
+
+
+    Zenoss.util.callWhenReady('center_panel', function(){
+        Ext.getCmp('center_panel').add({
+           layout: 'border',
+            id: 'backcompat-layout-panel',
+            defaults: {
+                border: false
+            },
+            bodyCls: 'z-bc', // Zenoss back compat
+            items: outerItems
+        });
+        Ext.getCmp('center_panel').doLayout();
+    });
+});
+</script>
+</tal:block>
+
+<tal:block metal:fill-slot="script_afterLayout">
+    <tal:block metal:define-slot="script_afterLayout"/>
+</tal:block>
+
+</tal:block> <!-- metal:use-macro="context/page_macros/base-new" -->
+</tal:block>
+
+
+<tal:block metal:define-macro="old-new">
+<tal:block metal:use-macro="context/page_macros/old-new-no-tabs">
+
+<tal:block metal:fill-slot="title">
+    <tal:block metal:define-slot="title">
+        <tal:block tal:content="here/titleOrId"/>
+    </tal:block>
+</tal:block>
+
+<tal:block metal:fill-slot="head-local">
+  <tal:block metal:define-slot="head-local"/>
+</tal:block>
+
+<tal:block metal:fill-slot="center_content">
+<tal:block tal:condition="python: len(here.breadCrumbs()) > 1">
+<div metal:define-slot="breadcrumbs" id="breadCrumbPane">
+    <span metal:use-macro="here/miscmacros/macros/breadCrumbs"/>
+</div>
+<script>Zenoss.env.pageHasBreadCrumbs = true;</script>
+</tal:block>
+<script>Zenoss.env.pageHasTabs = true;</script>
+<div class="z-bc">
+    <div metal:use-macro="here/templates/macros/newTabsPane"/>
+    <div id="contentPaneContainer">
+        <tal:block metal:define-slot="contentPane"/>
+    </div>
+</div>
+</tal:block>
+
+<tal:block metal:fill-slot="script_afterLayout">
+    <tal:block metal:define-slot="script_afterLayout"/>
+</tal:block>
+
+</tal:block> <!-- metal:use-macro="context/page_macros/old-new-no-tabs" -->
+</tal:block>

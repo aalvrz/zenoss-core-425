@@ -1,0 +1,89 @@
+Metadata-Version: 1.0
+Name: billiard
+Version: 2.7.3.3
+Summary: Python multiprocessing fork
+Home-page: http://github.com/ask/billiard
+Author: Ask Solem',
+Author-email: ask@celeryproject.org
+License: BSD
+Description: ==================================
+        python-multiprocessing
+        ==================================
+        
+        About
+        -----
+        
+        `billiard` is a fork of the Python 2.7 `multiprocessing <http://docs.python.org/library/multiprocessing.html>`_
+        package. The multiprocessing package itself is a renamed and updated version of
+        R Oudkerk's `pyprocessing <http://pypi.python.org/pypi/processing/>`_ package.
+        This standalone variant is intended to be compatible with Python 2.4 and 2.5,
+        and will draw it's fixes/improvements from python-trunk.
+        
+        - This package would not be possible if not for the contributions of not only
+          the current maintainers but all of the contributors to the original pyprocessing
+          package listed `here <http://pyprocessing.berlios.de/doc/THANKS.html>`_
+        
+        - Also it is a fork of the multiprocessin backport package by Christian Heims.
+        
+        - It includes the no-execv patch contributed by sbt.
+        
+        - And the Pool improvements previously located in `Celery`_.
+        
+        .. _`Celery`: http://celeryproject.org
+        
+        
+        Bug reporting
+        -------------
+        
+        Please report bugs related to multiprocessing at the
+        `Python bug tracker <http://bugs.python.org/>`_. Issues related to billiard
+        should be reported at http://github.com/ask/billiard/issues.
+        
+        
+        ===========
+        Changes
+        ===========
+        
+        2.7.3.3 - 2012-04-23
+        
+        - PyPy now falls back to using its internal _multiprocessing module,
+          so everything works except for forking_enable(False) (which
+          silently degrades).
+        
+        - Fixed Python 2.5 compat issues.
+        
+        - Uses more with statements
+        
+        - Merged some of the changes from the Python 3 branch.
+        
+        2.7.3.2 - 2012-04-20
+        --------------------
+        
+        - Now installs on PyPy/Jython (but does not work).
+        
+        2.7.3.1 - 2012-04-20
+        --------------------
+        
+        - Python 2.5 support added.
+        
+        2.7.3.0 - 2012-04-20
+        --------------------
+        
+        - Updated from Python 2.7.3
+        
+        - Python 2.4 support removed, now only supports 2.5, 2.6 and 2.7.
+          (may consider py3k support at some point).
+        
+        - Pool improvments from Celery.
+        
+        - no-execv patch added (http://bugs.python.org/issue8713)
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: C
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

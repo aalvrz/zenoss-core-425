@@ -1,0 +1,186 @@
+
+/* IE6 fix only */
+* html #leftPane ul li {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+th.tabletitle {
+    background: transparent 
+        url('img/titlebar_bg.gif') 
+        repeat-x 5px 5px;
+    height: 25px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.temp_filterbox {
+    position: absolute;
+    right: 50px;
+    top: -7px;
+    z-index: 2007;
+    padding: 0px;
+    height: 25px;
+}
+
+.temp_filterbox .filterbox {
+    top: 9px;
+    left: 10px;
+}
+
+.temp_filterbox .filterbox input {
+    margin-top: -2px;
+}
+div.tabletitlecontainer {
+    height: 24px;
+    background: transparent url(img/titlebar_bg.gif) repeat-x top left;
+}
+
+div.tabletitlecontainer div.leftcorner,
+div.tabletitlecontainer div.rightcorner{
+    background-position: 0px 1px;
+}
+
+#selectedtablinehider {
+    margin-left: -49px;
+}
+
+table.innerzentable {
+    position: relative;
+    top: 1px;
+}
+
+div.zentable_selectionbar {
+    height: 12px;
+    border-bottom: medium none;
+}
+
+.tabletitletext {
+    height: 25px;
+}
+
+table.zentable {
+    z-index: 5000;
+}
+
+div.contextmenuitems,
+div.menu {
+    margin-top: -10px;
+    z-index: 5000;
+    zoom: 1;
+}
+
+div#contextmenu_btn {
+    position: relative;
+    width: 52px;
+    z-index: 3000;
+}
+
+#rightPane,
+table.tabtable,
+#tabsPane {
+    z-index: 3000;
+    position: relative;
+}
+
+#tabsPane table {
+    
+    table-layout: auto;
+    float:left;
+}
+
+#tabsPane table td {
+    /*
+    width: 0%;
+    */
+    z-index: 3000;
+}
+
+#settings div.searchbox {
+    top: 2px;
+}
+#settings div.searchbox input[type="text"] {
+    margin-top: -8px;
+    margin-left: 63px;
+}
+
+td.contextmenutab { z-index: 3000; }
+
+td.tabletitleselected div.tabcenter a.tabletitle {
+    position: relative;
+    top: -3px;
+    line-height: 1em;
+    padding-top: 0.5em;
+}
+
+table.tabtable td.tabletitleselected div.tablinehider {
+    bottom: 0px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 4px;
+    border: 0px solid black;
+    border-width: 0px 1px;
+}
+table.tabtable td a.tabletitle {
+border-top:0px solid black;
+display:block;
+height:23px;
+padding:0px 15px;
+}
+
+
+td.tabtablecap {
+    padding: 0px 10px;
+}
+
+div#gridcontainer {
+    overflow:visible;
+}
+
+#settings li span{
+    padding: 8px 10px;
+}
+
+#settings ul {
+    top: 22px;
+}
+
+#contentPane {
+    position: relative;
+    z-index: 1;
+}
+
+div.horizontal-rainbow > div > div ,
+div.vertical-rainbow > div > div {
+    background-color: transparent;
+    opacity: 1;
+    background: transparent url(img/ffffff3c.png);
+}
+
+dl.faux-table div {
+    margin: 0;
+    padding: 0;
+}
+
+dl.faux-table dt {
+    font-size: 0.9em;
+    width: 8em;
+}
+
+dl.faux-table dd {
+    margin-left: 8.2em;
+} 
+
+span.searchform-label {
+    position:relative;
+    font-size:80%;
+    top:-1px;
+    color:#bbb;
+    left:-6em;
+}
+
+#leftPane-bottom {
+    margin-top: 0px;
+}
+

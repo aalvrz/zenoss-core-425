@@ -1,0 +1,4 @@
+[console_scripts]
+zodbpack = relstorage.zodbpack:main
+zodbconvert = relstorage.zodbconvert:main
+

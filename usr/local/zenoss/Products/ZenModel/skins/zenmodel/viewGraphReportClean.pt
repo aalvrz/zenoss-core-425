@@ -1,0 +1,61 @@
+<tal:block metal:use-macro="here/templates/macros/pageClean">
+
+<tal:block metal:fill-slot="head-local">
+<style>
+<!--
+body {
+    background: #ffffff;
+    color: black;
+    font-family:  Verdana, Arial, Helvetica, sans-serif;
+    font-size:  9pt;
+    margin: 0px;
+}
+
+#contentPane {
+    border: 0px;
+    background-color: #ffffff;
+}
+}
+-->
+</style>
+</tal:block>
+
+
+<tal:block metal:fill-slot="contentPane">
+<tal:block tal:content="structure python:here.auditRunReport()"/>
+<table border="0">
+    <tr>
+        <td colspan="2">
+            <tal:dummy tal:replace="structure here/getComments"/>
+            <br />&nbsp;
+        </td>
+    </tr>   
+    <tal:block tal:repeat="element here/getElements">
+        
+        <tal:block tal:condition="python:path('repeat/element/index') % here.numColumns == 0"
+            tal:replace="structure string:<tr>"/>
+        <td valign="top">
+        <table>
+
+        <tr>
+            <th class="tabletitle" tal:content="string:${element/getSummary}" style="width: 600px; line-height: 15px;">
+            </th>
+        </tr> 
+        <tr> 
+            <td tal:define="i repeat/element/index; key python: 'graph_%s' % i; 
+                graphSrc python:request.get(key, 
+                element.getGraphUrl(request.get('drange')))"> 
+                <img src="_" tal:attributes="src graphSrc" /> 
+            </td> 
+        </tr>
+        </table>
+        <br />
+        </td>
+        <tal:block tal:condition="python:(path('repeat/element/index')+1) % here.numColumns == 0 or path('repeat/element/end')"
+            tal:replace="structure string:</tr>"/>
+
+    </tal:block>
+</table>
+
+</tal:block>
+</tal:block>

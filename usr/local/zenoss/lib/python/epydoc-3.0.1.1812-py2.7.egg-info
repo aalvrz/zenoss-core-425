@@ -1,0 +1,29 @@
+Metadata-Version: 1.0
+Name: epydoc
+Version: 3.0.1.1812
+Summary: Edward Loper's API Documentation Generation Tool
+Home-page: http://epydoc.sourceforge.net
+Author: Edward Loper
+Author-email: edloper@gradient.cis.upenn.edu
+License: IBM Open Source License
+Description: Epydoc is a tool for generating API documentation documentation for
+        Python modules, based on their docstrings.  For an example of epydoc's
+        output, see the API documentation for epydoc itself (`html
+        <http://epydoc.sf.net/api/>`__\ , `pdf
+        <http://epydoc.sf.net/epydoc.pdf>`__\ ).  A lightweight markup
+        language called `epytext <http://epydoc.sf.net/epytextintro.html>`__
+        can be used to format docstrings, and to add information about
+        specific fields, such as parameters and instance variables.  Epydoc
+        also understands docstrings written in `reStructuredText
+        <http://docutils.sourceforge.net/rst.html>`__\ , Javadoc, and
+        plaintext. For a more extensive example of epydoc's output, see the
+        API documentation for `Python 2.5
+        <http://epydoc.sourceforge.net/stdlib/>`__\ .
+Keywords: docstring,restructuredtext,rst,javadoc,docformat,pydoc,epydoc
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Documentation
+Classifier: Topic :: Software Development :: Documentation

@@ -1,0 +1,4 @@
+test_module = None
+test_suite = tests.suite.test_all
+test_loader = None
+tests_require = 

@@ -1,0 +1,80 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+
+<tal:block metal:fill-slot="head-local">
+    <link type="text/css" rel="stylesheet" href='css/geomap.css'/>
+    <style type="text/css">
+    v\:* {
+      behavior:url(#default#VML);
+    }
+    </style>
+<tal:block tal:condition="here/dmd/geomapapikey">
+    <script type="text/javascript"
+        tal:condition="here/dmd/geomapapikey"
+        tal:define="apikey here/dmd/geomapapikey"
+        tal:attributes="
+            src string:http://maps.googleapis.com/maps/api/js?key=${apikey}&sensor=false;
+    "></script>
+    <script tal:content="string:
+        var eventsdb=true,
+            nodedata = ${here/getChildGeomapData},
+            linkdata = ${here/getChildLinks},
+            geocodecache = ${here/dmd/getGeoCache};
+    " tal:on-error="string:var eventsdb=false;"></script>
+<script>
+(function(){ // Private namespace
+    // let google listen and initiate everything
+    if(typeof google == 'undefined'){
+        alert("The server returned an error while trying to retrieve a map from Google. Please check your client key in the services page.");
+        return false; // no google object returned so something was wrong
+    }
+    google.maps.event.addDomListener(window, 'load', function(){
+         if(typeof geocodecache == 'undefined') geocodecache = null;      
+         if (eventsdb) { 
+            loader = YAHOO.zenoss.getLoader(); 	                
+            loader.require(['geomap']); 	
+            loader.insert(
+            {onSuccess:function(){ 	
+                    YAHOO.zenoss.geomap.initialize('geomapcontainer'); 
+                }
+            }); 	
+        }         
+    });    
+})(); // End private namespace
+</script>
+</tal:block>
+</tal:block>
+
+<tal:block metal:fill-slot="breadCrumbPane">
+    /<a tal:attributes="
+        href string:${here/absolute_url_path}/${template/id}">Location Map
+    </a>
+</tal:block>
+
+<tal:block metal:fill-slot="contentPane">
+
+<div id="geomapcontainer" tal:define="dummy here/getChildGeomapData"
+    tal:on-error="structure python:here.dmd.error_handler(error)">
+
+    <!-- Google Maps javascript adds map here -->
+
+    <div tal:condition="python:not here.dmd.geomapapikey" id="geomaperrormsg">
+        You haven't yet specified a Google Maps API key. <br/>
+        Please go to the 
+        <a href="/zport/dmd/editSettings">Settings</a> 
+        page to set one up.
+    </div>
+
+</div>
+
+<div id='geocodingdialog' 
+     style="width:100%;height:100px;
+            text-align:center;font-size:16px;
+            position:absolute;top:40%;left:0;
+            background:rgba(220, 220, 220, 0.7);z-index:9000;
+            padding:20px;display:none;">
+    Geocoding, please wait...            
+</div>
+</tal:block>
+
+</tal:block>
+

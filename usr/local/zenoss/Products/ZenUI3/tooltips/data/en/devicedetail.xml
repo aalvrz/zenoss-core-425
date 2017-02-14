@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+  
+ <!-- Overview buttons -->
+
+  <tooltip>
+    <target></target>
+
+    <html>Save</html>
+  </tooltip>
+
+  <tooltip>
+    <target></target>
+
+    <html>Cancel</html>
+  </tooltip>
+
+<!-- Events buttons -->
+
+  <tooltip>
+    <target></target>
+
+    <html>Acknowledge event</html>
+  </tooltip>
+
+
+  <tooltip>
+    <target></target>
+
+    <html>Close event</html>
+  </tooltip>
+
+
+  <tooltip>
+    <target></target>
+
+    <html>Go to event console</html>
+  </tooltip>
+
+
+  <tooltip>
+    <target></target>
+
+    <html>View events</html>
+  </tooltip>
+
+<!-- bottom of page buttons -->
+
+  <tooltip>
+    <target>commands-menu</target>
+    <anchor>top</anchor>
+
+    <html>Run commands</html>
+  </tooltip>
+
+ <tooltip>
+    <target>device_configure_menu</target>
+    <anchor>top</anchor>
+
+    <html>Actions</html>
+ </tooltip>
+
+ <tooltip>
+    <target>component-add-menu</target>
+    <anchor>top</anchor>
+
+    <html>Add components</html>
+ </tooltip>
+
+<!-- Modeler Plugins buttons -->
+
+<tooltip>
+   <target></target>
+
+   <html>Save</html>
+</tooltip>
+
+<tooltip>
+   <target></target>
+
+   <html>Delete</html>
+</tooltip>
+
+<!-- Custom buttons -->
+
+<tooltip>
+   <target></target>
+
+   <html>Save</html>
+</tooltip>
+
+<!-- Monitoring Templates buttons -->
+
+<tooltip>
+    <target>datasourceAddButton</target>
+    
+    <html>Add data source</html>
+</tooltip>
+
+<tooltip>
+    <target>datasourceDeleteButton</target>
+    
+    <html>Remove data source</html>
+</tooltip>
+
+<tooltip>
+    <target>datasourceEditButton</target>
+    
+    <html>Data source edit options</html>
+</tooltip>
+
+<!-- thresholds -->
+<tooltip>
+    <target>thresholdAddButton</target>
+    
+    <html>Add threshold</html>
+</tooltip>
+
+<tooltip>
+    <target>thresholdDeleteButton</target>
+    
+    <html>Delete threshold</html>
+</tooltip>
+
+<tooltip>
+    <target>thresholdEditButton</target>
+    
+    <html>View and edit threshold details </html>
+</tooltip>
+
+<!-- graph definition -->
+<tooltip>
+    <target>addGraphDefinitionButton</target>
+    
+    <html>Add graph definition</html>
+</tooltip>
+
+<tooltip>
+    <target>deleteGraphDefinitionButton</target>
+    
+    <html>Delete graph definition</html>
+</tooltip>
+
+<tooltip>
+    <target>graphDefinitionMenuButton</target>
+    
+    <html>Manage graph definition</html>
+</tooltip>
+
+<!-- graph points -->
+<tooltip>
+    <target>addGraphPointButton</target>
+    
+    <html>Add graph point</html>
+</tooltip>
+
+<tooltip>
+    <target>deleteGraphPointButton</target>
+    
+    <html>Delete graph point</html>
+</tooltip>
+
+<tooltip>
+    <target>editGraphPointButton</target>
+    
+    <html>View and edit graph point details</html>
+</tooltip>
+
+
+  
+</view>

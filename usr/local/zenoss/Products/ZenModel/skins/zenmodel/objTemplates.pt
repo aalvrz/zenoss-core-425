@@ -1,0 +1,87 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+        
+<form tal:attributes="method string:post;
+        name string:objTemplates;
+        action here/absolute_url_path;">
+<input type="hidden" name="zenScreenName" 
+        tal:attributes="value template/id"/>
+</form>
+
+<script>
+Ext.addBehaviors({
+    'tbody * a@click' : function(a) {
+        if (!(/sortRule=cmp/.test(a.target.href))) {
+            window.parent.location.href = a.target.href;
+        }
+    }
+});
+</script>
+
+<tal:block metal:define-macro="rrdtemplatelist"
+    tal:define="
+        tableName string:rrdtemplatelist;
+        objects here/getRRDTemplates;
+        showfilterbox python:True;
+        batch python:here.ZenTableManager.getBatch(tableName,objects);
+        tabletitle python:'Performance Templates for %s' % here.id; 
+        menu_id string:objTemplates">
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+<tal:block metal:fill-slot="zentablecontents">
+
+<!-- BEGIN TABLE CONTENTS -->
+
+    <tr>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'getId','Name')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'getRRDPath','Definition Path')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'description','Description')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                                tableName,'editable','Copy')"/>
+    </tr>
+    <tal:block tal:repeat="temp batch">                    
+    <tr tal:define="odd repeat/temp/odd;
+                    editable python:temp.isEditable(here);"
+        tal:attributes="class python:'tablevalues ' + test(odd,'odd','even')">
+        <td>
+          <a tal:attributes="href temp/absolute_url_path" 
+             tal:content="temp/getId">name</a>
+        </td>
+        <td>
+          <a tal:content="temp/getRRDPath">/Devices/Server</a>
+        </td>
+        <td tal:content="temp/description"/>
+        <td>
+                <form tal:attributes="method string:post;
+                        action here/absolute_url_path;
+                        name temp/id">
+                <input type="hidden" name="zenScreenName" 
+                        tal:attributes="value template/id"/>
+                <input type="hidden" name="templateName" 
+                        tal:attributes="value temp/id"/>
+                <input class="tableheader" type="submit" 
+                    tal:condition="not:editable"
+                    name="makeLocalRRDTemplate:method" value="Create Local Copy" />
+                <input class="tableheader" type="submit" 
+                    tal:condition="editable"
+                    name="removeLocalRRDTemplate:method" value="Remove Local Copy" />
+                </form>
+        </td>
+    </tr>
+    </tal:block>
+    
+    <tr>
+        <td colspan="0" class="tableheader">
+            <span metal:use-macro="here/zenTableNavigation/macros/navbody"/>
+        </td>
+    </tr>
+    
+<!-- END TABLE CONTENTS -->
+
+</tal:block>
+</tal:block>
+</tal:block>
+</tal:block>
+</tal:block>

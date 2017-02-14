@@ -1,0 +1,8 @@
+setup.py
+zenpacksupport.py
+zenpacksupport.egg-info/PKG-INFO
+zenpacksupport.egg-info/SOURCES.txt
+zenpacksupport.egg-info/dependency_links.txt
+zenpacksupport.egg-info/entry_points.txt
+zenpacksupport.egg-info/test_info.txt
+zenpacksupport.egg-info/top_level.txt

@@ -1,0 +1,33 @@
+<!--
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2009, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+-->
+
+
+<configure
+     xmlns="http://namespaces.zope.org/zope"
+     xmlns:browser="http://namespaces.zope.org/browser"
+     xmlns:five="http://namespaces.zope.org/five">
+
+    <browser:viewletManager
+         name="js-security"
+         provides="..security.interfaces.ISecurityManager"
+         class="..security.security.SecurityManager"
+         permission="zope2.Public"
+         />
+    
+    <browser:viewlet
+         name="SecurityDeclaration"
+         manager="..security.interfaces.ISecurityManager"
+         class="..security.security.PermissionsDeclaration"
+         permission="zope2.Public"
+         />
+
+    
+</configure>

@@ -1,0 +1,101 @@
+@mixin zenoss-panel {
+
+    @include extjs-panel-ui(
+        'default',
+
+        $ui-base-color: $panel-base-color,
+        $ui-border-width: $panel-border-width,
+        $ui-border-color: $panel-border-color,
+        $ui-border-radius: $panel-border-radius,
+
+        $ui-header-color: $panel-header-color,
+        $ui-header-font-size: $panel-header-font-size,
+        $ui-header-font-weight: $panel-header-font-weight,
+        $ui-header-border-color: $panel-header-border-color,
+        $ui-header-background-color: $panel-header-background-color,
+        $ui-header-background-gradient: $panel-header-background-gradient,
+
+        $ui-body-color: $panel-body-color,
+        $ui-body-border-color: $panel-body-border-color,
+        $ui-body-border-width: 1px,
+        $ui-body-background-color: $panel-body-background-color
+    );
+
+    .#{$prefix}nlg .#{$prefix}panel-header-default-top {
+        background-image: none;
+        background-color: #{$panel-header-background-color};
+    }
+
+    .#{$prefix}splitter{
+        background-color:#a5a5a5;
+    }
+
+
+    #newTabsPane{
+        background-color: #D4E0EE;
+        height: 100%;
+        left: 0;
+        width: 200px;
+        ul li.selected a {
+          background-color: #7199C6;
+          color: white;
+        }
+        ul li a {
+          color: #454545;
+          display: block;
+          font-family: helvetica,arial,tahoma,sans-serif;
+          font-size: 12px;
+          line-height: 18px;
+          padding: 1px 3px 1px 18px;
+          text-decoration: none;
+          &:hover{
+            background-color:#eee;
+            color:#454545 !important;
+          }
+        }
+
+        li{
+            list-style:none;
+        }
+        ul {
+          margin: 0;
+          padding: 10px 0 0;
+          width: 100%;
+        }
+    }
+
+    .innerzentable{
+        .tableheader{
+            padding-left:5px;
+        }
+    }
+
+    #device_overview{
+        .#{$prefix}panel{
+            padding-bottom:5px;
+        }
+    }
+    #dpanelcontainer{
+        border-left:2px solid #a5a5a5;
+    }
+
+    #device_modeler_plugins{
+        .#{$prefix}panel-default-framed, .#{$prefix}panel-body-default-framed{
+            background:#f2f2f2;
+        }
+
+    }
+
+
+
+    #evdetail_props{
+        display:block !important;
+        float:none !important;
+        clear:both;
+        width:480px !important;
+    }
+    #evdetail-sep{left:35px !important;}
+    #evdetail-popout{height:47px !important;}
+    #severity-icon-body, #evdetail-sep-body{height:0px !important}
+}
+

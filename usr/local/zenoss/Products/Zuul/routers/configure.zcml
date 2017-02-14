@@ -1,0 +1,118 @@
+<configure
+    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+<!-- Event console JSON api -->
+<include package="Products.ZenUtils.extdirect.zope" file="meta.zcml"/>
+<include package="Products.ZenModel" file="permissions.zcml"/>
+
+
+<browser:directRouter
+    name="messaging_router"
+    for="*"
+    class=".messaging.MessagingRouter"
+    namespace="Zenoss.remote"
+    />
+
+<browser:directRouter
+    name="settings_router"
+    for="*"
+    class=".settings.SettingsRouter"
+    namespace="Zenoss.remote"
+    />
+
+<browser:directRouter
+    name="evconsole_router"
+    for="*"
+    class=".zep.EventsRouter"
+    namespace="Zenoss.remote"
+
+    />
+
+<browser:directRouter
+    name="process_router"
+    for="*"
+    class=".process.ProcessRouter"
+    namespace="Zenoss.remote"
+    />
+
+<browser:directRouter
+    name="service_router"
+    for="*"
+    class=".service.ServiceRouter"
+    namespace="Zenoss.remote"
+    timeout="60000"
+    />
+
+<browser:directRouter
+    name="device_router"
+    for="*"
+    class=".device.DeviceRouter"
+    namespace="Zenoss.remote"
+    timeout="180000"
+    />
+
+<browser:directRouter
+    name="network_router"
+    for="*"
+    class=".network.NetworkRouter"
+    namespace="Zenoss.remote"
+    />
+
+<browser:directRouter
+    name="network_6_router"
+    for="*"
+    class=".network.Network6Router"
+    namespace="Zenoss.remote"
+    />
+
+<browser:directRouter
+    name="template_router"
+    for="*"
+    class=".template.TemplateRouter"
+    namespace="Zenoss.remote"
+    />
+
+<browser:directRouter
+    name="detailnav_router"
+    for="*"
+    class=".nav.DetailNavRouter"
+    namespace="Zenoss.remote"
+    />
+
+<browser:directRouter
+    name="report_router"
+    for="*"
+    class=".report.ReportRouter"
+    namespace="Zenoss.remote"
+    />
+
+<browser:directRouter
+    name="mib_router"
+    for="*"
+    class=".mibs.MibRouter"
+    namespace="Zenoss.remote"
+    />
+
+<browser:directRouter
+    name="triggers_router"
+    for="*"
+    class=".triggers.TriggersRouter"
+    namespace="Zenoss.remote"
+    />
+
+<browser:directRouter
+    name="zenpack_router"
+    for="*"
+    class=".zenpack.ZenPackRouter"
+    namespace="Zenoss.remote"
+    />
+
+<browser:directRouter
+    name="jobs_router"
+    for="*"
+    class=".jobs.JobsRouter"
+    namespace="Zenoss.remote"
+    />
+
+</configure>

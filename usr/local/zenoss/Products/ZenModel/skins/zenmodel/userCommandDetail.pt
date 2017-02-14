@@ -1,0 +1,98 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+<form method=post 
+    onSubmit="return false;"
+    tal:attributes="action string:${here/absolute_url_path}">
+    <input type="hidden" name="zenScreenName" 
+        tal:attributes="value template/id" />
+    <input type="hidden" name="commandId"
+        tal:attributes="value here/id" />
+
+
+        <tal:block tal:define="editable here/isManager; tabletitle string:Define Commands">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr tal:condition="exists: request/message">
+        <th class=tabletitle colspan="2"
+            tal:content="string: ${request/message} ${here/getNowString}"/>
+    </tr>
+    <tr class="even">
+        <td class="tableheader">Name</td>
+        <td class="tablevalues" tal:content="here/getId"/>
+    </tr>
+    <tr class="odd">
+        <td class="tableheader">Description</td>
+        <td class="tablevalues" tal:condition="editable">
+            <textarea name="description:text" rows="4" cols="50"
+                        tal:content="here/description">
+            </textarea>
+        </td>
+        <td class="tablevalues" tal:condition="not:editable" 
+            tal:content="here/description"/>
+    </tr>
+    <tr class="even">
+        <td class="tableheader">Command</td>
+        <td class="tablevalues" tal:condition="editable">
+            <textarea name="command:text" rows="4" cols="50"
+                        tal:content="here/command|nothing">
+            </textarea>
+        </td>
+        <td class="tablevalues" tal:condition="not:editable" 
+            tal:content="here/description"/>
+    </tr>
+    <tr class="odd">
+        <td class="tableheader">Confirm Your Password</td>
+        <td class="tablevalues">
+            <input style="border:1px solid #888" type="password" name="password"
+                autocomplete="off"/>
+        </td>
+    </tr>
+    <tr>
+        <td align="left"  class="tableheader" colspan=2>
+            <input class="tableheader" type="button" value=" Save "
+                onclick="
+                var url = location.href.replace('userCommandDetail',
+                            'manage_editUserCommand');
+                Ext.Ajax.request({
+                    method: 'POST',
+                    success: window.parent.changeDetail,
+                    failure: window.parent.changeDetail,
+                    url: url,
+                    params: {
+                        'description': form['description:text'].value,
+                        'command': form['command:text'].value,
+                        'commandId': form.commandId.value,
+                        'password': form.password.value,
+                        'zenScreenName': form.zenScreenName.value
+                    }
+                });
+                "
+            />
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+</tal:block>
+</tal:block>

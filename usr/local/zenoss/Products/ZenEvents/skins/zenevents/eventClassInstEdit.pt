@@ -1,0 +1,128 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane">
+
+<script>addLoadEvent(connectTextareas)</script>
+
+<form method=post 
+    tal:attributes="action string:${here/absolute_url_path}">
+    <input type="hidden" name="zenScreenName" value="eventClassInstEdit"/>
+    <input type="hidden" name="redirect" value="true"/>
+
+
+        <tal:block tal:define="message request/message | string:State at time:; 
+            tabletitle string:${message} ${here/getNowString}">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    <tr>
+      <td class="tableheader">Name</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="name:string"
+             size="40" tal:attributes="value here/getId" />
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Event Class Key</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="eventClassKey:string"
+             size="40" tal:attributes="value here/eventClassKey" />
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Sequence</td>
+      <td class="tablevalues" tal:content="here/sequence">
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader" colspan="2">Rule</td>
+    </tr>
+    <tr>
+      <td class="tablevalues" colspan="2">
+        <textarea class="tablevalues" rows=3 cols=65
+            tal:attributes="style here/testRuleStyle"
+            name="rule:text" tal:content="here/rule">
+        </textarea>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader" colspan="2">Regex</td>
+    </tr>
+    <tr>
+      <td class="tablevalues" colspan="2">
+        <textarea class="tablevalues" rows=3 cols=65
+            tal:attributes="style here/testRegexStyle"
+            name="regex:text" tal:content="here/regex">
+        </textarea>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader" colspan="2">Example</td>
+    </tr>
+    <tr>
+      <td class="tablevalues" colspan="2">
+        <textarea class="tablevalues" rows=3 cols=65
+            name="example:text" tal:content="here/example">
+        </textarea>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader" colspan="2">Transform</td>
+    </tr>
+    <tr>
+      <td class="tablevalues" colspan="2">
+        <textarea class="tablevalues" rows=3 cols=65
+            tal:attributes="style here/testTransformStyle"
+            name="transform:text" tal:content="here/transform">
+        </textarea>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader" colspan="2">Explanation</td>
+    </tr>
+    <tr>
+      <td class="tablevalues" colspan="2">
+        <textarea class="tablevalues" rows=3 cols=65
+            name="explanation:text" tal:content="here/explanation">
+        </textarea>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader" colspan="2">Resolution</td>
+    </tr>
+    <tr>
+      <td class="tablevalues" colspan="2">
+        <textarea class="tablevalues" rows=3 cols=65
+            name="resolution:text" tal:content="here/resolution">
+        </textarea>
+      </td>
+    </tr>
+    <tr>
+        <td align="left"  class="tableheader" colspan="2">
+            <input class="tableheader" type="submit" value=" Save "
+                name="manage_editEventClassInst:method" />
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+
+</tal:block>
+</tal:block>

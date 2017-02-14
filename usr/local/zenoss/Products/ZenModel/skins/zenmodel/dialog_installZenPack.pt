@@ -1,0 +1,19 @@
+<h2>Install ZenPack</h2>
+<span id="errmsg" style="color:red;"></span>
+<p style="text-align:left;margin-top:5px;margin-bottom:3px;">
+Select the ZenPack file to upload and install.
+</p>
+<p style="text-align:right;margin-bottom:8px;">
+<input type="file" name="zenpack:file" />
+</p>
+<div align="right">
+<input tal:attributes="id string:dialog_submit;
+        type string:submit;
+        value string:OK;
+        onclick string:return $$('dialog').submit_form('', 'zenPackList')"
+        name="manage_installZenPack:method" />
+<input tal:attributes="id string:dialog_cancel;
+                        type string:button;
+                        value string:Cancel;
+                        onclick string:$$('dialog').hide()" />
+</div>

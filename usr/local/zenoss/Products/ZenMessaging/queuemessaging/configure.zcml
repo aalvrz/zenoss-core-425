@@ -1,0 +1,52 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+    
+    <utility component=".schema.ZENOSS_QUEUE_SCHEMA"
+             provides="zenoss.protocols.interfaces.IQueueSchema"
+            />
+
+    <utility component=".schema.CONNECTION_INFO"
+             provides="zenoss.protocols.interfaces.IAMQPConnectionInfo"
+            />
+
+    <utility factory=".publisher.BlockingQueuePublisher"
+             provides=".interfaces.IQueuePublisher"
+            />
+
+    <!--
+    Internal publisher used for transactional model change events.
+    -->
+    <utility factory=".publisher.ClosingEventPublisher"
+             provides=".interfaces.IEventPublisher"
+             />
+
+    <utility factory=".publisher.EventPublisher"
+             provides=".interfaces.IEventPublisher"
+             name="batch"
+             />
+
+    <utility component=".publisher.BlockingQueuePublisher"
+             provides=".interfaces.IQueuePublisher"
+             name="class"
+            />
+
+    <adapter provides=".interfaces.IModelProtobufSerializer"
+             for="Products.ZenModel.Device.Device"
+             factory=".adapters.DeviceProtobuf"
+            />
+
+    <adapter provides=".interfaces.IModelProtobufSerializer"
+             for="Products.ZenModel.DeviceOrganizer.DeviceOrganizer"
+             factory=".adapters.OrganizerProtobuf"
+            />
+
+    <adapter provides=".interfaces.IModelProtobufSerializer"
+             for="Products.ZenModel.DeviceComponent.DeviceComponent"
+             factory=".adapters.DeviceComponentProtobuf"
+            />
+
+    <adapter provides=".interfaces.IProtobufSerializer"
+             for="Products.ZenEvents.Event.Event"
+             factory=".adapters.EventProtobuf"
+            />
+
+</configure>

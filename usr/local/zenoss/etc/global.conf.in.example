@@ -1,0 +1,29 @@
+zodb-db-type @DB_FAMILY@
+zodb-host @ZODB_HOST@
+zodb-port @ZODB_PORT@
+zodb-db @ZODB_DB@
+zodb-user @ZODB_USER@
+zodb-password @ZODB_PASSWORD@
+zodb-admin-user @ZODB_ADMIN_USER@
+zodb-admin-password @ZODB_ADMIN_PASSWORD@
+zodb-cacheservers @ZODB_CACHESERVERS@
+zodb-cachesize @ZODB_CACHESIZE@
+
+amqphost @RABBITMQ_HOST@
+amqpport @RABBITMQ_PORT@
+amqpvhost @RABBITMQ_VHOST@
+amqpuser @RABBITMQ_USER@
+amqppassword @RABBITMQ_PASS@
+amqpusessl @RABBITMQ_SSL@
+amqpadminport @RABBITMQ_ADMIN_PORT@
+amqpadminusessl @RABBITMQ_ADMIN_SSL@
+
+zep-db-type @DB_FAMILY@
+zep-host @ZEP_HOST@
+zep-port @ZEP_PORT@
+zep-db @ZEP_DB@
+zep-user @ZEP_USER@
+zep-password @ZEP_PASSWORD@
+zep-admin-user @ZEP_ADMIN_USER@
+zep-admin-password @ZEP_ADMIN_PASSWORD@
+zep-uri @ZEP_URI@

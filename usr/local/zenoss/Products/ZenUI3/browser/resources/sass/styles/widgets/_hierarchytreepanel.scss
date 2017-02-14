@@ -1,0 +1,104 @@
+/**
+* @class Zenoss.HierarchyTreePanel
+*/
+
+@include extjs-tree;
+
+@mixin zenoss-hierarchytreepanel ($label: 'hierarchy') {
+
+    $extra-search-padding: 6px;
+
+    @include extjs-panel-ui(
+        $label,
+        $ui-body-background-color: $master-panel-background-color,
+        $ui-border-width: 0,
+        $ui-body-border-width: 0
+    );
+    .#{$prefix}panel-#{$label} {
+        .#{$prefix}grid-body {
+            padding-top: $extra-search-padding;
+            border-width: 0;
+        }
+
+        .#{$prefix}grid-tree-row-expanded .#{prefix}grid-cell {
+            padding-left: 5px;
+        }
+
+        .#{$prefix}grid-row {
+            .#{$prefix}grid-cell {
+                background:transparent !important;
+            }
+
+            .#{$prefix}grid-cell-inner {
+                height: 20px;
+                font-size: 12px;
+                color: #454545;
+            }
+        }       
+
+    }
+    .#{$prefix}grid-cell {
+        padding-top:2px !important;
+    }
+    .#{$prefix}hierarchy-search-panel {
+
+        .#{$prefix}field-search {
+            padding: $extra-search-padding;
+        }
+
+        .searchfield {
+            padding: $extra-search-padding;
+        }
+
+    }
+    
+    #deviceDetailNav, #masterDetailNav{
+        .x-tree-icon-leaf{margin-right:5px;}
+        #subselecttreepaneldeviceDetailNav-body{background:transparent;}
+        .x-grid-cell-inner{font-size:12px;color:#454545;padding-top:2px;}
+        .x-grid-row-selected, .x-grid-row-focused{
+            .x-grid-cell-inner{
+                background-color:#7199C6 !important;        
+                color:#fff;
+             }
+        } 
+        #templateTree-body{padding-top:0px !important;}
+        #deviceDetailNav-body{padding-top:6px; margin-top:0px !important;}
+    
+    }      
+    #masterDetailNav{
+        position:relative;
+        top:-35px !important;
+    }
+   
+    #networks, #ipv6networks, #processTree, #navTree, #templateTree, #deviceDetailNav{
+        .x-tree-icon-leaf, .x-tree-icon-parent{
+            background-image:url();
+            width:3px ;
+            margin:0 !important;
+        }
+    } 
+    #reporttree{
+        .x-tree-icon-leaf{
+            background-image:url();
+            width:3px ;
+            margin:0 !important;
+        }        
+    }
+    .tree-severity-icon-small-clear{
+            background-image: url("/++resource++zenui/img/xtheme-zenoss/icon/severity-sprite.png") !important;
+            width:16px !important;
+    }
+    .x-tree-panel{
+        .rootNode{
+            font-weight:bold !important;
+            font-size:10px;
+            font-family:helvetica,arial,sans-serif;
+            text-transform:uppercase;
+            color:#6386AE;
+        }
+        .subNode{
+            font-weight:bold !important;         
+        }
+    }
+}

@@ -1,0 +1,12 @@
+2014-04-25 10:33:08,908 INFO zen.zentrap: Connecting to localhost:8789
+2014-04-25 10:33:08,913 INFO zen.zentrap: Connected to ZenHub
+2014-04-25 10:33:08,918 INFO zen.maintenance: Performing periodic maintenance
+2014-04-25 10:33:08,919 INFO zen.zentrap: Counter eventCount, value 1
+2014-04-25 10:33:08,921 INFO zen.zentrap: 0 devices processed (0 datapoints)
+2014-04-25 10:33:08,921 INFO zen.collector.scheduler: Tasks: 1 Successful_Runs: 0 Failed_Runs: 0 Missed_Runs: 0 Queued_Tasks: 0 Running_Tasks: 0 
+2014-04-25 10:38:53,957 INFO zen.zentrap: Connecting to localhost:8789
+2014-04-25 10:38:53,973 INFO zen.zentrap: Connected to ZenHub
+2014-04-25 10:38:53,979 INFO zen.maintenance: Performing periodic maintenance
+2014-04-25 10:38:53,979 INFO zen.zentrap: Counter eventCount, value 2
+2014-04-25 10:38:53,981 INFO zen.zentrap: 0 devices processed (0 datapoints)
+2014-04-25 10:38:53,981 INFO zen.collector.scheduler: Tasks: 1 Successful_Runs: 0 Failed_Runs: 0 Missed_Runs: 0 Queued_Tasks: 0 Running_Tasks: 0 

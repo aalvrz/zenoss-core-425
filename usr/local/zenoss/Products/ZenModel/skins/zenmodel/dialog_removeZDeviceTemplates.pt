@@ -1,0 +1,13 @@
+<h2>Reset Template Bindings</h2>
+<p tal:condition="python:here.isLocal('zDeviceTemplates')" tal:content="string:Are you sure you want to delete all local template bindings and use default values?"/>
+<p tal:condition="python:not here.isLocal('zDeviceTemplates')" tal:content="string:You are already using the default values."/>
+<br>
+<div align="center">
+<input type="submit" name="removeZDeviceTemplates:method"
+   value="OK"
+   tal:condition="python:here.isLocal('zDeviceTemplates')"
+   tal:define="formName python:here.meta_type == 'Device' and 'objTemplates' or 'templates'"
+   tal:attributes="onclick string:return $$('dialog').submit_form('', '${formName}')" />
+<input id="dialog_cancel" type="button" value="Cancel" 
+       onclick="$('dialog').hide()"/>
+</div>

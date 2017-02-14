@@ -1,0 +1,90 @@
+<!--
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2010, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+-->
+
+
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five">
+
+    <adapter provides="...interfaces.IComponentInfo"
+             for="Products.ZenModel.OSComponent.OSComponent"
+             factory=".ComponentInfo"
+             />
+
+    <adapter provides="...interfaces.IComponentInfo"
+             for="Products.ZenModel.HWComponent.HWComponent"
+             factory=".ComponentInfo"
+             />
+
+    <adapter provides="...interfaces.IIpInterfaceInfo"
+             for="Products.ZenModel.IpInterface.IpInterface"
+             factory=".ipinterface.IpInterfaceInfo"
+             />
+
+    <adapter provides="...interfaces.IOSProcessInfo"
+             for="Products.ZenModel.OSProcess.OSProcess"
+             factory=".osprocess.OSProcessInfo"
+             />
+
+    <adapter provides="...interfaces.IFileSystemInfo"
+             for="Products.ZenModel.FileSystem.FileSystem"
+             factory=".filesystem.FileSystemInfo"
+             />
+
+    <adapter provides="...interfaces.IIpServiceInfo"
+             for="Products.ZenModel.IpService.IpService"
+             factory=".ipservice.IpServiceInfo"
+             />
+
+    <utility provides="zope.schema.interfaces.IVocabularyFactory"
+             component=".ipservice.serviceIpAddressesVocabulary"
+             name="serviceIpAddresses"/>
+
+    <adapter provides="...interfaces.IWinServiceInfo"
+             for="Products.ZenModel.WinService.WinService"
+             factory=".winservice.WinServiceInfo"
+             />
+
+    <adapter provides="...interfaces.IIpRouteEntryInfo"
+             for="Products.ZenModel.IpRouteEntry.IpRouteEntry"
+             factory=".iprouteentry.IpRouteEntryInfo"
+             />
+
+    <adapter provides="...interfaces.ICPUInfo"
+             for="Products.ZenModel.CPU.CPU"
+             factory=".cpu.CPUInfo"
+             />
+
+    <adapter provides="...interfaces.IExpansionCardInfo"
+             for="Products.ZenModel.ExpansionCard.ExpansionCard"
+             factory=".expansioncard.ExpansionCardInfo"
+             />
+
+    <adapter provides="...interfaces.IPowerSupplyInfo"
+             for="Products.ZenModel.PowerSupply.PowerSupply"
+             factory=".powersupply.PowerSupplyInfo"
+             />
+
+    <adapter provides="...interfaces.ITemperatureSensorInfo"
+             for="Products.ZenModel.TemperatureSensor.TemperatureSensor"
+             factory=".temperaturesensor.TemperatureSensorInfo"
+             />
+
+    <adapter provides="...interfaces.IFanInfo"
+             for="Products.ZenModel.Fan.Fan"
+             factory=".fan.FanInfo"
+             />
+
+    <adapter provides="...form.interfaces.IFormBuilder"
+             for="...interfaces.component.IComponentInfo"
+             factory=".ComponentFormBuilder"
+             />
+
+</configure>

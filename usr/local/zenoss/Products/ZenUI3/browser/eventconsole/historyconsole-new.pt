@@ -1,0 +1,24 @@
+<tal:block metal:use-macro="context/page_macros/masterdetail-new">
+<tal:block metal:fill-slot="title">Event Archive</tal:block>
+
+<tal:block metal:fill-slot="master_panel_content">
+</tal:block>
+
+<tal:block metal:fill-slot="detail_panel_content">
+</tal:block>
+
+
+<tal:block metal:fill-slot="script_layout">
+<!-- Template for rendering the detail pane -->
+
+<script tal:content="string:
+    Ext.onReady(function(){
+        Zenoss.env.EVENTSGRID_STATEID = 'histconsole';
+    });
+"></script>
+<script src="/++resource++zenui/js/zenoss/EvHistory.js">
+</script>
+
+</tal:block>
+
+</tal:block>

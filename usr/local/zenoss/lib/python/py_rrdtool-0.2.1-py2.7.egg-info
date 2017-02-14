@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: py-rrdtool
+Version: 0.2.1
+Summary: Python Interface to RRDTool
+Home-page: http://oss.oetiker.ch/rrdtool
+Author: Hye-Shik Chang
+Author-email: perky@fallin.lv
+License: LGPL
+Description: UNKNOWN
+Platform: UNKNOWN

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+  <tooltip>
+    <target>ack-button</target>
+
+    <html>Acknowledge events</html>
+  </tooltip>
+
+  <tooltip>
+    <target>close-button</target>
+
+    <html>Close events</html>
+  </tooltip>
+
+  <tooltip>
+    <target>classify-button</target>
+
+    <html>Map to event class</html>
+  </tooltip>
+
+  <tooltip>
+    <target>unack-button</target>
+
+    <html>Return events to new status</html>
+  </tooltip>
+
+  <tooltip>
+    <target>add-button</target>
+
+    <html>Add event</html>
+  </tooltip>
+
+  <tooltip>
+    <target>select-button</target>
+
+    <html>Select by status</html>
+  </tooltip>
+
+  <tooltip>
+    <target>export-button</target>
+
+    <html>Export data</html>
+  </tooltip>
+
+ <tooltip>
+    <target>configure-button</target>
+    <html>Configure view</html>
+  </tooltip>
+
+
+  <tooltip>
+    <target>refresh-button</target>
+    <anchor>left</anchor>
+    <html>Refresh events</html>
+  </tooltip>
+
+  <tooltip>
+    <target>eventState</target>
+
+    <html>Filter by status</html>
+  </tooltip>
+
+  <tooltip>
+    <target>severity</target>
+
+    <html>Filter by severity</html>
+  </tooltip>
+</view>

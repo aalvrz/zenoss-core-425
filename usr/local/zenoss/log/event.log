@@ -1,0 +1,24 @@
+------
+2014-04-25T10:32:41 INFO ZServer HTTP server started at Fri Apr 25 10:32:41 2014
+	Hostname: 0.0.0.0
+	Port: 8080
+------
+2014-04-25T10:32:45 INFO Zope Ready to handle requests
+------
+2014-04-25T10:36:58 INFO SignalHandler Caught signal SIGTERM
+------
+2014-04-25T10:36:58 INFO Z2 Shutting down fast
+------
+2014-04-25T10:36:58 INFO ZServer closing HTTP to new connections
+------
+2014-04-25T10:38:26 INFO ZServer HTTP server started at Fri Apr 25 10:38:26 2014
+	Hostname: 0.0.0.0
+	Port: 8080
+------
+2014-04-25T10:38:29 INFO Zope Ready to handle requests
+------
+2014-04-25T10:40:13 INFO SignalHandler Caught signal SIGTERM
+------
+2014-04-25T10:40:13 INFO Z2 Shutting down fast
+------
+2014-04-25T10:40:13 INFO ZServer closing HTTP to new connections

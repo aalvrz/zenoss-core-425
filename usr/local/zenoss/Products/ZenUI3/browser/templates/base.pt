@@ -1,0 +1,100 @@
+<!--
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2009, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+-->
+
+
+<tal:block metal:define-macro="base">
+<tal:block metal:use-macro="here/page_macros/page2">
+
+<tal:block metal:fill-slot="title">
+    <tal:block metal:define-slot="title">
+        <tal:block tal:content="here/titleOrId"/>
+    </tal:block>
+</tal:block>
+
+<tal:block metal:fill-slot="breadcrumbs">
+    <tal:block metal:define-slot="breadcrumbs">
+           <span metal:use-macro="here/miscmacros/macros/breadCrumbs" />
+    </tal:block>
+</tal:block>
+
+<tal:block metal:fill-slot="head-local">
+<link rel="stylesheet" type="text/css"
+    href="/++resource++extjs/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css"
+    href="/++resource++zenui/css/xtheme-zenoss.css" />
+<link rel="stylesheet" type="text/css"
+    href="/++resource++zenui/css/zenoss.css" />
+<script type="text/javascript" src="/++resource++extjs/adapters/ext/ext-base.js">
+</script>
+<script>
+/*
+* Temporary bugfix for Firefox 3.6. See
+* http://www.extjs.com/forum/showthread.php?p=406579
+*/
+(function() {
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf("firefox/3.6") > -1) {
+        Ext.toArray = function(a, i, j, res) {
+            res = [];
+            Ext.each(a, function(v) { res.push(v); });
+            return res.slice(i || 0, j || res.length);
+        }
+    }
+})();
+</script>
+<script type="text/javascript" src="/++resource++extjs/ext-all.js"></script>
+<script type="text/javascript" src="/++resource++zenui/js/zenoss.js"></script>
+<script type="text/javascript" src="zenoss-all.js"></script>
+<style>#contentPane{padding:0}</style>
+</tal:block>
+
+<tal:block metal:fill-slot="contentPane">
+
+ <tal:block metal:define-slot="center_panel_content"/>
+
+ <tal:block metal:define-slot="script_beforeLayout"/>
+
+<script type="text/javascript">
+Ext.onReady(function(){
+   var viewport = new Ext.Panel({
+       id: 'viewport',
+       layout: 'border',
+       border: false,
+       renderTo: 'contentPane',
+       items: [{
+           region: 'center',
+           id: 'center_panel',
+           layout: 'fit',
+           border: false
+       }/*,{
+           region: 'south',
+           id: 'footer_bar',
+           height: 30,
+           border: false
+       }*/]
+   });
+});
+</script>
+
+<tal:block metal:define-slot="script_layout">
+<!-- Use this slot to add elements to the basic layout. -->
+</tal:block>
+
+<!-- Make sure everything on the page gets laid out -->
+<script>Ext.onReady(function(){Ext.getCmp('viewport').doLayout()});</script>
+
+<tal:block metal:define-slot="script_afterLayout">
+<!-- Use this slot to perform any post-layout steps. -->
+</tal:block>
+
+</tal:block>
+</tal:block>
+</tal:block>

@@ -1,0 +1,16 @@
+2014-04-25 10:33:15,559 INFO zen.zenperfsnmp: Connecting to localhost:8789
+2014-04-25 10:33:15,565 INFO zen.zenperfsnmp: Connected to ZenHub
+2014-04-25 10:33:15,572 INFO zen.maintenance: Performing periodic maintenance
+2014-04-25 10:33:15,572 INFO zen.zenperfsnmp: Counter eventCount, value 1
+2014-04-25 10:33:15,576 INFO zen.zenperfsnmp: 0 devices processed (0 datapoints)
+2014-04-25 10:33:15,576 INFO zen.collector.scheduler: Tasks: 1 Successful_Runs: 0 Failed_Runs: 0 Missed_Runs: 0 Queued_Tasks: 0 Running_Tasks: 0 
+2014-04-25 10:36:56,702 INFO zen.zenperfsnmp: Deleting PID file /usr/local/zenoss/var/zenperfsnmp-localhost.pid ...
+2014-04-25 10:36:56,702 INFO zen.zenperfsnmp: Daemon CollectorDaemon shutting down
+2014-04-25 10:39:00,193 INFO zen.zenperfsnmp: Connecting to localhost:8789
+2014-04-25 10:39:00,198 INFO zen.zenperfsnmp: Connected to ZenHub
+2014-04-25 10:39:00,203 INFO zen.maintenance: Performing periodic maintenance
+2014-04-25 10:39:00,204 INFO zen.zenperfsnmp: Counter eventCount, value 3
+2014-04-25 10:39:00,205 INFO zen.zenperfsnmp: 0 devices processed (0 datapoints)
+2014-04-25 10:39:00,205 INFO zen.collector.scheduler: Tasks: 1 Successful_Runs: 0 Failed_Runs: 0 Missed_Runs: 0 Queued_Tasks: 0 Running_Tasks: 0 
+2014-04-25 10:40:11,539 INFO zen.zenperfsnmp: Deleting PID file /usr/local/zenoss/var/zenperfsnmp-localhost.pid ...
+2014-04-25 10:40:11,539 INFO zen.zenperfsnmp: Daemon CollectorDaemon shutting down

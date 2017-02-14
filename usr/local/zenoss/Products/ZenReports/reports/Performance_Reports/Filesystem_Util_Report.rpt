@@ -1,0 +1,91 @@
+<tal:block tal:define="
+    tableName string: filesystemutilreport;
+    tm here/ZenTableManager;
+    tableState python:tm.getTableState(tableName, sortedHeader='percentFull',
+                                           sortedSence='desc');
+
+    sts python:here.ZenTableManager.setReqTableState;
+    zem python:here.dmd.ZenEventManager;
+    startDate python:sts(tableName, 'startDate', 
+                         zem.defaultAvailabilityStart());
+    endDate python:sts(tableName, 'endDate', 
+                       zem.defaultAvailabilityEnd());
+    how python:sts(tableName, 'how', 'AVERAGE');
+    summaryOptions python:('AVERAGE', 'MAXIMUM', 'MINIMUM', 'LAST');
+    deviceClass python:sts(tableName, 'deviceClass', '/');
+    deviceFilter python:sts(tableName, 'deviceFilter', '');
+    generate python:tm.setTableState(tableName, 'generate', 
+        (tm.getReqTableState(tableName, 'generate') and 
+        not tm.getReqTableState(tableName, 'adapt')));
+
+    objects python:here.ReportServer.plugin('filesystems', tableState);
+	batch python:here.ZenTableManager.getBatch(tableName,objects,
+	sortedHeader='percentFull', sortedSence='desc');
+	exportFields python:['deviceName', 'mount', 'totalBytes',
+        		     'usedBytes', 'availableBytes', 'percentFull'];">
+<tal:block metal:use-macro="here/reportMacros/macros/exportableReport">
+<tal:block metal:fill-slot="report">
+
+<tal:block metal:use-macro="here/templates/macros/page1">
+<tal:block metal:fill-slot="breadCrumbPane">
+    <span metal:use-macro="here/miscmacros/macros/reportBreadCrumbsList"/>    
+</tal:block>
+<tal:block metal:fill-slot="contentPane">
+
+<tal:block metal:use-macro="here/reportMacros/macros/utilizationForm"/>
+
+<form method="POST" tal:attributes="action request/URL; name string:deviceList"
+			tal:define="tabletitle string:Filesystem Utilization;
+                        showfilterbox python:True;
+						tblcolspan string:6">
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+<tal:block metal:fill-slot="zentablecontents">
+
+    <tr>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                            tableName,'deviceName','Device')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                            tableName,'mount','Mount')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                            tableName,'totalBytes','Total bytes')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                            tableName,'usedBytes','Used bytes')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                            tableName,'availableBytes','Free bytes')"/>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                            tableName,'percentFull','% Util')"/>
+    </tr>
+    <tal:block tal:repeat="obj batch">
+    <tr>
+      <td class="tablevalues" 
+tal:content="structure obj/component/getDeviceLink"/>
+      <td class="tablevalues">
+          <a class=tablevalues tal:content="python: obj.mount"
+             tal:attributes="href python: obj.component.getPrimaryUrlPath()"/>
+      </td>
+      <td class="tablevalues"
+        tal:content="python:obj.humanBytes(obj.totalBytes)"/>
+      <td class="tablevalues"
+        tal:content="python:obj.humanBytes(obj.usedBytes)"/>
+      <td class="tablevalues"
+        tal:content="python:obj.humanBytes(obj.availableBytes)"/>
+      <td class="tablevalues"
+        tal:content="python:obj.percentString(obj.percentFull)"/>
+    </tr>
+    </tal:block>
+    <tr>
+        <td colspan="6" class="tableheader" align='center'>
+        <form metal:use-macro="here/zenTableNavigation/macros/navtool"/>
+        </td>
+    </tr>
+
+</tal:block>
+</tal:block>
+</form>
+
+</tal:block>
+</tal:block>
+
+</tal:block>
+</tal:block>
+</tal:block>

@@ -1,0 +1,13 @@
+Metadata-Version: 1.0
+Name: zenoss.extjs
+Version: 4.1.0-r57826
+Summary: A Zope package providing ExtJS as a browser resource
+Home-page: http://www.zenoss.com
+Author: Zenoss, Inc.
+Author-email: dev@zenoss.com
+License: GPLv3 with FOSS Exception for Applications
+Description: A Zope package providing ExtJS as a browser resource
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

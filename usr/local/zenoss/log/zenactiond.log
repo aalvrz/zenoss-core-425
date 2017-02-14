@@ -1,0 +1,21 @@
+2014-04-25 10:33:05,927 INFO zen.maintenance: Performing periodic maintenance
+2014-04-25 10:33:05,933 INFO zen.zenactiond: starting zenactiond consumer.
+2014-04-25 10:33:06,016 INFO zen.queueconsumer: Queue consumer ready.
+2014-04-25 10:34:05,934 INFO zen.maintenance: Performing periodic maintenance
+2014-04-25 10:35:05,935 INFO zen.maintenance: Performing periodic maintenance
+2014-04-25 10:36:05,937 INFO zen.maintenance: Performing periodic maintenance
+2014-04-25 10:36:56,920 INFO zen.ZenActionD: Deleting PID file /usr/local/zenoss/var/zenactiond-localhost.pid ...
+2014-04-25 10:36:56,920 INFO zen.ZenActionD: Daemon ZenActionD shutting down
+2014-04-25 10:36:56,921 INFO zen.zenactiond: Shutting down...
+2014-04-25 10:36:56,922 INFO zen.protocols.twisted: Connection to queue closed
+2014-04-25 10:36:56,922 INFO zen.protocols.twisted: Disconnecting AMQP Client.
+2014-04-25 10:38:51,004 INFO zen.maintenance: Performing periodic maintenance
+2014-04-25 10:38:51,014 INFO zen.zenactiond: starting zenactiond consumer.
+2014-04-25 10:38:51,035 INFO zen.queueconsumer: Queue consumer ready.
+2014-04-25 10:38:56,407 WARNING zen.callhome: Error retrieving data from callhome server HTTP Error 500: Internal Server Error
+2014-04-25 10:39:51,015 INFO zen.maintenance: Performing periodic maintenance
+2014-04-25 10:40:11,699 INFO zen.ZenActionD: Deleting PID file /usr/local/zenoss/var/zenactiond-localhost.pid ...
+2014-04-25 10:40:11,700 INFO zen.ZenActionD: Daemon ZenActionD shutting down
+2014-04-25 10:40:11,700 INFO zen.zenactiond: Shutting down...
+2014-04-25 10:40:11,701 INFO zen.protocols.twisted: Connection to queue closed
+2014-04-25 10:40:11,701 INFO zen.protocols.twisted: Disconnecting AMQP Client.

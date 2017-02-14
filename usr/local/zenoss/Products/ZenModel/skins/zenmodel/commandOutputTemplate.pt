@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.0//EN"
+"http://www.w3.org/TR/xhtml-basic/xhtml-basic10.dtd">
+<html>
+
+    <body>
+
+       <div id="frame">
+            <form name="proxy_form" id="proxy_form"
+                style="position:absolute;visibility:hidden"
+                tal:attributes="action here/absolute_url_path"></form>
+
+            <div id="infoBar">
+                <div id="leftPaneToggle"></div>
+
+            </div>
+            <div id="paneToggle">
+            </div>
+            <style tal:condition="python:'Zenoss_Collapsed_Menu' in
+                                    here.REQUEST.HTTP_COOKIE">
+                #leftPane { display:none;}
+                #rightPane { margin-left:12px;}
+                #paneToggle {
+                    background-image: url('paneToggle_bg_collapsed.gif');
+                    border-right: medium none;
+                }
+                #leftPaneToggle{ display:block;
+                    background:transparent url(img/leftpanetoggle_bg.gif) top
+                    left repeat-x;
+                    height: 30px;
+                    width: 30px;
+                }
+                #breadCrumbPane{ padding-left: 35px;}
+
+            </style>
+
+            <div id="contentPane">
+
+
+        <tal:block tal:define="tabletitle string:Command Output">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+                    <tr tal:condition="exists: request/cmd/command">
+                        <td class="commandoutput" valign="top">Command:   <tal:block tal:content="request/cmd/command" /></td>
+                    </tr>
+                    <tr tal:condition="exists: request/cmd/description">
+                        <td class="commandoutput" valign="top">Description:   <tal:block tal:content="request/cmd/description" /></td>
+                    </tr>
+                    <tr>
+                        <td class="commandoutput" valign="top">Output:</td>
+                    </tr>
+                    OUTPUT_TOKEN
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+
+
+            </div>
+        </div>
+    </body>
+</html>

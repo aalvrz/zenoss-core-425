@@ -1,0 +1,38 @@
+<form id="addWinService_form" tal:attributes="action context/os/absolute_url_path">
+<input type="hidden" name="userCreated" value="True">
+Service Class<br/>
+<div id="winServiceClassLiveSearch">
+</div>
+</form>
+<script>
+var win_sel = new Ext.form.ComboBox({
+    renderTo: Ext.get('winServiceClassLiveSearch'),
+    hiddenName: 'newClassName',
+    width: 100,
+    forceSelection: true,
+    triggerAction: 'all',
+    valueField: 'value',
+    displayField: 'name',
+    lazyRender: true,
+    store: new Ext.data.DirectStore({
+        root: 'data',
+        directFn: Zenoss.remote.ServiceRouter.getClassNames,
+        fields: ['name', 'value'],
+        baseParams: {
+            uid: '/zport/dmd/Services/WinService'
+        }
+    })
+});
+
+var addwinservice_form = new Zenoss.dialog.DialogFormPanel({
+    existingFormId: 'addWinService_form',
+    submitName: 'addWinService:method',
+    jsonResult: false,
+    items: [win_sel],
+    listeners: {
+        actioncomplete: Zenoss.env.componentReloader('WinService')
+    }
+});
+
+win_sel.focus();
+</script>

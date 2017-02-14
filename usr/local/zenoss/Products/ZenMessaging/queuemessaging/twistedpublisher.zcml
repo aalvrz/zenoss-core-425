@@ -1,0 +1,18 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+<!--
+    <utility factory=".publisher.AsyncQueuePublisher"
+             provides=".interfaces.IQueuePublisher"
+            />
+
+    <utility component=".publisher.AsyncQueuePublisher"
+             provides=".interfaces.IQueuePublisher"
+             name="class"
+            />
+-->
+
+    <utility factory=".publisher.EventPublisher"
+             provides=".interfaces.IEventPublisher"
+             />
+
+</configure>

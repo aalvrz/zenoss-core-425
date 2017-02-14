@@ -1,0 +1,38 @@
+Metadata-Version: 1.0
+Name: atomic
+Version: 0.5.3
+Summary: An atomic class that guarantees atomic updates to its contained value.
+Home-page: https://github.com/cyberdelia/atomic
+Author: Timothée Peignier
+Author-email: timothee.peignier@tryphon.org
+License: MIT
+Description: ======
+        Atomic
+        ======
+        
+        An atomic class that guarantees atomic updates to its contained value. ::
+        
+            from atomic import Atomic
+            atomic = Atomic(0)
+            atomic.update(lambda v: v + 1)
+        
+        
+        Installation
+        ============
+        
+        To install atomic, use pip : ::
+        
+            pip install atomic
+        
+        
+        Acknowledgement
+        ===============
+        
+        This is heavily inspired by `ruby-atomic <https://github.com/headius/ruby-atomic>`_.
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Utilities

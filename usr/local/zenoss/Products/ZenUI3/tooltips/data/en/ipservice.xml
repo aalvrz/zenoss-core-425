@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+  <tooltip>
+    <target>inheritedCheckbox</target>
+    <anchor>left</anchor>
+    <html>Inherit monitoring</html>
+  </tooltip>
+
+  <tooltip>
+    <target>monitorCheckbox</target>
+    <anchor>left</anchor>
+    <html>Individually enable monitoring</html>
+  </tooltip>
+
+  <tooltip>
+    <target>eventSeverityCombo</target>
+    <anchor>left</anchor>
+    <html>Select event severity</html>
+  </tooltip>
+
+  <tooltip>
+    <target>service_keys_TextBox</target>
+    <anchor>left</anchor>
+    <html>Add service keys</html>
+  </tooltip>
+
+  
+</view>

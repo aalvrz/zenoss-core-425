@@ -1,0 +1,89 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+<table metal:use-macro="here/viewPerformanceDetail/macros/objectperf"/>
+<br/>
+
+
+        <tal:block tal:define="tableName string:serverfilesystemperf;
+    objects python:here.getRelatedCricketObjs('filesystems');
+    batch python:here.ZenTableManager.getBatch(tableName,objects); 
+    tabletitle string:Filesystems">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                            tableName,'primarySortKey','Name')">Name
+        </th>
+    </tr>
+    <span tal:repeat="filesystem batch">
+    <tr>
+        <td class=tablevalues>
+            <tal:block tal:content="structure
+             python:filesystem.urlLink(text=filesystem.mount(),
+             url='%s/viewPerformanceDetail' % 
+             filesystem.absolute_url(), 
+             attrs={'class':'tablevalues'})"/> 
+        </td>
+    </tr>
+    </span>
+    <tr>
+        <td class="tableheader" align='center'>
+            <form metal:use-macro="here/zenTableNavigation/macros/navtool"></form>
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+<br/>
+<table metal:define-macro="serverdiskperf" 
+    border=0 cellpadding=3 width="100%" 
+    align="center" bgcolor="#ffffff" cellspacing=1
+    tal:define="tableName string:serverdiskperf;
+    objects python:here.getRelatedCricketObjs('harddisks');
+    batch python:here.ZenTableManager.getBatch(tableName,objects);"
+    tal:condition="objects">
+    <tr><th class="tabletitle" align=left>Disks</th></tr>
+    <tr>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                            tableName,'primarySortKey','Name')">Name
+        </th>
+    </tr>
+    <span tal:repeat="disk batch">
+    <tr>
+        <td class=tablevalues>
+            <tal:block tal:content="structure 
+                    python:disk.urlLink(text=disk.description(),
+                    url='%s/viewPerformanceDetail' % disk.absolute_url(),
+                    attrs={'class':'tablevalues'})"/>
+        </td>
+    </tr>
+    </span>
+    <tr>
+        <td class="tableheader" align='center'>
+        <form metal:use-macro="here/zenTableNavigation/macros/navtool"></form>
+        </td>
+    </tr>
+</table>
+
+</tal:block>
+</tal:block>

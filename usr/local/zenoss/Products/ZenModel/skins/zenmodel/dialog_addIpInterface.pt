@@ -1,0 +1,30 @@
+<form id="addIpInterface_form" tal:attributes="action context/os/absolute_url_path">
+<input type="hidden" name="userCreated" value="True">
+<span id="errmsg" style="color:red;"></span>
+<br/>
+<p>
+<span id="new_id_label">ID:&nbsp;</span>
+<input id="new_id" name="newId">
+</p>
+</form>
+<script tal:content="string:
+    Zenoss.env.interface_context = '${context/os/interfaces/absolute_url_path}';
+"></script>
+<script>
+var addiproute_form = new Zenoss.dialog.DialogFormPanel({
+    existingFormId: 'addIpInterface_form',
+    submitName: 'addIpInterface:method',
+    jsonResult: false,
+    items: [{
+        context: Zenoss.env.interface_context,
+        xtype: 'idfield',
+        name: 'newId',
+        applyTo: 'new_id'
+    }],
+    listeners: {
+        actioncomplete: Zenoss.env.componentReloader('IpInterface')
+    }
+});
+
+Ext.get('new_id').focus();
+</script>

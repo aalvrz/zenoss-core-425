@@ -1,0 +1,10 @@
+setuptools
+zope.interface >= 3.6.0
+zope.event
+six
+
+[test]
+zope.testing
+
+[docs]
+z3c.recipe.sphinxdoc

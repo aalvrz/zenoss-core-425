@@ -1,0 +1,64 @@
+@mixin zenoss-form {
+
+    .example {
+        display: inline;
+        font-style: italic;
+        font-size: 12;
+        float: right;
+        color: #FAFAFA;
+        padding-bottom: 8px;
+    }
+
+    $ui: 'fieldset-default';
+
+    .#{$prefix}fieldset{
+        padding-bottom:10px;
+        border:0 !important;
+    }
+    #regexFieldSet{
+        padding:10px !important;
+    }
+    .#{$prefix}fieldset-header-text{
+        padding-bottom:8px;
+    }
+
+    .#{$prefix}form-multiselect-body{
+        .#{$prefix}boundlist{
+            border:1px solid #AABBCC;
+            height:98% !important;
+        }
+    }
+
+    .#{$prefix}window{
+        .#{$prefix}form-itemselector-body{
+            .#{$prefix}panel-header{
+                box-shadow:none;
+                border:none;
+                background:url() transparent;
+                color:#fff;
+            }
+            .#{$prefix}panel-body{
+                color:#000;
+            }
+        }
+    }
+
+   .#{$prefix}fieldset-header {
+        color: #5A5A5A;
+        font: 16px/16px bold helvetica,arial,sans-serif;
+        padding-top: 5px;
+        font-weight: bold;
+    }
+    #device_modeler_plugins{
+        .#{$prefix}form-itemselector-body{
+            .#{$prefix}panel-header{
+                box-shadow:none;
+                border:none;
+                background:url() transparent;
+                .#{$prefix}panel-header-text{
+                    color:#000;
+                }
+            }
+        }
+    }
+}

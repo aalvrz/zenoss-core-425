@@ -1,0 +1,20 @@
+#!/bin/bash
+[ -z "$ZENUPHOME" ] && ZENUPHOME=/opt/zenup
+
+PYTHON=$ZENUPHOME/bin/pyrun2.7
+
+# If we didn't install the RPM then look elsewhere for Pyrun or Python
+if [ ! -e "$PYTHON" ]; then
+    DEPS=`dirname $0`/../pkg/deps
+    if [ -d "$DEPS" ] && [[ "$(uname -r)" == *el5* ]]; then
+        PYTHON="$DEPS/pyrun2.7-el5"
+    elif [ -d "$DEPS" ] && [[ "$(uname -r)" == *el6* ]]; then
+        PYTHON="$DEPS/pyrun2.7-el6"
+    else
+        # Not CentOS, or not in git repo with ../pkg/deps
+        # Hopefully we have a system python 2.7
+        PYTHON="python"
+    fi
+fi
+
+PYTHONPATH=$PYTHONPATH:$ZENUPHOME/python ZENUPHOME=$ZENUPHOME $PYTHON $ZENUPHOME/python/zenup/zenupcli.py "$@"

@@ -1,0 +1,2 @@
+setuptools
+zope.testing >= 3.9.1

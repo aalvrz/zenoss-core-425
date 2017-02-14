@@ -1,0 +1,88 @@
+<!--
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2009, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+-->
+
+
+<html> 
+    <head> 
+        <title> 
+            Zenoss:
+            Learn more about Zenoss Datacenter Impact
+        </title>
+                <style type="text/css">
+                body {
+                	min-height:100%;
+                    font-family: helvetica,arial,verdana,sans-serif;
+                    font-size:12px;
+                    line-height:1.2em;
+                    background-color: #000;
+                    margin:0;
+                    padding:5px;
+                    border:0;
+                }
+                div.container {
+                        width: 767px; 
+                        margin-right: auto; 
+                        margin-left: auto; 
+                        text-align: center; 
+                }
+                div#midblock {
+                        width: 767px; 
+                        margin-right: auto; 
+                        margin-left: auto; 
+                        text-align: center; 
+                        border: 2px solid #2C2C2C; 
+                        background-color: #2C2C2C;
+                        padding: 5px;
+                        -moz-border-radius: 15px;
+                        border-radius: 15px;
+                        position: relative;
+                }
+
+                div#textblock {
+                        width: 320px;
+                        height: 170px;
+                        background-color: #3F90AB;
+                        position: absolute;
+                        right: 20px;
+                        top: 290px;
+                        border: 1px dotted white;
+                        font-family: Helvetica, arial;
+                }
+                div#textblock p {text-align: left; padding: 5px; margin: 0px; font-size: 13px; margin-left: 15px;}
+                div#textblock h1 {margin-bottom: 10px; line-height:.9em; font-size: 2em; margin-top: 10px;}
+                p.ff {display: none;}
+                form#zdi-interest {margin-top: 7px;}
+                label.invalid {
+                        color:#F81E1D;
+                        display:block;
+                        font-weight:bold;
+                        width:auto;
+                }
+                </style>
+
+</head>
+
+
+<body>        
+
+				<div id="midblock">
+					<img title="sunrise off the bow by joiseyshowaa, on Flickr" src="/++resource++zenui/img/joiseyshowaa_boat-horizon.jpg">
+
+					<div id="textblock">
+						<h1>On the Horizon: <br>Zenoss Impact</h1>
+					Get ready to expand your infrastructure awareness with a new side of Zenoss!
+
+					</div>
+				</div>
+                
+</body>
+
+</html>

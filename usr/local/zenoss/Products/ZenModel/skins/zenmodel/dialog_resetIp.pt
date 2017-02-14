@@ -1,0 +1,29 @@
+<form id="reset_ip_form" tal:attributes="action context/absolute_url_path">
+<h2>Reset IP</h2>
+<p>Are you sure you would like to reset the IP?</p>
+<tal:block tal:condition="python:getattr(here, 'device', None)">
+<p>Leave blank to use DNS.</p>
+<br/>
+<span id="new_id_label">IP:&nbsp;</span>
+<input id="new_id" type="text" name="ip" size="15"
+      tal:attributes="value python:here.device().getManageIp()"/>
+</tal:block>
+</form>
+<script>
+var reset_ip_form = new Zenoss.dialog.DialogFormPanel({
+    existingFormId: 'reset_ip_form',
+    submitName: 'setManageIp:method',
+    jsonResult: false,
+    items: [{
+        xtype: 'textfield',
+        applyTo: Ext.get('new_id'),
+        vtype: 'ipaddress'
+    }],
+    listeners: {
+        actioncomplete: function(){
+            location.href=location.href;
+        }
+    }
+});
+Ext.get('new_id').focus();
+</script>

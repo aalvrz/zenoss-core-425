@@ -1,0 +1,20 @@
+<h2>Move Reports</h2>
+<br/>
+<p style="text-align:center;">
+<select class="tableheader" name="moveTarget"
+    tal:define="targets here/childMoveTargets">
+    <option value=""></option>
+    <option tal:repeat="target targets"
+        tal:content="target">/Thing</option>
+</select>
+</p>
+<div id="dialog_buttons">
+<input type="submit" name="moveReports:method"
+    value="OK"
+    tal:attributes="onclick string:return $$('dialog').submit_form(
+                        '${here/absolute_url}', 'reportForm')" />
+<input tal:attributes="id string:dialog_cancel;
+                        type string:button;
+                        value string:Cancel;
+                        onclick string:$$('dialog').hide()" />
+</div>

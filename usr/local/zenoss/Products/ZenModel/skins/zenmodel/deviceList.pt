@@ -1,0 +1,42 @@
+<tal:block metal:use-macro="here/templates/macros/page1">
+<tal:block metal:fill-slot="breadcrumbs">Device List</tal:block>
+<tal:block metal:fill-slot="contentPane">
+
+<tal:block 
+    tal:define="
+        tableName string:devicelist;
+        tblcolspan string:6;
+">
+<input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+<input type='hidden' name='notabs' 
+        tal:condition="python:getattr(request, 'notabs', False)"
+        tal:attributes="value string:1" />
+<input type="hidden" name="tableName" tal:attributes="value tableName"/>
+<tal:block tal:define="tabletitle string:Device List;
+menu_id string:DeviceGrid_list; noselectionbar python:True">
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+<tal:block metal:fill-slot="filterslot">
+<div class="filterbox">
+<input type="text" name="filter" id="filter"
+    onfocus="select(this)"
+    tal:attributes="value string:;"/>
+</div>
+</tal:block>
+
+<tal:block metal:fill-slot="zentablecontents">
+
+<!-- BEGIN TABLE CONTENTS -->
+
+    <tal:block metal:use-macro="here/deviceListMacro/macros/devGridBody" />
+
+<!-- END TABLE CONTENTS -->
+
+</tal:block>
+</tal:block>
+</tal:block>
+
+</tal:block>
+
+</tal:block>
+</tal:block>

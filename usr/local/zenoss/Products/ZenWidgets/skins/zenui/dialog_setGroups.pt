@@ -1,0 +1,18 @@
+<tal:block metal:define-macro="body">
+<h2>Set Groups</h2>
+<p style="text-align:center;font-size:0.8em;">
+    <select class="tablevalues" name="groupPaths:list" multiple
+    tal:define="groups python:here.getDmdRoot('Groups').getOrganizerNames(True)" >
+        <option tal:repeat="group groups" 
+            tal:attributes="value group"
+            tal:content="group">localhost</option>
+    </select>
+</p>
+</tal:block>
+<div id="dialog_buttons">
+<input type="submit" name="setGroups:method" value="OK"
+    tal:attributes="onclick string:return $$('dialog').submit_form(
+                        '${here/getPrimaryUrlPath}')" />
+<input id="dialog_cancel" type="button" value="Cancel"
+        onclick="$('dialog').hide()"/>
+</div>

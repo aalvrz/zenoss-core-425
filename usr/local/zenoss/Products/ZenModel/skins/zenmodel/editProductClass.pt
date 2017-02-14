@@ -1,0 +1,89 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane">
+
+<form method=post 
+    tal:attributes="action string:${here/absolute_url_path}">
+    <input type="hidden" name="zenScreenName" value="editProductClass"/>
+    <input type="hidden" name="redirect" value="true"/>
+
+
+        <tal:block tal:define="message request/message | string:State at time:; 
+            tabletitle string:${message} ${here/getNowString}">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+        
+    <tr>
+        <td class="tableheader">Name</td>
+        <td class="tablevalues">
+        <input class="tablevalues" type="text" name="name" size="40"
+            tal:attributes="value here/name" />
+        </td>
+    </tr>
+    <tr>
+        <td class="tableheader">Part Number</td>
+        <td class="tablevalues">
+        <input class="tablevalues" type="text" name="partNumber" size="40"
+            tal:attributes="value here/partNumber" />
+        </td>
+    </tr>
+    <tr>
+        <td class="tableheader">Operating System</td>
+        <td class="tablevalues"> 
+            <select class="tablevalues" name="isOS:boolean">
+                <option tal:repeat="e python:(True,False)" tal:content="e"
+                tal:attributes="value e; selected python:e==here.isOS"/>
+            </select>
+        </td>
+    </tr>
+    
+    <tr>
+        <td class="tableheader" colspan="2">ProductKeys</td>
+    </tr>
+    <tr>
+        <td class="tablevalues" colspan="2">
+        <textarea class="tablevalues" rows="6" cols="70"
+            name="productKeys:text" 
+            tal:content="python:'\n'.join(here.productKeys)">
+        </textarea>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableheader" colspan="2">Description</td>
+    </tr>
+    <tr>
+        <td class="tablevalues" colspan="2">
+        <textarea class="tablevalues" rows=3 cols=70
+            name="description:text" tal:content="here/description">
+        </textarea>
+        </td>
+    </tr>
+    <tr>
+        <td align="left"  class="tableheader" colspan="2">
+            <input class="tableheader" type="submit" value=" Save "
+                name="manage_editProductClass:method" />
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+
+</tal:block>
+</tal:block>

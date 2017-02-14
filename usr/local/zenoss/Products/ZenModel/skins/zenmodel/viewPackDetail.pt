@@ -1,0 +1,232 @@
+ <tal:block metal:use-macro="here/page_macros/old-new">
+  <tal:block metal:fill-slot="contentPane">
+      
+<tal:block condition="request/doDownload | nothing">
+<tal:block tal:replace="structure string:<script type='text/javascript'>
+var downloadUrl = '${here/absolute_url_path}/manage_download';
+</script>" />
+<script type="text/javascript">
+function doDownloadRedirect(evt) {
+    location.href = downloadUrl;
+}
+addLoadEvent(doDownloadRedirect);
+</script>
+</tal:block>
+
+<script type="text/javascript">
+Ext.onReady(function() {
+    var betterLicenseSelect = Ext.create('Ext.form.field.ComboBox', {
+        width: 250,
+        typeAhead: false,
+        transform: 'license',
+        forceSelection: false
+    });
+});
+</script>
+
+<form method="POST" tal:attributes="action here/absolute_url_path">
+<input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+
+        <tal:block tal:define="tabletitle string:Metadata">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    <tr>
+        <td class="tableheader">Name</td>
+        <td class="tablevalues" tal:content="here/id"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Version</td>
+        <td class="tablevalues" tal:condition="here/isDevelopment">
+            <input class="tablevalues" type="text" name="version" size="40"
+                tal:attributes="value here/version" />
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isDevelopment"
+            tal:content="here/version"/>
+    </tr>
+    <tr>
+        <td class="tableheader">Author</td>
+        <td class="tablevalues" tal:condition="here/isDevelopment">
+            <input class="tablevalues" type="text" name="author" size="40"
+                tal:attributes="value here/author" />
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isDevelopment"
+            tal:content="here/author"/>
+    </tr>
+    <tr>
+        <td class="tableheader">License</td>
+        <td class="tablevalues" tal:condition="here/isDevelopment">
+            <select class="tablevalues" id="license" name="license"
+                onchange="toggleOtherLicense()">
+
+                <option>Select or specify your own..</option>
+
+                <option selected="selected"
+                    tal:condition="python:here.license and here.license not in here.getExampleLicenseNames()"
+                    tal:content="here/license"/>
+
+                <tal:block tal:repeat="license here/getExampleLicenseNames">
+                <option tal:content="license" tal:attributes="
+                    selected python:license==here.license"/>
+                </tal:block>
+            </select>
+        </td>
+        <td class="tablevalues" tal:condition="not:here/isDevelopment"
+            tal:content="here/license"/>
+    </tr>
+
+    <tr tal:condition="here/isDevelopment">
+        <td class="tableheader" colspan="2">
+            <input class="tableheader" type="submit" value="Save"
+                name="zmanage_editProperties:method" />
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+
+
+
+        <tal:block tal:define="tabletitle string:Dependencies"
+            tal:condition="here/isEggPack">
+        <br/>
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+        <tal:block metal:fill-slot="zentablecontents">
+
+
+    <tal:block tal:condition="here/isDevelopment"
+        tal:define="eligibles here/getEligibleDependencies">
+        <tr>
+            <td class="tableheader" 
+                tal:condition="here/isDevelopment">Required?</td>
+            <td class="tableheader">Name</td>
+            <td class="tableheader">Version(s)</td>
+        </tr>
+        <tr>
+            <td class="tablevalue"></td>
+            <td class="tablevalue">Zenoss</td>
+            <td class="tablevalue">
+                <input class="tablevalues" type="text" size="40" 
+                     tal:attributes="
+                        value here/compatZenossVers;
+                        name string:compatZenossVers;" />
+            </td>
+        </tr>
+        <tr tal:repeat="pack eligibles">
+            <td class="tablevalue">
+                <input type="checkbox" name="dependencies" 
+                    tal:attributes="
+                        value pack/id;
+                        checked python:here.dependencies.has_key(pack.id)" />
+            </td>
+            <td class="tablevalue" tal:content="pack/id" />
+            <td class="tablevalue">
+                <input class="tablevalues" type="text" size="40" 
+                     tal:attributes="
+                        value python:here.dependencies.get(pack.id, '');
+                        name string:version_${pack/id}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableheader" colspan="3">
+                <input class="tableheader" type="submit" value="Save"
+                    name="zmanage_editProperties:method" />
+            </td>
+        </tr>
+    </tal:block>
+    <tal:block tal:condition="not: here/isDevelopment">
+        <tr>
+            <td class="tableheader">Name</td>
+            <td class="tableheader">Version</td>
+        </tr>
+        <tr tal:condition="here/compatZenossVers">
+            <td class="tablevalue">Zenoss</td>
+            <td class="tablevalue" tal:content="here/compatZenossVers"/>
+        </tr>            
+        <tr tal:repeat="name here/dependencies">
+            <td class="tablevalue" tal:content="name" />
+            <td class="tablevalue" 
+                tal:content="python: here.dependencies[name]"/>
+        </tr>
+        <tr tal:condition="python: not here.compatZenossVers and not here.dependencies">
+            <td class="tablevalues" colspan="2">No dependencies</td>
+        </tr>
+    </tal:block>
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+<br/>
+</form>
+
+
+    <form method="post" name="zenPackObjectsForm" id="zenPackObjectsForm"
+	  tal:attributes="action string:${here/absolute_url_path}"
+	  tal:define="tableName string:packlistdetail;
+              objects here/packables;
+              batch python:container.dmd.ZenTableManager.getBatch(tableName,objects,sortedHeader='getPrimaryDmdId');">
+      <input type="hidden" name="zenScreenName" 
+	     tal:attributes="value template/id"/>
+      <input type="hidden" name="tableName" tal:attributes="value tableName"/>
+      
+
+        <tal:block tal:define="tabletitle string:Files in ZenPack">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+        <tal:block metal:fill-slot="zentablecontents"> 
+        <!-- BEGIN TABLE CONTENTS -->
+        <tal:block tal:repeat="filename here/getFilenames">
+        <tr tal:define="odd repeat/filename/odd"
+            tal:attributes="class python:odd and 'odd' or 'even'">
+           <td class="tablevalue" tal:content="filename"/>
+        </tr>
+        </tal:block>
+        <tr tal:condition="not: here/getFilenames">
+            <td class="tablevalue">
+                No files in this ZenPack
+            </td>
+        </tr>
+        <!-- END TABLE CONTENTS -->
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        <br />
+        
+        <tal:block tal:define="tabletitle string:ZenPack Provides; 
+                               menu_id string:ZenPack;">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+        <tal:block tal:repeat="obj batch">
+        <tr tal:define="odd repeat/obj/odd"
+            tal:attributes="class python:odd and 'odd' or 'even'">
+           <td class="tablevalues">
+              <input type="checkbox" name="packables:list" 
+                 tal:attributes="value obj/getPrimaryUrlPath"/>
+              <tal:block tal:content="structure 
+                      python:obj.urlLink(text=obj.getPrimaryDmdId(),
+                      attrs={'class':'tablevalues'})"/>
+            </td>
+        </tr>
+        </tal:block>
+        <tr tal:condition="not: batch">
+            <td class="tablevalue">
+                No database objects are included in this ZenPack
+            </td>
+        </tr>
+        <tr>
+          <td class="tableheader" align='center'>
+            <span metal:use-macro="here/zenTableNavigation/macros/navbody"/>
+          </td>
+        </tr>
+        <!-- END TABLE CONTENTS -->
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+    </form>
+  </tal:block>
+</tal:block>

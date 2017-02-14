@@ -1,0 +1,89 @@
+<form method="post" tal:attributes="action here/absolute_url_path"
+      tal:condition="python:here.has_permission('Maintenance Windows View', here)"
+      metal:define-macro="maintenanceWindows">
+<input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+
+
+<tal:block tal:define="
+    objects here/getMaintenanceWindows;
+    tableName string:devicemaintenancewindow;
+    batch python:here.ZenTableManager.getBatch(tableName,objects);
+    tabletitle string:Maintenance Windows;
+    menu_id string:MaintenanceWindow_list">
+<input type='hidden' name='tableName' tal:attributes="value tableName" />
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+<!--==================== 
+Optional titlebar stuff
+
+<tal:block metal:fill-slot="menuslot">
+</tal:block>
+<tal:block metal:fill-slot="filterslot">
+</tal:block>
+
+  ====================-->
+
+<tal:block metal:fill-slot="zentablecontents">
+
+<!-- BEGIN TABLE CONTENTS -->
+    <tr>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'primarySortKey','Name','cmp')">
+            Name
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'start','Start')">
+            Start
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'duration','Duration')">
+            Duration
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'repeat','Repeat')">
+            Repeat
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'startProductionState','Start State')">
+            Start State
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'stopProductionState','Stop State')">
+            Stop State
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'enabled','Enabled?')">
+            Stop State
+        </th>
+  </tr>
+  <tal:block tal:repeat="mw batch">
+  <tr tal:define="odd repeat/mw/odd"
+      tal:attributes="class python:test(odd, 'odd', 'even')">
+    <td class="tablevalues" align="left">
+       <input type="checkbox" name="maintenanceIds" 
+              tal:attributes="value mw/getId"/>
+        <a href="_" 
+        tal:attributes="href mw/absolute_url"
+        tal:content="mw/displayName">somename</a>
+    </td>
+    <td class="tablevalues" tal:content="mw/niceStartDateTime"/>
+    <td class="tablevalues" tal:content="mw/niceDuration"/>
+    <td class="tablevalues" tal:content="mw/repeat"/>
+    <td class="tablevalues" tal:content="mw/niceStartProductionState"/>
+    <td class="tablevalues" tal:content="mw/niceStopProductionState"/>
+    <td class="tablevalues" tal:content="mw/enabled"/>
+  </tr>
+  </tal:block>
+  <tr>
+    <td colspan="7" class="tableheader">
+        <span metal:use-macro="here/zenTableNavigation/macros/navbody" />
+    </td>
+  </tr>
+
+<!-- END TABLE CONTENTS -->
+
+</tal:block>
+</tal:block>
+</tal:block>
+
+</form>

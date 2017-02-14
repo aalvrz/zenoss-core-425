@@ -1,0 +1,9 @@
+#!/usr/local/zenoss/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'Zope2==2.13.13','console_scripts','addzope2user'
+__requires__ = 'Zope2==2.13.13'
+import sys
+from pkg_resources import load_entry_point
+
+sys.exit(
+   load_entry_point('Zope2==2.13.13', 'console_scripts', 'addzope2user')()
+)

@@ -1,0 +1,172 @@
+2014-04-25 10:32:44,599 INFO zen.HubService.RenderConfig: Starting graph retrieval listener on port 8090
+2014-04-25 10:34:16,295 ERROR zen.ZenHub: Unable to poll invalidations.
+Traceback (most recent call last):
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 511, in processQueue
+    self.doProcessQueue()
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 574, in doProcessQueue
+    d = processor.processQueue(tuple(set(self._filter_oids(changes_dict))))
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 547, in _filter_oids
+    result = fltr.include(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 107, in include
+    current_checksum = self.organizerChecksum(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 98, in organizerChecksum
+    self.generateChecksum(organizer, m)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 145, in generateChecksum
+    tpl.exportXml(s)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 286, in exportXml
+    self.exportXmlRelationships(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 338, in exportXmlRelationships
+    rel.exportXml(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/ToOneRelationship.py", line 194, in exportXml
+    self.id, self.obj.getPrimaryId()))
+AttributeError: 'ZenPack' object has no attribute 'getPrimaryId'
+2014-04-25 10:34:46,413 ERROR zen.ZenHub: Unable to poll invalidations.
+Traceback (most recent call last):
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 511, in processQueue
+    self.doProcessQueue()
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 574, in doProcessQueue
+    d = processor.processQueue(tuple(set(self._filter_oids(changes_dict))))
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 547, in _filter_oids
+    result = fltr.include(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 107, in include
+    current_checksum = self.organizerChecksum(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 98, in organizerChecksum
+    self.generateChecksum(organizer, m)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 145, in generateChecksum
+    tpl.exportXml(s)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 286, in exportXml
+    self.exportXmlRelationships(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 338, in exportXmlRelationships
+    rel.exportXml(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/ToOneRelationship.py", line 194, in exportXml
+    self.id, self.obj.getPrimaryId()))
+AttributeError: 'ZenPack' object has no attribute 'getPrimaryId'
+2014-04-25 10:35:16,434 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.DnsMonitor.datasources.DnsMonitorDataSource.DnsMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xdet'>'
+2014-04-25 10:35:16,437 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.FtpMonitor.datasources.FtpMonitorDataSource.FtpMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xde\xc4'>'
+2014-04-25 10:35:16,441 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.HttpMonitor.datasources.HttpMonitorDataSource.HttpMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xdf\xd6'>'
+2014-04-25 10:35:16,447 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.JabberMonitor.datasources.JabberMonitorDataSource.JabberMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xe0\xa4'>'
+2014-04-25 10:35:16,676 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.ApacheMonitor.datasources.ApacheMonitorDataSource.ApacheMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xdc\x9e'>'
+2014-04-25 10:35:16,712 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.DigMonitor.datasources.DigMonitorDataSource.DigMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xde\x14'>'
+2014-04-25 10:35:16,721 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.IRCDMonitor.datasources.IRCDMonitorDataSource.IRCDMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xe0T'>'
+2014-04-25 10:35:16,757 ERROR zen.ZenHub: Unable to poll invalidations.
+Traceback (most recent call last):
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 511, in processQueue
+    self.doProcessQueue()
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 574, in doProcessQueue
+    d = processor.processQueue(tuple(set(self._filter_oids(changes_dict))))
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 547, in _filter_oids
+    result = fltr.include(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 107, in include
+    current_checksum = self.organizerChecksum(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 98, in organizerChecksum
+    self.generateChecksum(organizer, m)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 145, in generateChecksum
+    tpl.exportXml(s)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 286, in exportXml
+    self.exportXmlRelationships(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 338, in exportXmlRelationships
+    rel.exportXml(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/ToOneRelationship.py", line 194, in exportXml
+    self.id, self.obj.getPrimaryId()))
+AttributeError: 'ZenPack' object has no attribute 'getPrimaryId'
+2014-04-25 10:35:46,777 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.DnsMonitor.datasources.DnsMonitorDataSource.DnsMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xdet'>'
+2014-04-25 10:35:46,779 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.FtpMonitor.datasources.FtpMonitorDataSource.FtpMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xde\xc4'>'
+2014-04-25 10:35:46,780 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.HttpMonitor.datasources.HttpMonitorDataSource.HttpMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xdf\xd6'>'
+2014-04-25 10:35:46,783 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.JabberMonitor.datasources.JabberMonitorDataSource.JabberMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xe0\xa4'>'
+2014-04-25 10:35:46,785 ERROR zen.ZenHub: Unable to poll invalidations.
+Traceback (most recent call last):
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 511, in processQueue
+    self.doProcessQueue()
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 574, in doProcessQueue
+    d = processor.processQueue(tuple(set(self._filter_oids(changes_dict))))
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 547, in _filter_oids
+    result = fltr.include(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 107, in include
+    current_checksum = self.organizerChecksum(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 98, in organizerChecksum
+    self.generateChecksum(organizer, m)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 145, in generateChecksum
+    tpl.exportXml(s)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 286, in exportXml
+    self.exportXmlRelationships(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 338, in exportXmlRelationships
+    rel.exportXml(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/ToOneRelationship.py", line 194, in exportXml
+    self.id, self.obj.getPrimaryId()))
+AttributeError: 'ZenPack' object has no attribute 'getPrimaryId'
+2014-04-25 10:36:16,856 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.DnsMonitor.datasources.DnsMonitorDataSource.DnsMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xdet'>'
+2014-04-25 10:36:16,858 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.FtpMonitor.datasources.FtpMonitorDataSource.FtpMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xde\xc4'>'
+2014-04-25 10:36:16,859 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.HttpMonitor.datasources.HttpMonitorDataSource.HttpMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xdf\xd6'>'
+2014-04-25 10:36:16,862 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.JabberMonitor.datasources.JabberMonitorDataSource.JabberMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xe0\xa4'>'
+2014-04-25 10:36:16,863 ERROR zen.ZenHub: Unable to poll invalidations.
+Traceback (most recent call last):
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 511, in processQueue
+    self.doProcessQueue()
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 574, in doProcessQueue
+    d = processor.processQueue(tuple(set(self._filter_oids(changes_dict))))
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 547, in _filter_oids
+    result = fltr.include(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 107, in include
+    current_checksum = self.organizerChecksum(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 98, in organizerChecksum
+    self.generateChecksum(organizer, m)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 145, in generateChecksum
+    tpl.exportXml(s)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 286, in exportXml
+    self.exportXmlRelationships(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 338, in exportXmlRelationships
+    rel.exportXml(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/ToOneRelationship.py", line 194, in exportXml
+    self.id, self.obj.getPrimaryId()))
+AttributeError: 'ZenPack' object has no attribute 'getPrimaryId'
+2014-04-25 10:36:47,045 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.DnsMonitor.datasources.DnsMonitorDataSource.DnsMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xdet'>'
+2014-04-25 10:36:47,047 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.FtpMonitor.datasources.FtpMonitorDataSource.FtpMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xde\xc4'>'
+2014-04-25 10:36:47,048 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.HttpMonitor.datasources.HttpMonitorDataSource.HttpMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xdf\xd6'>'
+2014-04-25 10:36:47,052 INFO zen.Relations: Ignoring unresolvable object '<persistent broken ZenPacks.zenoss.JabberMonitor.datasources.JabberMonitorDataSource.JabberMonitorDataSource instance '\x00\x00\x00\x00\x00\x01\xe0\xa4'>'
+2014-04-25 10:36:47,052 ERROR zen.ZenHub: Unable to poll invalidations.
+Traceback (most recent call last):
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 511, in processQueue
+    self.doProcessQueue()
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 574, in doProcessQueue
+    d = processor.processQueue(tuple(set(self._filter_oids(changes_dict))))
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 547, in _filter_oids
+    result = fltr.include(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 107, in include
+    current_checksum = self.organizerChecksum(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 98, in organizerChecksum
+    self.generateChecksum(organizer, m)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 145, in generateChecksum
+    tpl.exportXml(s)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 286, in exportXml
+    self.exportXmlRelationships(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 338, in exportXmlRelationships
+    rel.exportXml(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/ToOneRelationship.py", line 194, in exportXml
+    self.id, self.obj.getPrimaryId()))
+AttributeError: 'ZenPack' object has no attribute 'getPrimaryId'
+2014-04-25 10:36:57,403 INFO zen.ZenHub: Deleting PID file /usr/local/zenoss/var/zenhub-localhost.pid ...
+2014-04-25 10:36:57,404 INFO zen.ZenHub: Daemon ZenHub shutting down
+2014-04-25 10:38:29,248 INFO zen.HubService.RenderConfig: Starting graph retrieval listener on port 8090
+2014-04-25 10:40:01,952 ERROR zen.ZenHub: Unable to poll invalidations.
+Traceback (most recent call last):
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 511, in processQueue
+    self.doProcessQueue()
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 574, in doProcessQueue
+    d = processor.processQueue(tuple(set(self._filter_oids(changes_dict))))
+  File "/usr/local/zenoss/Products/ZenHub/zenhub.py", line 547, in _filter_oids
+    result = fltr.include(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 107, in include
+    current_checksum = self.organizerChecksum(obj)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 98, in organizerChecksum
+    self.generateChecksum(organizer, m)
+  File "/usr/local/zenoss/Products/ZenHub/invalidationfilter.py", line 145, in generateChecksum
+    tpl.exportXml(s)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 286, in exportXml
+    self.exportXmlRelationships(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/RelationshipManager.py", line 338, in exportXmlRelationships
+    rel.exportXml(ofile, ignorerels)
+  File "/usr/local/zenoss/Products/ZenRelations/ToOneRelationship.py", line 194, in exportXml
+    self.id, self.obj.getPrimaryId()))
+AttributeError: 'ZenPack' object has no attribute 'getPrimaryId'
+2014-04-25 10:40:12,089 INFO zen.ZenHub: Deleting PID file /usr/local/zenoss/var/zenhub-localhost.pid ...
+2014-04-25 10:40:12,089 INFO zen.ZenHub: Daemon ZenHub shutting down

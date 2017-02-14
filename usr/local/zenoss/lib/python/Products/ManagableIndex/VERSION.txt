@@ -1,0 +1,3 @@
+2.1.5
+for Zope 2.11, 2.12
+requires "Products.OFolder" and (for GenericSetup support) "dm.reuse".

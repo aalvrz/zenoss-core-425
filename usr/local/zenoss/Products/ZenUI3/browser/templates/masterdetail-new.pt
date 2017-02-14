@@ -1,0 +1,95 @@
+<!--
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2009, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+-->
+
+
+<tal:block metal:define-macro="masterdetail-new">
+<tal:block metal:use-macro="context/page_macros/base-new">
+
+<tal:block metal:fill-slot="title">
+    <tal:block metal:define-slot="title">
+        <tal:block tal:content="here/titleOrId"/>
+    </tal:block>
+</tal:block>
+
+<tal:block metal:fill-slot="center_panel_content">
+<tal:block metal:define-slot="breadcrumbs"/>
+<div id="master_panel_content">
+    <tal:block metal:define-slot="master_panel_content"/>
+</div>
+<div id="detail_panel_content">
+    <tal:block metal:define-slot="detail_panel_content"/>
+</div>
+</tal:block>
+
+<!-- Chain the slots -->
+<tal:block metal:fill-slot="script_beforeLayout">
+    <tal:block metal:define-slot="script_beforeLayout"/>
+</tal:block>
+
+<tal:block metal:fill-slot="script_layout">
+<script>
+Ext.onReady(function(){
+    var items = [{
+        id: 'master_panel',
+        renderTo: 'master_panel_content',
+        layout: 'fit',
+        region: 'center'
+    },{
+        width: 400,
+        minWidth: 300,
+        preventHeader: true,
+        id: 'detail_panel',
+        contentEl: 'detail_panel_content',
+        region: 'east',
+        split: true,
+        collapsible: true,
+        collapseMode: 'mini',
+        layout: 'fit'
+    }];
+    if (Zenoss.env.pageHasBreadCrumbs) {
+        items.push({
+            region: 'north',
+            height: 24,
+            bodyCls: 'z-bc-bread-crumb-pane',
+            renderTo: 'breadCrumbPane'
+        });
+    }
+    Ext.getCmp('center_panel').add(new Ext.Panel({
+        id: 'center_panel_container',
+        layout: 'border',
+        defaults: {
+            'border': false
+        },
+        items: items
+    }));
+});
+</script>
+<!-- Chain the macro -->
+<tal:block metal:define-slot="script_layout">
+<script>
+Ext.onReady(function(){
+    Ext.getCmp('master_panel').add(new Zenoss.PlaceholderPanel({
+        text: 'Ext.getCmp("master_panel"), metal:fill-slot="master_panel_content"'
+    }));
+    Ext.getCmp('detail_panel').add(new Zenoss.PlaceholderPanel({
+        text: 'Ext.getCmp("detail_panel"), metal:fill-slot="detail_panel_content"'
+    }));
+});
+</script>
+</tal:block>
+</tal:block>
+
+<tal:block metal:fill-slot="script_afterLayout">
+    <tal:block metal:define-slot="script_afterLayout"/>
+</tal:block>
+
+</tal:block>
+</tal:block>

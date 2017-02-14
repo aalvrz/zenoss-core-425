@@ -1,0 +1,226 @@
+$include-default: true;
+$include-ie: true;
+
+$font-size: 12px;
+$color:#444;
+$font-color:#222;
+$font-family: helvetica,arial,sans-serif;
+$neutral-color:#ddd !default;
+$base-gradient: 'bevel';
+
+$include-missing-images: true;
+
+@import "compass/css3/pie";
+@import "compass/css3";
+@import "compass/support";
+@import 'ext4/default/variables';
+@import 'styles/variables';
+@import 'ext4/default/all';
+@import 'styles/zenoss';
+
+@include zenoss-layout;
+@include zenoss-hierarchytreepanel;
+@include zenoss-searchfield;
+@include zenoss-toolbar-button;
+@include zenoss-dialog-button;
+@include zenoss-default-button;
+@include zenoss-arrowslide-button;
+@include zenoss-arrow-button;
+@include zenoss-toolbar;
+@include zenoss-panel;
+@include zenoss-window;
+@include zenoss-grid;
+@include zenoss-tips;
+@include zenoss-form;
+@include zenoss-menu;
+@include zenoss-flares;
+@include zenoss-wizards;
+@include zenoss-tabpanel-dark;
+
+
+
+#templateTree .x-grid-cell{
+    background-color:transparent;
+}
+
+/* top search button sprite */
+#searchbox-container{
+    .x-form-trigger {
+        background-image: url('../img/xtheme-zenoss/form/trigger.gif');
+    }
+    .searchfield-black{
+        height:21px;
+        overflow:hidden;
+    }
+}
+#footer_bar{
+    border:none !important;
+}
+
+/* annoying blue bar on the add single device dialog - preventHeader in ext is ignored */
+#add_attrs .x-panel-header-default {
+    display: none;
+}
+// items beyond are positioned for IE cascade
+// ---------------------------------------------------- //
+#master_panel-header{
+    background-image: url("../img/ext4/toolbar/blue-header-bg.png") !important;
+    background-repeat:repeat-x;
+}
+#trigger-master_panel, #trigger-master_panel-body{
+    background-color:#D4E0EE !important;
+}
+#trigger-master_panel_navigation{
+    background:transparent !important;
+    .x-grid-cell, #trigger-master_panel_navigation-body, .x-grid-header-ct,
+    .x-column-header, .x-tree-elbow-end, .x-tree-elbow{
+        background:transparent;
+        background-image:none;
+        border:0 none !important;
+    }
+}
+#master_panel{
+    #subselecttreepaneldetail_nav-body, .x-panel-body{
+        border: 0 none !important;
+    }
+    #subselecttreepaneldetail_nav .x-grid-cell, .x-panel-body-hierarchy, #templateTree{
+        background-color:#D4E0EE !important;
+        border:0 none !important;
+    }
+    .x-panel-body{
+        overflow:visible;
+    }   
+}
+
+#processForm, #serviceForm{
+    .#{$prefix}toolbar-footer{
+        background-color:#F5F9FD;
+        padding:8px !important;
+        border-top:1px solid!important;
+    }
+    .#{$prefix}docked-bottom{
+        border-top-width:1px !important;
+        border-color:#808080 !important;
+    }
+}
+.commonlivegridinfopanel{
+    border:0 none !important;
+    background:#fff !important;
+
+}
+
+.x-docked.x-panel-default-collapsed{
+    background-image:none !important;
+    background-color:transparent;
+    border:0 none;
+}
+.livegridinfopanel{
+        font-size:10px !important;
+        color:#000 !important;
+        font-weight:bold !important;
+}
+
+#evdetail_bd-body{
+    padding-right:10px;
+    #log-container{
+        background:#DDE5E9;
+        border-radius:0;
+        #log-container-body{
+            background:transparent;
+        }
+    }
+    #event_detail_properties-body{
+        .x-panel-body{
+            border:0 none;
+            color: #7199E6;
+            cursor: pointer;
+            font-size: 13px;
+            text-decoration: none;
+        }
+    }
+}
+
+/* ========================== */
+
+.tabletitlecontainer{
+    border: 0 none !important;
+}
+.x-panel-body-default{
+    border: 0 none !important;
+}
+
+.largetoolbar .openclose{
+    top:3px !important;
+}
+
+/* cascade level fix */
+.x-mask-msg-noicon {
+   z-index: 19080;
+ }
+.x-mask-msg-noicon div {
+   background-image: none;
+}
+
+.x-grid-row-selected, .x-grid-row-focused{
+     background-color:#7199C6 !important;
+     .x-grid-cell-inner, span{
+         background-color:#7199C6 !important;
+         color:#fff !important;
+    }
+}
+.x-grid-row-selected.x-grid-row-over{
+     .x-grid-cell-inner, span{
+         color:#222 !important;
+    }
+}
+.tabletitlecontainer{
+    padding-top:5px;
+}
+#evdetail_props_table td{
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap !important;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+
+// fixing a situation where links in the flares arent clickable due to the header overlay.
+.x-flare-header{
+        right:15px !important;
+        width:15px !important;
+        z-index:0;
+       .x-tool{ 
+            margin-right:15px !important;
+       }
+}
+
+#category_tree-body{
+    background-color:transparent !important;
+}
+
+#manageSavedSearchesDialog{
+    .x-frame-mr{
+        padding-left:0 !important;
+    }
+    .x-column-header-text{
+        color:#000000;
+        font-size: 11px;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    .x-box-inner .x-btn{
+       margin-left:2px !important;
+    }
+    th, td{padding:0px !important;}
+}
+
+.x-ie #component_card .searchfield{
+    height:21px !important;
+    overflow:hidden;
+}
+#category_tree .x-grid-view{
+    width:260px !important;
+}
+#searchInput-inputEl{
+  margin-top: 5px !important;
+  padding-left: 30px !important;
+}

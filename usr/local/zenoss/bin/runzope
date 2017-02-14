@@ -1,0 +1,8 @@
+#! /bin/sh
+
+INSTANCE_HOME="/usr/local/zenoss"
+[ -z "$CONFIG_FILE" ] && CONFIG_FILE="/usr/local/zenoss/etc/zope.conf"
+ZOPE_RUN="/usr/local/zenoss/zopehome/runzope"
+export INSTANCE_HOME
+
+exec "$ZOPE_RUN" -C "$CONFIG_FILE" "$@"

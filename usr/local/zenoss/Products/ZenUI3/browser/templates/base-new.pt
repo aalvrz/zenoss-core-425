@@ -1,0 +1,209 @@
+<!--
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2009-2013, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+-->
+
+
+<html metal:define-macro="base-new">
+    <head>        
+        <title>
+            <tal:block tal:content="here/dmd/instanceIdentifier"/>:
+            <tal:block metal:define-slot="title">
+                <tal:block tal:content="here/titleOrId"/>
+            </tal:block>
+        </title>
+        <link rel="icon" href="/zport/dmd/favicon.ico" type="image/x-icon"/>
+        <link rel="shortcut icon" href="/zport/dmd/favicon.ico" type="image/x-icon"/>
+
+        <link rel="stylesheet" type="text/css"
+              tal:attributes="href python: context.zport.getVersionedResourcePath('/++resource++zenui/css/xtheme-zenoss.css')"
+            />
+        <link rel="stylesheet" type="text/css"
+              tal:attributes="href python: context.zport.getVersionedResourcePath('/++resource++zenui/css/zenoss.css')"
+            />
+
+        <link rel="stylesheet" type="text/css"
+              tal:attributes="href python: context.zport.getVersionedResourcePath('/++resource++zenui/css/zenui3.css')"
+            />
+        <link rel="stylesheet" type="text/css"
+              tal:attributes="href python: context.zport.getVersionedResourcePath('/++resource++extjs/examples/ux/css/CheckHeader.css')"
+            />
+        <tal:block tal:content="structure provider:js-security"/>
+        <tal:block tal:content="structure provider:all-js"/>
+        <script tal:define="container context/getPrimaryParent" tal:content="string:
+            Zenoss.env.PARENT_CONTEXT = '${container/absolute_url_path}';
+        " tal:on-error="string:"></script>
+        <tal:block tal:content="structure provider:head-extra"/>
+        <tal:block metal:define-slot="head-local"/>
+        <tal:block tal:content="structure provider:jssnippets"/>
+        
+    </head>
+
+    <body>
+        <div id="header">
+            <div class="bg">
+                <div class="bg-leftcap">
+                    <div class="bg-tile">
+                        <div class="bg-logo"></div>
+                        <div id="primarynav">
+                            <ul tal:content="structure provider:primarynav"/>
+                            <div id="header-extra">
+                                <div id="searchbox-container"></div>
+                                <div id="saved-search-container"></div>
+                                <div id="user-link-container">
+                                    <a tal:attributes="href here/dmd/ZenUsers/getUserSettingsUrl">
+                                    <tal:block tal:content="request/AUTHENTICATED_USER"/>
+                                    </a>
+                                </div>
+                                <div id="sign-out-link">
+                                    <a href="/zport/dmd/logoutUser">sign out</a>
+                                </div>
+                                <div>
+                                    <div id="help-icon-container">
+                                        <span></span><!-- ie needs empty span tags in some versions -->
+                                        <a
+                                            tal:condition="python:here.dmd.getProductName()=='enterprise'"
+                                           tal:attributes="href string:http://community.zenoss.org/community/documentation/servicedynamics/resource_manager_administration?view=overview"
+                                           target="_blank" alt="Help">&nbsp;</a>
+                                        <a
+                                            tal:condition="python:here.dmd.getProductName()!='enterprise'"
+                                           tal:attributes="href string:http://www.zenoss.com/help?version=${here/dmd/About/getZenossVersionShort}"
+                                           target="_blank" alt="Help">&nbsp;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="secondarynav">
+                            <ul tal:content="structure provider:secondarynav"/>
+                            <tal:block tal:content="structure context/page-level-help"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="center">
+            <tal:block metal:define-slot="center_panel_content"/>
+        </div>
+        <div id="footer">
+        </div>
+        <div id="footer_extra">
+        </div>
+
+<tal:block metal:define-slot="script_beforeLayout"/>
+<form id="exportform" method="post" action="/zport/dmd/Events/export">
+    <input type="hidden" id="export_body" name="body"/>
+</form>
+<script type="text/javascript">
+Ext.onReady(function(){
+// record when we first started rendering things on the client
+Zenoss._pageStartTime = new Date().getTime() / 1000.00;
+
+var viewport = new Ext.Viewport({
+    id: 'viewport',
+    layout: 'border',
+    cls: 'zenui3',
+    defaults: {
+        'border': false
+    },
+    items: [
+        {
+            region: 'north',
+            renderTo: 'header',
+            height: 75,
+            id: 'header_panel',
+            xtype: 'component',
+            style: {
+                display: "none"
+            }
+        },{
+            id: 'footer_panel',
+            region: 'south',
+            height: 30,
+            renderTo: 'footer',
+            items: [
+                new Ext.Toolbar({
+                    border: false,
+                    id: 'footer_bar',
+                    items: ['->', {
+                        xtype: 'jobswidget',
+                        id: 'jobswidget'
+                    }],
+                    listeners: {
+                        beforeadd: function(bar, item, index) {
+                            if (bar instanceof Ext.toolbar.Toolbar) {
+                                var numitems = bar.items.length,
+                                    lastitem = bar.items.items[numitems - 1];
+                                if (lastitem && lastitem.xtype == 'jobswidget'
+                                        && index == numitems) {
+                                    // We have the jobs widget already, so
+                                    // change the index passed in by 2 (one for
+                                    // widget, one for filler) so that the jobs
+                                    // widget stays on the right
+                                    bar.insert(index-2, item);
+                                    return false;
+                                }
+                            }
+                        },
+                        render: function(bar){
+                            Ext.get('footer_extra').appendTo(bar.getEl());
+                        }
+                    }
+                })
+            ],
+            border: false
+        },{
+            id: 'center_panel',
+            region: 'center',
+            renderTo: 'center',
+            layout: 'fit',
+            border: false,
+            defaults: {
+                'border': false
+            }
+        }
+    ]
+});
+
+});
+</script>
+
+<tal:block metal:define-slot="script_layout">
+<!-- Use this slot to add elements to the basic layout. -->
+<script type="text/javascript">
+Ext.onReady(function(){
+    // Add a placeholder panel to show what goes where
+    Ext.getCmp('center_panel').add(
+        new Zenoss.PlaceholderPanel({text: 'center_panel'})
+    );
+});
+</script>
+</tal:block>
+
+<!-- Make sure everything on the page gets laid out -->
+
+<tal:block metal:define-slot="script_afterLayout">
+<!-- Use this slot to perform any post-layout steps. -->
+</tal:block>
+
+<!-- Load tooltips for this screen -->
+<script type="text/javascript" src="tooltips.js"></script>
+
+<!-- Fields required for history management -->
+<form id="history-form" class="x-hidden" action="">
+    <input type="hidden" id="x-history-field" />
+    <iframe id="x-history-frame"></iframe>
+</form>
+<script type="text/javascript">
+Ext.History.init(function(mgr){
+    Ext.History.selectByToken(mgr.getToken());
+});
+</script>
+</body>
+</html>

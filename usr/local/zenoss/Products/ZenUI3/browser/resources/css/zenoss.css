@@ -1,0 +1,1703 @@
+
+strong {
+  font-weight: bold;
+}
+
+
+em {
+  font-style: italic;
+}
+
+
+a:link, a:visited {
+  color: #6386AE;
+  font-family: helvetica,arial,sans-serif;
+}
+
+
+.zenui3 {
+  font-family: Helvetica,sans-serif;
+}
+
+.zenui3 a.resource-link:link, .zenui3 a.resource-link:visited, .zenui3 a.resource-link:active {
+  color: #7199c6;
+  text-decoration: none;
+  padding-right: 15px;
+  background: transparent url(/++resource++zenui/img/xtheme-zenoss/icon/resource-link.png) right 1px no-repeat;
+}
+
+
+#x-history-frame, #ie_historyFrame, #history-form, .toggle-managed-splitbar {
+  display: none !important;
+}
+
+
+.console-selection .x-grid3-row-selected {
+  background: #fff !important;
+}
+
+.console-selection .x-grid3-row-alt {
+  background-color: #eaf0f7;
+}
+
+.console-selection .x-grid3-row-over.console-selection-clicked, .console-selection .console-selection-clicked {
+  background: #7199c6 !important;
+}
+
+.console-selection .x-grid3-row-selected .x-grid3-cell-inner {
+  color: #000;
+}
+
+.console-selection .console-selection-clicked .x-grid3-cell-inner {
+  color: white;
+}
+
+
+.inspector {
+  font-family: helvetica, sans-serif;
+  background-color: white;
+}
+
+.inspector .inspector-header {
+  height: 54px;
+  color: black;
+  font-size: 15px;
+  background: bottom #bdbdbd url(/++resource++zenui/img/xtheme-zenoss/toolbar/tb-evdetail-bg.png) repeat-x;
+  border-top: 3px solid #BBBBBB;
+  border-bottom: 1px solid #949494;
+}
+
+.inspector .inspector-header a {
+  text-decoration: none;
+}
+
+.inspector .inspector-header a:visited, .inspector .inspector-header a:link {
+  text-decoration: none;
+}
+
+.inspector .inspector-header a:hover {
+  text-decoration: underline;
+}
+
+.inspector .inspector-header .header-icon {
+  height: 50px;
+  width: 43px;
+  background: transparent url(/++resource++zenui/img/xtheme-zenoss/toolbar/tb-evdetail-bg.png) no-repeat;
+}
+
+.inspector .inspector-header .header-title {
+  height: 50px;
+  padding-left: 30px;
+  background: transparent url(/++resource++zenui/img/xtheme-zenoss/toolbar/tb-evdetail-sep.png) left center no-repeat;
+}
+
+.inspector .inspector-header .header-title .name {
+  font-size: 13pt;
+  font-weight: bold;
+}
+
+.inspector .inspector-header .header-title .name a {
+  color: black;
+}
+
+.inspector .inspector-header .header-title .name a:hover, .inspector .inspector-header .header-title .name a:visited, .inspector .inspector-header .header-title .name a:link {
+  color: black;
+}
+
+.inspector .inspector-header .header-title .info {
+  font-size: 9pt;
+  font-weight: normal;
+  color: #383838;
+}
+
+.inspector .inspector-header .header-title .info a {
+  color: #383838;
+}
+
+.inspector .inspector-header .header-title .info a:hover, .inspector .inspector-header .header-title .info a:visited, .inspector .inspector-header .header-title .info a:link {
+  color: #383838;
+}
+
+.inspector .inspector-body {
+  margin: 10px;
+  background: #FAFAFA;
+  border: 1px solid #B7B7B7;
+  padding: 10px;
+}
+
+.inspector .inspector-body .eventrainbow {
+  height: 21px;
+  font-size: 11px;
+  line-height: 13px;
+  width: auto;
+  margin-left: 20px;
+  margin-right: 30px;
+}
+
+.inspector .inspector-body .eventrainbow td {
+  border-right: 1px solid #FAFAFA;
+}
+
+.inspector .inspector-body .severity-icon-small.critical {
+  background-position: 2px  2px;
+}
+
+.inspector .inspector-body .severity-icon-small.error {
+  background-position: 2px -18px;
+}
+
+.inspector .inspector-body .severity-icon-small.warning {
+  background-position: 2px -38px;
+}
+
+.inspector .inspector-body .severity-icon-small.info {
+  background-position: 2px -58px;
+}
+
+.inspector .inspector-body .severity-icon-small.debug {
+  background-position: 2px -78px;
+}
+
+.inspector .inspector-body .severity-icon-small.clear {
+  background-position: 2px -98px;
+}
+
+.inspector .inspector-body .inspector-property {
+  margin-bottom: 15px;
+}
+
+.inspector .inspector-body .inspector-property .inspector-property-label {
+  font-size: 13px;
+  color: #5a5a5a;
+  margin-bottom: 11px;
+  display: block;
+}
+
+.inspector .inspector-body .inspector-property .inspector-property-value div{
+  color: #999999;
+  display: block;
+  margin-left: 10px;
+}
+
+
+.inspector-window .x-window-mc {
+  padding-top: 0;
+}
+
+
+.evdetail-sep {
+  width: 22px;
+  height: 50px;
+  margin-right: 2px;
+  margin-left: -3px;
+  border:0 !important;
+  background: transparent url(/++resource++zenui/img/xtheme-zenoss/toolbar/tb-evdetail-sep.png) center center no-repeat;
+}
+
+
+.evdetail_hd .x-panel-body {
+  color: #474747;
+  line-height: 50px;
+  font-size: 15px;
+  font-family: helvetica,sans-serif;
+  background: transparent url(/++resource++zenui/img/xtheme-zenoss/toolbar/tb-evdetail-bg.png) repeat-x;
+}
+
+.evdetail_hd td {
+  font-size: 15px;
+  font-family: helvetica,sans-serif;
+}
+
+
+.evdetail-popout {
+  width: 20px;
+  height: 50px;
+  cursor: hand;
+  cursor: pointer;
+  background: transparent url(/++resource++zenui/img/xtheme-zenoss/icon/popout.png) center center no-repeat;
+}
+
+
+.evdetail_close .x-panel-body {
+  background: transparent url(/++resource++zenui/img/xtheme-zenoss/window/close-button-dark.png) center center no-repeat;
+  height: 50px;
+  width: 25px;
+  cursor: hand;
+  cursor: pointer;
+}
+
+
+.evdetail_props {
+  float: left;
+  padding: 1em;
+}
+
+.evdetail_props table {
+  font-size: 11pt;
+}
+
+.evdetail_props td {
+  line-height: 1.5em;
+}
+
+.evdetail_props td.dt {
+  text-align: right;
+  font-weight: bold;
+  padding-right: 1em;
+  width: 124px;
+}
+
+
+.evdetail_graph {
+  float: left;
+  margin: 1em;
+  margin-left: 2em;
+}
+
+
+.evdetail-log-header {
+  padding: 0 0 1em 3em;
+}
+
+.evdetail-log-header hr {
+  color: #e1e1e1;
+  background-color: #e1e1e1;
+  border: medium none;
+  margin-bottom: 1em;
+}
+
+
+.log-content {
+  padding-top: 1em;
+  padding-left: 3em;
+}
+
+.log-content td {
+  padding: 0 5px;
+  font-size: 12px;
+}
+
+.log-content table td.time {
+  font-weight: bold;
+  text-align: right;
+}
+
+
+
+
+
+
+
+
+.no-events {
+  opacity: 0.2;
+  -moz-opacity: 0.2;
+  filter: alpha(opacity=20);
+}
+
+
+.acked-events {
+  opacity: 0.6;
+  -moz-opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+
+
+a.eventrainbow {
+  text-decoration: none;
+}
+
+
+.eventrainbow .severity-icon-small {
+  background-image: url(/++resource++zenui/img/xtheme-zenoss/icon/severity-sprite-reverse.png) !important;
+}
+
+
+
+div.zenportlet .severity-icon-small.critical, .largetoolbar .severity-icon-small.critical {
+  background-position: 2px  2px;
+}
+
+
+div.zenportlet .severity-icon-small.error, .largetoolbar .severity-icon-small.error {
+  background-position: 2px -18px;
+}
+
+
+div.zenportlet .severity-icon-small.warning, .largetoolbar .severity-icon-small.warning {
+  background-position: 2px -38px;
+}
+
+
+div.zenportlet .severity-icon-small.info, .largetoolbar .severity-icon-small.info {
+  background-position: 2px -58px;
+}
+
+
+div.zenportlet .severity-icon-small.debug, .largetoolbar .severity-icon-small.debug {
+  background-position: 2px -78px;
+}
+
+
+div.zenportlet .severity-icon-small.clear, .largetoolbar .severity-icon-small.clear {
+  background-position: 2px -98px;
+}
+
+
+.tree-severity-icon-small-critical, .tree-severity-icon-small-error, .tree-severity-icon-small-warning, .tree-severity-icon-small-info, .tree-severity-icon-small-debug, .tree-severity-icon-small-clear, .tree-template-icon-component, .tree-template-icon-bound, .tree-template-icon-bound-span, .tree-template-icon-component-span {
+  width: 16px !important;
+  height: 14px!important;
+  background: transparent url(/++resource++zenui/img/xtheme-zenoss/icon/severity-sprite.png) no-repeat !important;
+  margin: 0 auto;
+}
+
+
+.tree-severity-icon-small-critical {
+  background-position: 0px  0px !important;
+}
+
+
+.tree-severity-icon-small-error {
+  background-position: 0px -20px !important;
+}
+
+
+.tree-severity-icon-small-warning {
+  background-position: 0px -40px !important;
+}
+
+
+.tree-severity-icon-small-info {
+  background-position: 0px -60px !important;
+}
+
+
+.tree-severity-icon-small-debug {
+  background-position: 0px -80px !important;
+}
+
+
+.tree-severity-icon-small-clear {
+  background-position: 0px -100px !important;
+}
+
+
+.tree-template-icon-component {
+  background-position: 0px -80px !important;
+}
+
+
+.tree-template-icon-bound {
+  background-position: 0px -100px !important;
+}
+
+
+.tree-template-icon-bound-span {
+  background-position: 0px -100px !important;
+}
+
+
+.tree-template-icon-component-span {
+  background-position: 0px -80px !important;
+}
+
+
+.tree-node-no-icon {
+  width: 16px !important;
+}
+
+
+.x-grid-filter {
+  background-color: #bdbdbd;
+  border-bottom: 1px solid black;
+}
+
+.x-grid-filter .x-panel-body, .x-grid-filter td {
+  background-color: #bdbdbd;
+}
+
+.status-icon-small {
+  width: 16px;
+  height: 14px;
+  background: transparent url() no-repeat;
+  margin: 0 auto;
+}
+
+
+.status-icon-small-acknowledged {
+  width: 16px;
+  height: 14px;
+  background: transparent url() no-repeat;
+  margin: 0 auto;
+  background-image: url(/++resource++zenui/img/xtheme-zenoss/icon/acknowledge-small.png);
+}
+
+
+.status-icon-small-suppressed {
+  width: 16px;
+  height: 14px;
+  background: transparent url() no-repeat;
+  margin: 0 auto;
+  background-image: url(/++resource++zenui/img/xtheme-zenoss/icon/suppress-small.png);
+}
+
+
+.status-icon-small-aged, .status-icon-small-cleared, .status-icon-small-closed {
+  width: 16px;
+  height: 14px;
+  background: transparent url() no-repeat;
+  margin: 0 auto;
+  background-image: url(/++resource++zenui/img/xtheme-zenoss/icon/close-small.png);
+}
+
+
+.full_event_props {
+  padding-left: 3em;
+}
+
+
+td.proptable_key {
+  font-weight: bold;
+  text-align: left;
+  padding-right: 1em;
+}
+
+
+table.proptable {
+  border: border-collapse;
+}
+
+
+.show_details {
+  cursor: hand;
+  cursor: pointer;
+  font-size: 13px;
+  color: #7199e6;
+  text-decoration: none;
+  padding-left: 3em;
+  padding-top: .5em;
+  padding-bottom: .5em;
+}
+
+
+.event_details {
+  font-size: 13px;
+  text-decoration: none;
+  padding-left: 3em;
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
+
+
+.x-toolbar div.xtb-text.lastupdated {
+  font-size: 10px;
+  color: #373737;
+  font-weight: bold;
+  padding-right: 1em;
+  padding-bottom: 3px;
+  text-transform: uppercase;
+}
+
+
+.refreshevery {
+  color: white;
+  font-weight: bold;
+  background-color: #474747;
+  padding: 3px;
+  display: block;
+  height: 15px;
+}
+
+
+
+.xtb-text.livegridinfopanel {
+  font-size: 10px;
+  color: #373737;
+  font-weight: bold !important;
+  padding-right: 1em;
+  padding-bottom: 3px;
+  margin-top: 4px;
+  text-transform: uppercase;
+  position: relative;
+  top: -8px;
+}
+
+
+div.dialog-link {
+  text-align: center;
+}
+
+div.dialog-link a {
+  color: lightblue;
+}
+
+
+.proptable tr {
+  background-color: transparent;
+}
+
+.proptable tr.even {
+  background-color: #eaf0f7;
+}
+
+.proptable td {
+  font-size: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+
+.searchfield-ml, .searchfield-mr, .searchfield-mc, .searchfield-black-ml, .searchfield-black-mr, .searchfield-black-mc {
+  height: 21px;
+  border: medium none;
+  background: transparent url(/++resource++zenui/img/xtheme-zenoss/form/searchfield-sprite.png) no-repeat;
+}
+
+
+.searchfield-ml, .searchfield-black-ml {
+  padding-left: 18px;
+}
+
+
+.searchfield-mr, .searchfield-black-mr {
+  padding-right: 10px;
+}
+
+
+.searchfield-ml {
+  background-position: 0 0;
+}
+
+
+.searchfield-mc {
+  background-position: 0 -21px;
+  background-repeat: repeat-x;
+}
+
+
+.searchfield-mr {
+  background-position: right -42px;
+}
+
+
+.searchfield-black-ml {
+  background-position: 0 -63px;
+}
+
+
+.searchfield-black-mc {
+  background-position: 0 -84px;
+  background-repeat: repeat-x;
+  color: white;
+}
+
+
+.searchfield-black-mr {
+  background-position: right -105px;
+}
+
+
+.searchfield-black-mc .x-form-text, .searchfield-mc .x-form-text {
+  border: medium none;
+  background: transparent url();
+}
+
+
+.searchfield-black .x-form-arrow-trigger {
+  background-position: -102px 0;
+  border-bottom: medium none;
+}
+
+.searchfield-black .x-form-arrow-trigger.x-form-trigger-click, .searchfield-black .x-form-arrow-trigger.x-form-trigger-over {
+  background-position: -119px 0;
+}
+
+
+.saved-search-item .x-combo-list-inner {
+  background-image: url(../img/xtheme-zenoss/window/left-right.png);
+  color: white;
+  padding: 15px;
+  overflow-y: hidden;
+}
+
+.saved-search-item .x-combo-list-item {
+  border: none;
+}
+
+.saved-search-item .x-combo-selected {
+  background-color: #ddd;
+  color: black;
+}
+
+
+#manage-search-link {
+  font-size: 12px;
+}
+
+
+table.eventrainbow {
+  border-collapse: collapse;
+  height: 16px;
+  width: 100%;
+  cursor: pointer;
+  cursor: hand;
+}
+
+table.eventrainbow:hover {
+  cursor: pointer;
+}
+
+table.eventrainbow_cols_3 tr td {
+  width: 33%;
+}
+
+table.eventrainbow_cols_4 tr td {
+  width: 25%;
+}
+
+table.eventrainbow_cols_5 tr td {
+  width: 20%;
+}
+
+
+div.portlet-body.yui-dt table.eventrainbow {
+  width: 18em;
+}
+
+div.zenportlet table.eventrainbow {
+  width: 18em;
+}
+
+div.zenportlet .eventrainbow td {
+  padding-left: 22px;
+  color: white;
+  vertical-align: middle;
+}
+
+
+.eventrainbow td {
+  padding-left: 22px;
+  color: white;
+  vertical-align: middle;
+}
+
+.eventrainbow td.severity-icon-small {
+  width: 25px;
+}
+
+
+table.innerzentable table.eventrainbow tr td {
+  padding-left: 23px;
+}
+
+
+div.zenportlet .eventrainbow td, .largetoolbar .eventrainbow td {
+  /*padding-left: 25px;*/
+}
+
+
+div.zenportlet table.eventrainbow {
+  height: 23px;
+  border: 1px solid #707070;
+  border-right-color: #bbb;
+  border-bottom-color: #bbb;
+}
+
+
+.largetoolbar table.eventrainbow {
+  height: 23px;
+  border: 1px solid #707070;
+  border-right-color: #bbb;
+  border-bottom-color: #bbb;
+  margin-top: 8px;
+}
+
+
+table.eventrainbow td.critical {
+  background-color: #d60000;
+}
+
+table.eventrainbow td.error {
+  background-color: #ff9711;
+}
+
+table.eventrainbow td.warning {
+  background-color: #fbd13d;
+}
+
+table.eventrainbow td.info {
+  background-color: #0472b8;
+}
+
+table.eventrainbow td.debug {
+  background-color: #747474;
+}
+
+table.eventrainbow td.clear {
+  background-color: #62a700;
+}
+
+
+.streaming-window .x-window-body {
+  background: transparent url(../img/xtheme-zenoss/window/left-right.png);
+}
+
+
+.largetoolbar.devdetailbar {
+  border-top: 3px solid #b2b2b2 !important;
+}
+
+.largetoolbar.devdetailbar table.eventrainbow {
+ /* margin-top: 3px;*/
+}
+
+
+.devdetailbar .devdetailitem {
+  /*margin-left: 8px;
+  margin-right: 8px;*/
+}
+
+.devdetailbar .devdetailitem div {
+  text-align: center;
+  font-weight: normal;
+  /*margin-top: -3px;*/
+}
+
+.devdetailbar .devdetailitem div.devdetail-textitem {
+  font-size: 14px;
+  height: 30px;
+  line-height: 37px;
+}
+
+.devdetailbar .devdetailitem div.devdetail-textitem span {
+  font-size: 14px;
+  height: 30px;
+  line-height: 37px;
+}
+
+.devdetailbar .devdetailitem div.devdetail-labelitem {
+  font-size: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.devdetailbar .devdetail-devname {
+  margin-top: 2px;
+  font-size: 13pt;
+  font-weight: bold;
+  color: black;
+}
+.devdetailbar .x-toolbar .x-toolbar-text{
+    line-height: 10px;
+}
+
+.ext-ie .devdetailbar .devdetail-devname {
+  margin-top: 0px;
+}
+
+
+.devdetailbar .devdetail-devclass {
+  text-align: left;
+  font-size: 9pt;
+  font-weight: normal;
+}
+
+.devdetailbar .devdetail-ipaddress {
+  text-align: left;
+  font-size: 9pt;
+  font-weight: normal;
+  /* margin-top: -7px; */
+}
+
+.devdetail-icon {
+  height: 50px;
+  width: 52px;
+  border:0 !important;
+  background: transparent url() center center no-repeat;
+}
+
+
+.display-field {
+  padding-bottom: 7px;
+  white-space: pre;
+}
+
+
+.editable-field {
+  min-height: 15px;
+}
+
+
+.editable-field-over {
+  background-color: lemonchiffon;
+  cursor: hand;
+  cursor: pointer;
+}
+
+
+.exception-message {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 2em;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+
+#header-extra {
+  position: absolute;
+  right: 0;
+  color: #FFFFFF;
+  font-size: 9.5pt;
+  font-family: Helvetica,sans-serif;
+}
+
+#header-extra div {
+  float: left;
+}
+
+#header-extra div a {
+  padding-left: 8px;
+  text-align: center;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+#header-extra div a:link, #header-extra div a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+#header-extra div a:hover {
+  text-decoration: underline;
+}
+
+
+#searchbox-container {
+  float: left;
+  padding-top: 12px;
+  position: absolute;
+  left: -180px;
+  width: 130px;
+}
+
+
+#help-icon-container a {
+  height: 14px;
+  width: 14px;
+  background: transparent url(/++resource++zenui/img/help-icon.png) center center no-repeat;
+  margin-right: 14px;
+  padding-top: 2px;
+}
+
+
+.ext-ie #help-icon-container a:hover {
+  text-decoration: none;
+}
+
+
+.searchbox-query {
+  top: 16px;
+  color: white;
+  font-size: 9.5pt;
+  font-family: Helvetica,sans-serif;
+}
+
+
+.autoformpanel {
+  padding: 10px;
+}
+
+
+table.search-result {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 360px;
+}
+
+
+.search-result {
+  background: #fcfcfc;
+  font-family: Helvetica,sans-serif;
+}
+
+.search-result .search-item-selected {
+  background: #6498c8;
+  color: #fff;
+}
+
+.search-result th {
+  width: 100px;
+  border-right: 1px solid #ccc;
+  padding: 0px 6px 0px 0px;
+  vertical-align: top;
+  text-align: right;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.search-result td {
+  cursor: pointer;
+}
+
+.search-result td.icon {
+  vertical-align: top;
+  width: 16px;
+  height: 16px;
+}
+
+.search-result .icon img {
+  width: 16px;
+  height: 16px;
+}
+
+.search-result td.excerpt {
+  width: 260px;
+  padding: 0px 0px 0px 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.search-result ul{
+    margin:10px !important;
+}
+.search-result li{
+    list-style:none !important;
+}
+
+
+.x-tip .x-tip-mc li {
+  padding: 5px 0;
+}
+
+
+.x-tip-header {
+  padding-bottom: 5px;
+}
+
+
+.x-tip span.x-tip-header-text {
+  font-size: 13px;
+}
+
+
+.detail-form-panel .x-panel-btns {
+  border-top: 1px solid gray;
+  background: #f5f9fd url();
+}
+
+.detail-form-panel .x-form-field, .detail-form-panel .display-field, .detail-form-panel .x-form-cb-label, .detail-form-panel .x-form-item-label, .detail-form-panel .x-fieldset-header-text {
+  font-family: helvetica,arial,sans-serif;
+  font-size: 13px;
+  color: #5a5a5a;
+}
+
+.detail-form-panel .x-form-display-field, .detail-form-panel .display-field {
+  color: black;
+}
+
+.detail-form-panel .x-fieldset-header {
+  border: medium none;
+}
+
+.detail-form-panel .x-fieldset-header-text {
+  padding-left: 0;
+  font-weight: normal;
+}
+
+
+.consolebar .xtb-text {
+  font-size: 13px;
+  margin-top: 1px;
+}
+
+.consolebar table.x-btn {
+  margin-top: 1px;
+}
+
+.consolebar .xtb-sep {
+  height: 25px;
+}
+
+
+.detailnav {
+  background-color: #D4E0EE;
+}
+
+.detailnav .x-tree .x-panel-body {
+  background-color: #D4E0EE;
+}
+
+
+.x-grid3-row-selected span.status-up, .x-grid3-row-selected span.status-down, .x-grid3-row-selected span.status-unknown {
+  color: white;
+}
+
+
+span.status-up-large, span.status-up, span.status-down-large, span.status-down {
+  background: transparent url(/++resource++zenui/img/up-down-sprite.png) 0 0 no-repeat;
+}
+
+span.status-up, span.status-down {
+  padding-right: 18px;
+}
+
+span.status-up {
+  color: green;
+  background-position: right -9px;
+}
+
+span.status-degraded {
+  color: #c96100;
+}
+span.status-at.risk {
+  color:#d1b700;
+}
+
+.x-ie span.status-up {
+  background-position: right -8px;
+}
+
+
+span.status-down {
+  background-position: right -40px;
+}
+
+
+.x-ie span.status-down {
+  background-position: right -39px;
+}
+
+
+span.status-down-large, span.status-down {
+  color: #d60000;
+}
+
+span.status-up-large, span.status-unknown-large, span.status-down-large {
+  font-weight: bold;
+}
+
+span.status-up-large, span.status-down-large {
+  display: inline-block;
+  margin: 0 auto;
+  height: 18px;
+  padding-right: 23px;
+}
+
+span.status-up-large {
+  background-position: right -56px;
+}
+
+span.status-unknown, span.status-unknown-large {
+  color: gray;
+}
+
+span.status-down-large {
+  padding-right: 21px;
+  background-position: right -86px;
+}
+
+
+.ext-ie span.status-up-large, .ext-id span.status-down-large {
+  zoom: 1;
+}
+
+
+.componenttbar table.x-toolbar-ct {
+  margin-top: 3px;
+}
+
+.componenttbar .xtb-sep {
+  height: 18px;
+}
+
+
+.device-overview-form {
+  padding: 13px;
+  overflow:scroll;
+  overflow-y:scroll;
+  overflow-x:hidden;
+}
+
+.device-overview-form .x-form-display-field, .device-overview-form .display-field {
+  color: black;
+}
+
+
+.device-overview-form-wrapper {
+  border: 1px solid #b7b7b7;
+}
+
+.device-overview-form-wrapper .x-panel-tl, .device-overview-form-wrapper .x-panel-bl, .device-overview-form-wrapper .x-panel-ml, .device-overview-form-wrapper .x-panel-tr, .device-overview-form-wrapper .x-panel-br, .device-overview-form-wrapper .x-panel-mr, .device-overview-form-wrapper .x-panel-tc, .device-overview-form-wrapper .x-panel-bc, .device-overview-form-wrapper .x-panel-mc {
+  background: #fafafa url();
+  border: medium none;
+}
+
+
+a.z-entity:link, a.z-entity:hover, a.z-entity:visited {
+  text-decoration: none;
+  padding-right: 15px;
+  padding-bottom: 3px;
+}
+
+
+.x-grid3 a.z-entity:link, .x-grid3 a.z-entity:visited, .x-grid3 a.z-entity:hover {
+  background: none;
+  padding-right: 0;
+  text-decoration: underline;
+}
+
+
+.x-menu a:link, .x-menu a:visited, .x-menu a:hover {
+  color: #444;
+}
+
+
+.devdetail-devclass a.z-entity:link, .devdetail-devclass a.z-entity:hover, .devdetail-devclass a.z-entity:visited {
+  color: #383838;
+  padding-right: 0;
+  background: none;
+}
+
+.devdetail-devclass a.z-entity:hover {
+  text-decoration: underline;
+}
+
+
+.manu-edit-link {
+  text-decoration: underline;
+  color: #678cbc;
+  font-size: 11px;
+  padding-left: 5px;
+  cursor: pointer;
+  text-transform: lowercase;
+  position: relative;
+  bottom: 1px;
+}
+
+
+#breadCrumbPane {
+  background: #566d87 none;
+  font-size: 11px;
+  height: 23px;
+  line-height: 23px;
+  padding-left: 10px;
+  margin: 0px;
+  position: relative;
+  border-bottom: 1px solid #abc;
+}
+
+#breadCrumbPane.bc-notabs {
+  padding-left: 26px;
+}
+
+#breadCrumbPane a {
+  padding-left: 2px;
+  color: #f8f8f8;
+  font-family: helvetica,arial,sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#breadCrumbPane a:hover {
+  text-decoration: underline;
+}
+
+
+.joblog-stream-c {
+  width: 99%;
+  background-color: white;
+  border: 2px solid black;
+  height: 400px;
+  margin: 1em auto;
+}
+
+
+.log-output {
+  font-family: Monaco,monospace;
+  font-size: 14px;
+}
+
+
+.report-tree .x-tree-node-leaf .node-text {
+  font-weight: normal;
+}
+
+
+#page-help {
+  position: absolute;
+  right: 8px;
+  color: #eef;
+  font-size: 11px;
+  font-family: helvetica,arial,sans-serif;
+  cursor: pointer;
+}
+
+
+.ext-ie7 #page-help, .ext-border-box .ext-ie #page-help {
+  padding-top: 5px;
+}
+
+
+#page-level-help-tip li {
+  list-style: disc inside;
+  padding: 1px 0;
+}
+
+#page-level-help-tip ul {
+  margin: 5px 5px auto;
+}
+
+#page-level-help-tip p {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+
+#user-link-container {
+  margin-left: 10px;
+  padding-left: 10px;
+  background: transparent url(/zport/dmd/img/usericon.png) left center no-repeat;
+  font-family: helvetica,arial,sans-serif;
+  font-size: 8pt;
+  font-weight: normal;
+}
+
+
+#sign-out-link {
+  font-size: 8pt;
+  text-transform: uppercase;
+  padding-right: 5px;
+}
+
+
+.rule-clause {
+  background: transparent url();
+  border: medium none;
+  border-bottom: 1px solid #f2f2f3;
+}
+
+
+.nested-rule-header {
+  background-color: #f2f2f3;
+}
+
+
+.nested-rule {
+  background-color: white;
+  border-bottom: 1px solid #f2f2f3;
+}
+
+
+.rule-clause-container {
+  padding-left: 20px;
+  border-left: 5px solid #f2f2f3;
+}
+
+.dark .rule-clause-container {
+  padding-left: 3px;
+  border-left: 0;
+  padding-bottom:10px;
+}
+.dark .x-fieldset{
+    padding: 0 0 5px 0;
+}
+
+
+.rule-builder {
+  border-right: 2px solid #f2f2f3;
+}
+
+
+.x-tree-node img.folder, .x-tree-node-collapsed img.folder {
+  background: url("/++resource++extjs/resources/images/default/tree/folder.gif");
+}
+
+
+.x-tree-node-expanded img.folder {
+  background: url("/++resource++extjs/resources/images/default/tree/folder-open.gif");
+}
+
+
+.graph-panel {
+  padding: 5px;
+}
+
+
+.ext-ie .inspector .inspector-header .header-title .info {
+  background: transparent;
+}
+
+
+.x-list-body dt {
+  color: #383838;
+}
+
+
+.multiselect-form-field {
+  margin-bottom: 10px;
+}
+/* fall back with no target ID */
+.severity-icon {
+  height: 50px;
+  margin: 0 8px;
+  width: 35px;
+  background: transparent url(/++resource++zenui/img/xtheme-zenoss/icon/severity-sprite-large.png) 100px 100px no-repeat;
+}
+
+.severity-icon.critical {
+  background-position: 0px 0px;
+}
+
+.severity-icon.error {
+  background-position: -44px 0px;
+}
+
+.severity-icon.info {
+  background-position: -88px 0px;
+}
+
+.severity-icon.debug {
+  background-position: -132px 0px;
+}
+
+.severity-icon.clear {
+  background-position: -176px 0px;
+}
+
+.severity-icon.warning {
+  background-position: -220px 0px;
+}
+
+.severity-icon-small.critical, .severity-icon-small.error, .severity-icon-small.warning, .severity-icon-small.info, .severity-icon-small.debug, .severity-icon-small.clear {
+  width: 16px;
+  height: 14px;
+  background: transparent url(/++resource++zenui/img/xtheme-zenoss/icon/severity-sprite.png) no-repeat;
+  margin: 0 auto;
+}
+
+.severity-icon-small.critical {
+  background-position: 0px  0px;
+}
+
+.severity-icon-small.error {
+  background-position: 0px -20px;
+}
+
+.severity-icon-small.warning {
+  background-position: 0px -40px;
+}
+
+.severity-icon-small.info {
+  background-position: 0px -60px;
+}
+
+.severity-icon-small.debug {
+  background-position: 0px -80px;
+}
+
+.severity-icon-small.clear {
+  background-position: 0px -100px;
+}
+
+
+/* positioned here for the cascade */
+#evdetail_hd .severity-icon {
+  height: 50px;
+  margin: 0 8px;
+  width: 35px;
+  background: transparent url(/++resource++zenui/img/xtheme-zenoss/icon/severity-sprite-large.png) 100px 100px no-repeat;
+}
+#evdetail_hd .severity-icon .x-panel-body{
+    background: none !important; /* an IE fix for a blocking bar across the top of the icon */
+}
+#evdetail_hd .severity-icon.critical {
+  background-position: 0px 0px;
+}
+
+#evdetail_hd .severity-icon.error {
+  background-position: -44px 0px;
+}
+
+#evdetail_hd .severity-icon.info {
+  background-position: -88px 0px;
+}
+
+#evdetail_hd .severity-icon.debug {
+  background-position: -132px 0px;
+}
+
+#evdetail_hd .severity-icon.clear {
+  background-position: -176px 0px;
+}
+
+#evdetail_hd .severity-icon.warning {
+  background-position: -220px 0px;
+}
+
+#PerformanceGraphs .x-panel-default, #PerformanceGraphs .x-panel-body, #evdetail_props{
+    height:auto !important;
+}
+#PerformanceGraphs .x-panel-body{
+    position:relative;
+    background:transparent !important;
+    padding-bottom:26px;
+    top:26px !important;
+    z-index:1 !important;
+}
+#PerformanceGraphs .x-toolbar .x-box-inner{
+    z-index:1100 !important;
+}
+#PerformanceGraphs .x-toolbar{
+    position:absolute;
+    margin-right:3px !important;
+}
+.prioritycombo input{
+    visibility:visible !important;
+    display: block !important;  /* This is mandatory because IE sets this field to none */
+}
+#collectorpanel-body *{
+    font-size:13px !important;
+}
+#collectorId, #collectorHostField, #rootPasswordField{
+    width:380px !important;
+}
+#collectorfieldset label{
+    width:120px !important;
+}
+#collectorfieldset input{
+    width:250px !important;
+}
+
+#footer_extra .x-btn td, #propList .x-btn td{
+    padding-right:0 !important;
+}
+
+.x-window-body .x-panel-body .x-boundlist li{
+  color: #000 !important;
+}
+.x-ie .x-progress-bar {
+    background-color:#73A3E0 !important;
+}
+.x-ie #definition_description{
+    width:100%;
+}
+table {
+    display: table;
+}
+.x-toolbar-separator{
+    border-width:1px !important;
+}
+#master_panel .x-toolbar-default{
+    background-image: url("../img/xtheme-zenoss/toolbar/bg-subselect.png") !important;
+}
+#events_grid .x-toolbar-default{
+    background-image: url() !important;
+}
+#master_panel .x-hierarchy-search{
+    top:4px !important; left:5px !important;
+}
+.x-window-body, .x-window-body .x-form-item-label, .x-window-body .x-form-cb-label{
+    color:#fafafa;
+}
+.white-background-panel, .white-background-panel .x-form-item-label, .white-background-panel .x-form-cb-label{
+    color:black;
+}
+
+
+.x-ie .white-background-panel .x-tab-default-mc,
+.x-ie .white-background-panel .x-tab-default-ml,
+.x-ie .white-background-panel .x-tab-default-mr,
+.x-ie .white-background-panel .x-tab-default-tr,
+.x-ie .white-background-panel .x-tab-default-tl,
+.x-ie .white-background-panel .x-tab-default-tc{
+    background-color: #d3e0f2 !important;
+}
+.x-ie .white-background-panel .x-tab-top-active .x-frame-mc,
+.x-ie .white-background-panel .x-tab-top-active .x-frame-ml,
+.x-ie .white-background-panel .x-tab-top-active .x-frame-mr,
+.x-ie .white-background-panel .x-tab-top-active .x-frame-tr,
+.x-ie .white-background-panel .x-tab-top-active .x-frame-tl,
+.x-ie .white-background-panel .x-tab-top-active .x-frame-tc{
+    background-repeat: repeat-x;
+    background-color: rgb(222, 236, 253) !important;
+}
+
+
+
+#footer_extra{
+    position:absolute;
+    top:2px;
+}
+#component_searchfield-inputEl{
+    background: url("../img/xtheme-zenoss/compsearch.png") no-repeat 0 2px;
+}
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    white-space: pre-line;
+    white-space: -moz-pre-wrap;
+    word-wrap: break-word;
+}
+#device_overview-body .device-overview-form{
+    overflow:hidden;
+}
+.white-background-panel .x-column-header-inner{
+    padding-top: 2px !important;
+}
+.x-ie .white-background-panel .x-window-default-mr, .x-ie .x-window-default-mr{
+    padding-left: 0px !important;
+}
+.x-ie .white-background-panel .x-fieldset-body, .x-ie .white-background-panel .x-fieldset, legend{
+    overflow:visible !important;
+}
+.zenportlet .x-container-default{
+    padding: 3px 0 0 5px;
+}
+.x-ie #creds_0-body, .x-ie #manual_creds{
+    /* ie sets the height in quirks too high */
+    height:300px !important;
+}
+.x-window-header-body{ 
+   height:21px !important; 
+}
+
+#devdetailbar .x-container, #devdetailbar #detailrainbow, #devdetailbar .x-toolbar-separator, #devdetailbar .devdetailitem{
+    position:relative !important;
+    float:left;
+    top:0 !important;
+    left:auto !important;
+}
+#devdetailbar .x-toolbar-separator{
+    margin:13px !important;
+}
+.x-ie #devdetailbar .devdetail-textitem{
+    height:auto !important;
+    line-height: 34px !important;
+}
+.x-ie #devdetailbar .devdetail-textitem span{
+    display:inline-block;
+    height: 12px !important;
+    line-height: 30px !important;
+}
+.x-ie span.status-up-large {
+  background-position: right -59px;
+}
+.x-ie span.status-down-large {
+  background-position: right -89px;
+}
+.x-ie .x-window .x-btn-dialog-dark-small-disabled .x-btn-center{
+    background-image: url() !important;
+}
+#searchbox-container .searchfield-black .x-form-field{
+  color: white !important;
+}
+/* adding a scrollbar on the components details */
+#component_card #edit_panel-body{
+    overflow:auto;
+}
+/* underlines on ip addresses */
+a.z-entity{
+    text-decoration:underline !important;
+}
+a.z-entity:hover{
+    color:#222255 !important;
+}
+/* event details */
+#evdetail_log{
+    margin-bottom:10px;
+}
+#evdetail_log-body{
+    height:170px !important;
+}
+#evdetail_services{
+    margin:10px 0 10px 25px !important;
+    height: 25px !important;
+}
+.evdetail_props {
+  float: none !important;
+}
+/* fix diff between ie and everything else on jobs button */
+.x-ie #jobswidget-btnWrap .x-btn-inner{
+    padding-right:20px !important;
+}
+#deviceoverviewpanel_summary-body{
+    overflow:auto !important; 
+}
+/* fix diff between ie and everything else on jobs button */
+.x-ie #jobswidget-btnWrap .x-btn-inner{
+    padding-right:20px !important;
+}
+/* fix for config step 2 color issues on textboxes */
+#manualdiscoverform .selected_row{
+    background: url() #fff;  
+}
+
+/* some tabs style integration update on triggers  */ 
+.white-background-panel .x-tab-top-active{
+    background-image:none !important;
+    background-color: #ffffff !important;
+    top: 1px !important;
+    border-bottom-color: #ffffff;
+}
+.white-background-panel .x-tab-bar{
+    background-color: #ffffff ;
+    background-image: none ;
+}
+.white-background-panel .x-tab-bar-top .x-tab-bar-strip{
+    border-width: 0 ;
+}
+.white-background-panel .x-tab-bar-strip-default, .x-tab-bar-strip-default-plain{ 
+    background-color: #ffffff ;   
+}
+.white-background-panel .x-tab-bar-body .x-box-inner{
+    overflow: visible;
+    border-bottom: 1px solid #99BCE8;
+}
+.white-background-panel .x-tab-bar-top .x-tab-bar-body {
+    border-width: 0 ;
+}
+.white-background-panel .x-tab-default-top{
+    height: 22px !important;
+    border-bottom: none !important;
+    background-color: #ddd;
+    background-image: none; 
+    box-shadow: none;
+}
+/* jobs FF bug fix. Forces FF to re-render the item resulting in correct placement */
+#jobs .commonlivegridinfopanel{
+    top: 0px;
+}
+
+/* some overrides for the backcompat graphs under reports */
+#graph_report_form .zentable .x-toolbar-text{
+    width:295px;
+    overlfow:hidden;
+}
+#graph_report_form .zentable .innerzentable .x-panel-body,
+#graph_report_form .zentable .innerzentable .x-panel-default{
+    height:auto !important;
+    padding-bottom:20px;
+}
+#add_graph_point{
+    position:relative;
+}
+#add_graph_point #dialog_buttons{
+    position:absolute;
+    top:40px;
+}
+/* with 17+ version of FF, button breaks. This fixes it */
+.toright .x-btn-icon{
+    background-position: 0 -56px;
+}
+.toleft .x-btn-icon{
+    background-position: 0 -29px;
+}
+.watch-list-objects .yui-ac-content{
+    height: 150px;
+    overflow-y: auto !important; 
+}
+#device_grid-body .x-grid-cell-inner {
+  height:23px !important;
+} 

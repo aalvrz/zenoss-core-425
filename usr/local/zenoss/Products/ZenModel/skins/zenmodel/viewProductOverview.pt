@@ -1,0 +1,65 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+
+
+        <tal:block tal:define=" tabletitle string:Product">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr>
+      <td class="tableheader" align="left" colspan="1">
+      Name
+      </td>
+      <td class="tablevalues" colspan="1" align='left'>
+      <span tal:replace="here/id">product name</span>     
+      </td>
+      <td class="tableheader" align="left" colspan="1">
+      Manufacturer
+      </td>
+      <td class="tablevalues" colspan="1" align="left">
+      <span tal:replace="structure here/manufacturer/getPrimaryLink">
+        manufacturer</span>
+      </td>
+    </tr>
+    <tr>
+      <th class="tableheader" align="left" colspan="1">
+      Part Number
+      </th>
+      <td class="tablevalues" colspan="1" align="left">
+      <span tal:replace="here/partNumber">partnumber</span>
+      </td>
+      <th class="tableheader" align="left" colspan="1">
+      Description
+      </th>
+      <td class="tablevalues" colspan="3" align='left'>
+      <span tal:replace="here/description">description</span>
+      </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+
+<span metal:use-macro="here/templates/macros/contentSeparator"/>
+
+
+</tal:block>
+</tal:block>

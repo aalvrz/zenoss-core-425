@@ -1,0 +1,72 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+<tal:block tal:define="editable python:here.isEditable(here.device())">
+
+<form tal:attributes="method string:post;
+                action here/absolute_url_path;
+                name string:datasourceList">
+<input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+<tal:block tal:define="tableName string:rrdtempdslist; 
+        objects here/getRRDDataSources;
+        batch python:here.ZenTableManager.getBatch(tableName,objects);
+        tabletitle string:Data Sources;
+        menu_id python:test(editable, 'DataSource_list', None);">
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+<tal:block metal:fill-slot="zentablecontents">
+<!-- BEGIN TABLE CONTENTS -->
+    <input type='hidden' name='tableName' tal:attributes="value tableName" />
+    <tal:block metal:use-macro="here/viewRRDTemplate/macros/dsbody"/>
+<!-- END TABLE CONTENTS -->
+</tal:block>
+</tal:block>
+</tal:block>
+</form>
+
+<br/>
+
+<form tal:attributes="method string:post;
+                action here/absolute_url_path;
+                name string:thresholdList">
+<input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+<tal:block tal:define="tableName string:rrdthresholdlist; 
+        objects here/thresholds;
+        tabletitle string:Thresholds;
+        batch python:here.ZenTableManager.getBatch(tableName,objects);
+        menu_id python:test(editable, 'Threshold_list', None);">
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+<tal:block metal:fill-slot="zentablecontents">
+<!-- BEGIN TABLE CONTENTS -->
+    <input type='hidden' name='tableName' tal:attributes="value tableName" />
+    <tal:block metal:use-macro="here/viewRRDTemplate/macros/threshbody"/>
+<!-- END TABLE CONTENTS -->
+</tal:block>
+</tal:block>
+</tal:block>
+</form>
+
+<br/>
+
+<form tal:attributes="method string:post;
+                action here/absolute_url_path;
+                name string:graphList">
+<input type="hidden" name="zenScreenName" tal:attributes="value template/id"/>
+<input type="hidden" name="templateId" tal:attributes="value template/id"/>
+<tal:block tal:define="tableName string:rrdgraphlist; 
+        objects here/graphs;
+        tabletitle string:Graphs;
+        batch python:here.ZenTableManager.getBatch(tableName,objects);
+        menu_id python:test(editable, 'Graph_list', None);">
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+<tal:block metal:fill-slot="zentablecontents">
+<!-- BEGIN TABLE CONTENTS -->
+    <input type='hidden' name='tableName' tal:attributes="value tableName" />
+    <tal:block metal:use-macro="here/viewRRDTemplate/macros/graphbody"/>
+<!-- END TABLE CONTENTS -->
+</tal:block>
+</tal:block>
+</tal:block>
+</form>
+
+</tal:block>        
+</tal:block>        
+</tal:block>

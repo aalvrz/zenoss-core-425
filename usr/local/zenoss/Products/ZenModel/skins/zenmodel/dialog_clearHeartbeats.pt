@@ -1,0 +1,42 @@
+<h2>Clear Heartbeats</h2>
+<br/>
+<p>
+Are you sure you want to clear heartbeats for this device?<br/>
+</p>
+<script>
+var dynamicDialog = Ext.getCmp('dynamic-dialog');
+var oldSubmitHandler = dynamicDialog.submitHandler;
+var newSubmitHandler = function(button, event) {
+
+    var eam = Ext.create('EventActionManager');
+
+    eam.configure({
+        isLargeRequest: function() {
+            return true;
+        },
+        onFinishAction: function() {
+            Ext.getCmp('device_events').updateRows();
+            Ext.getCmp('devdetailbar').refresh();
+            Zenoss.message.info(Ext.String.format(
+                '{0} {1}',
+                this.eventsUpdated,
+                _t('events were updated.')
+            ));
+            button.setHandler(oldSubmitHandler);
+        },
+        findParams: function() {
+            return {
+                params: Ext.encode({
+                    device : Zenoss.env.device_uid.split('/').pop()
+                })
+            };
+        }
+    });
+
+    eam.execute(Zenoss.remote.EventsRouter.clear_device_heartbeats);
+};
+// This is pretty dependent on the submit button being the first button,
+// but then again this entire .pt depends on the DynamicForm anyway.
+var elements = dynamicDialog.getDockedItems('toolbar')[0];
+elements.items.items[0].setHandler(newSubmitHandler);
+</script>

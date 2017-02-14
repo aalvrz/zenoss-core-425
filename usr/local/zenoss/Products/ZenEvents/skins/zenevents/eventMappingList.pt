@@ -1,0 +1,63 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane">
+<form method="post" tal:attributes="action request/URL">
+
+<tal:block tal:define="
+    objects here/getInstances;
+    tableName string:eventmappinglist;
+    menu_id string:EventMapping_list;
+    batch python:here.ZenTableManager.getBatch(tableName, objects);
+    tblcolspan string:4;
+    showfilterbox python:True;
+    tabletitle string:EventClass Mappings;">
+
+<tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+<tal:block metal:fill-slot="zentablecontents">
+    <tr>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'primarySortKey','Id')">
+            Id
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'getEventClass','EventClass')">
+            EventClass
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'ruleOrRegex','Evaluation')">
+            Evaluation
+        </th>
+        <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                    tableName,'getStatus','Events')">
+            Snmp
+        </th>
+    </tr>
+    <tal:block tal:repeat="evinst batch">
+    <tr tal:define="odd repeat/evinst/odd"
+        tal:attributes="class python:odd and 'odd' or 'even'">
+        <td class="tablevalues">
+            <input tal:condition="here/isManager"
+                type="checkbox" name="ids:list"
+                tal:attributes="value evinst/getId;
+                    disabled python:'disabled' if not (evinst.aq_parent.aq_parent is here.instances.aq_parent) else nothing"/>
+            <a tal:attributes="href evinst/getPrimaryUrlPath"
+            tal:content="evinst/id">Name</a>
+        </td>
+        <td class="tablevalues">
+            <a tal:attributes="href string:${evinst/getEventClassHref}/eventMappingList"
+                tal:content="evinst/getEventClass"></a>
+        </td>
+        <td class="tablevalues" tal:content="python:evinst.ruleOrRegex(60)"/>
+        <td class="tablevalues" tal:content="python:evinst.getStatus()"
+            align="center">0</td>
+    </tr>
+    </tal:block>
+    <tr><td class="tableheader" colspan="4">
+    <form metal:use-macro="here/zenTableNavigation/macros/navpagenofilter2"/>
+    </td></tr>
+</tal:block>
+</tal:block>
+</tal:block>
+
+</form>
+</tal:block>
+</tal:block>

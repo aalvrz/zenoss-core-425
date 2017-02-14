@@ -1,0 +1,17 @@
+Metadata-Version: 1.0
+Name: zope-app-compat
+Version: 1.0
+Summary: Backwards compatibility layer for ZenPacks that use zope.app
+Home-page: http://dev.zenoss.com
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: GPL
+Description: Introduction
+        ============
+        
+        
+        
+        This product may contain traces of nuts.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python

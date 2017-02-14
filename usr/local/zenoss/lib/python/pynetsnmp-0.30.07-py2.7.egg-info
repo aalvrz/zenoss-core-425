@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: pynetsnmp
+Version: 0.30.07
+Summary: ctypes wrapper for net-snmp
+Home-page: UNKNOWN
+Author: Eric C. Newton
+Author-email: ecn@zenoss.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN

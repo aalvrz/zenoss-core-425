@@ -1,0 +1,70 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="Products.ZenWidgets">
+
+    <include package="Products.ZenModel" file="permissions.zcml"/>
+
+    <browser:page
+        for="*"
+        name="quickstart_macros"
+        class=".views.QuickstartBase"
+        permission="zope2.Public"
+        />
+
+    <browser:page
+        for="*"
+        name="quickstart"
+        class=".views.OutlineView"
+        permission="zenoss.ManageDMD"
+        />
+
+    <browser:page
+        for="*"
+        name="qs-step1"
+        class=".userViews.CreateUserView"
+        permission="zope2.ManageUsers"
+        />
+
+    <!-- Form actions for step 1 -->
+
+        <browser:page
+            for="*"
+            name="qs-createuser"
+            class=".userViews.CreateUserView"
+            attribute="createUser"
+            permission="zope2.ManageUsers"
+            />
+
+    <!-- End form actions -->
+
+    <browser:page
+        for="*"
+        name="qs-step2"
+        class=".views.DeviceAddView"
+        template="templates/adddevice.pt"
+        permission="zenoss.ManageDMD"
+        />
+
+    <!-- Form actions for step 2 -->
+
+        <browser:page
+            for="*"
+            name="manual_add"
+            class=".views.DeviceAddView"
+            attribute="manual"
+            permission="zenoss.ManageDMD"
+            />
+
+        <browser:page
+            for="*"
+            name="auto_add"
+            class=".views.DeviceAddView"
+            attribute="autodiscovery"
+            permission="zenoss.ManageDMD"
+            />
+
+    <!-- End form actions -->
+
+</configure>

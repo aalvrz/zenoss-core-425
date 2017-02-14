@@ -1,0 +1,45 @@
+<form id="addIpService_form" tal:attributes="action context/os/absolute_url_path">
+<input type="hidden" name="userCreated" value="True">
+Service Class<br/>
+<div id="ipServiceClassLiveSearch">
+</div>
+<br/><br/>
+Protocol
+<br/>
+<select name="protocol">
+<option tal:repeat="e python:('tcp','udp')" tal:content="e"
+    tal:attributes="value e"/>
+</select>
+</form>
+<script>
+var sel = new Ext.form.ComboBox({
+    renderTo: Ext.get('ipServiceClassLiveSearch'),
+    hiddenName: 'newClassName',
+    width: 100,
+    forceSelection: true,
+    triggerAction: 'all',
+    valueField: 'value',
+    displayField: 'name',
+    lazyRender: true,
+    store: new Ext.data.DirectStore({
+        root: 'data',
+        directFn: Zenoss.remote.ServiceRouter.getClassNames,
+        fields: ['name', 'value'],
+        baseParams: {
+            uid: '/zport/dmd/Services/IpService'
+        }
+    })
+});
+
+var addipservice_form = new Zenoss.dialog.DialogFormPanel({
+    existingFormId: 'addIpService_form',
+    submitName: 'addIpService:method',
+    jsonResult: false,
+    items: [sel],
+    listeners: {
+        actioncomplete: Zenoss.env.componentReloader('IpService')
+    }
+});
+
+sel.focus();
+</script>

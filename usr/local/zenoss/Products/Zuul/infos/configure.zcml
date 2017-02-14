@@ -1,0 +1,238 @@
+<!--
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2009, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+-->
+
+
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five">
+
+    <!-- Tree node adapters -->
+    <adapter factory=".process.ProcessNode"
+             for="..interfaces.IProcessEntity"
+             provides="..interfaces.IProcessNode"/>
+
+    <adapter factory=".device.DeviceOrganizerNode"
+             for="Products.ZenModel.DeviceOrganizer.DeviceOrganizer"
+             provides="..interfaces.IDeviceOrganizerNode"/>
+
+    <adapter provides="..interfaces.IMarshaller"
+             for="..interfaces.IDeviceOrganizerNode"
+             factory=".device.DeviceOrganizerTreeNodeMarshaller"
+             />
+
+    <adapter factory=".template.TemplateNode"
+             for="Products.ZenModel.RRDTemplate.RRDTemplate"
+             provides="..interfaces.ITemplateNode"/>
+
+    <adapter factory=".template.TemplateLeaf"
+             for="Products.ZenModel.RRDTemplate.RRDTemplate"
+             provides="..interfaces.ITemplateLeaf"/>
+
+    <adapter factory=".template.RRDDataSourceInfo"
+             for="Products.ZenModel.RRDDataSource.RRDDataSource"
+             provides="..interfaces.IRRDDataSourceInfo"/>
+
+    <adapter factory=".template.ThresholdInfo"
+             for="Products.ZenModel.ThresholdClass.ThresholdClass"
+             provides="..interfaces.IThresholdInfo"/>
+
+    <adapter factory=".template.MinMaxThresholdInfo"
+             for="Products.ZenModel.MinMaxThreshold.MinMaxThreshold"
+             provides="..interfaces.IMinMaxThresholdInfo"/>
+
+    <adapter factory=".template.GraphInfo"
+             for="Products.ZenModel.GraphDefinition.GraphDefinition"
+             provides="..interfaces.IGraphInfo"/>
+
+
+
+    <adapter factory=".template.DataPointInfo"
+             for="Products.ZenModel.RRDDataPoint.RRDDataPoint"
+             provides="..interfaces.IDataPointInfo"/>
+
+    <adapter factory=".template.BasicDataSourceInfo"
+             for="Products.ZenModel.BasicDataSource.BasicDataSource"
+             provides="..interfaces.IBasicDataSourceInfo"/>
+
+    <adapter factory=".template.PingDataSourceInfo"
+             for="Products.ZenModel.PingDataSource.PingDataSource"
+             provides="..interfaces.IPingDataSourceInfo"/>
+
+    <adapter factory=".template.DataPointAliasInfo"
+             for="Products.ZenModel.RRDDataPointAlias.RRDDataPointAlias"
+             provides="..interfaces.IDataPointAlias"/>
+
+    <adapter provides="..interfaces.IInfo"
+             for="..interfaces.IProcessEntity"
+             factory=".process.ProcessInfo"
+             />
+
+    <adapter factory=".command.UserCommandInfo"
+             for="Products.ZenModel.UserCommand.UserCommand"
+             provides="..interfaces.IUserCommandInfo"/>
+
+    <adapter provides="..interfaces.IInfo"
+             for="..interfaces.IComponent"
+             factory=".component.ComponentInfo"
+             />
+
+    <adapter factory=".service.IpServiceClassInfo"
+             provides="..interfaces.IIpServiceClassInfo"
+             for="Products.ZenModel.IpServiceClass.IpServiceClass"
+             />
+
+    <adapter factory=".service.WinServiceClassInfo"
+             provides="..interfaces.IWinServiceClassInfo"
+             for="Products.ZenModel.WinServiceClass.WinServiceClass"
+             />
+
+    <adapter factory=".service.ServiceOrganizerInfo"
+             provides="..interfaces.IServiceOrganizerInfo"
+             for="Products.ZenModel.ServiceOrganizer.ServiceOrganizer"
+             />
+
+    <adapter factory=".service.ServiceOrganizerNode"
+             provides="..interfaces.IServiceOrganizerNode"
+             for="Products.ZenModel.ServiceOrganizer.ServiceOrganizer"
+             />
+
+    <adapter provides="..interfaces.IDeviceInfo"
+             for="..interfaces.IDevice"
+             factory=".device.DeviceInfo"
+             />
+
+    <adapter provides="..interfaces.IDeviceOrganizerInfo"
+             for="Products.ZenModel.DeviceOrganizer.DeviceOrganizer"
+             factory=".device.DeviceOrganizerInfo"
+             />
+
+    <adapter provides="..interfaces.IInfo"
+             for="Products.ZenModel.ZenModelRM.ZenModelRM"
+             factory=".InfoBase"
+             />
+
+    <adapter provides="..interfaces.IIpNetworkInfo"
+             for="Products.ZenModel.IpNetwork.IpNetwork"
+             factory=".network.IpNetworkInfo"
+             />
+
+    <adapter provides="..interfaces.IIpNetworkNode"
+             for="Products.ZenModel.IpNetwork.IpNetwork"
+             factory=".network.IpNetworkNode"
+             />
+
+    <adapter provides="..interfaces.IIpAddressInfo"
+             for="Products.ZenModel.IpAddress.IpAddress"
+             factory=".network.IpAddressInfo"
+             />
+
+    <adapter factory=".mib.MibInfo"
+             provides="..interfaces.IMibInfo"
+             for="Products.ZenModel.MibModule.MibModule"
+             />
+
+    <adapter factory=".mib.MibNodeInfo"
+             provides="..interfaces.IMibNodeInfo"
+             for="Products.ZenModel.MibNode.MibNode"
+             />
+
+    <adapter factory=".mib.MibNotificationInfo"
+             provides="..interfaces.IMibNotificationInfo"
+             for="Products.ZenModel.MibNotification.MibNotification"
+             />
+
+    <adapter factory=".mib.MibOrganizerInfo"
+             provides="..interfaces.IMibOrganizerInfo"
+             for="Products.ZenModel.MibOrganizer.MibOrganizer"
+             />
+
+    <adapter factory=".mib.MibOrganizerNode"
+             provides="..interfaces.IMibOrganizerNode"
+             for="Products.ZenModel.MibOrganizer.MibOrganizer"
+             />
+
+    <adapter provides="..interfaces.IOrganizerInfo"
+             for="Products.ZenModel.Organizer.Organizer"
+             factory=".organizer.OrganizerInfo"
+             />
+
+    <adapter provides="..interfaces.ILocationOrganizerInfo"
+             for="Products.ZenModel.Location.Location"
+             factory=".organizer.LocationOrganizerInfo"
+             />
+
+    <adapter provides="..interfaces.actions.IEmailActionContentInfo"
+             for="Products.ZenModel.NotificationSubscription.NotificationSubscription"
+             factory=".actions.EmailActionContentInfo"
+             />
+
+    <adapter provides="..interfaces.actions.IPageActionContentInfo"
+             for="Products.ZenModel.NotificationSubscription.NotificationSubscription"
+             factory=".actions.PageActionContentInfo"
+             />
+
+    <adapter provides="..interfaces.actions.ICommandActionContentInfo"
+             for="Products.ZenModel.NotificationSubscription.NotificationSubscription"
+             factory=".actions.CommandActionContentInfo"
+             />
+
+    <adapter provides="..interfaces.actions.ISnmpTrapActionContentInfo"
+             for="Products.ZenModel.NotificationSubscription.NotificationSubscription"
+             factory=".actions.SnmpTrapActionContentInfo"
+             />
+
+    <adapter provides="..interfaces.actions.ISyslogActionContentInfo"
+             for="Products.ZenModel.NotificationSubscription.NotificationSubscription"
+             factory=".actions.SyslogActionContentInfo"
+             />
+
+    <adapter provides="..interfaces.INotificationSubscriptionInfo"
+             for="Products.ZenModel.NotificationSubscription.NotificationSubscription"
+             factory=".triggers.NotificationSubscriptionInfo"
+             />
+    
+    <adapter provides="Products.Zuul.interfaces.INotificationWindowInfo"
+             for="Products.ZenModel.NotificationSubscriptionWindow.NotificationSubscriptionWindow"
+             factory="Products.Zuul.infos.triggers.NotificationWindowInfo"
+             />
+
+    <adapter provides="Products.Zuul.interfaces.IReportClassNode"
+             for="Products.ZenModel.ReportClass.ReportClass"
+             factory="Products.Zuul.infos.report.ReportClassNode"
+             />
+
+    <adapter provides="Products.Zuul.interfaces.IReportNode"
+             for="Products.ZenModel.Report.Report"
+             factory="Products.Zuul.infos.report.ReportNode"
+             />
+
+    <adapter provides="Products.Zuul.interfaces.IReportNode"
+             for="Products.ZenModel.DeviceReport.DeviceReport"
+             factory="Products.Zuul.infos.report.ReportNode"
+             />
+
+    <adapter provides="Products.Zuul.interfaces.IReportNode"
+             for="Products.ZenModel.GraphReport.GraphReport"
+             factory="Products.Zuul.infos.report.ReportNode"
+             />
+
+    <adapter provides="Products.Zuul.interfaces.IReportNode"
+             for="Products.ZenModel.MultiGraphReport.MultiGraphReport"
+             factory="Products.Zuul.infos.report.ReportNode"
+             />
+
+    <adapter provides="Products.Zuul.interfaces.IJobInfo"
+             for="Products.Jobber.manager.JobRecord"
+             factory="Products.Zuul.infos.jobs.JobInfo"
+             />
+
+    <include package=".component"/>
+    <include file="graphpoint.zcml"/>
+</configure>

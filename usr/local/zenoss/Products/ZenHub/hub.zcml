@@ -1,0 +1,67 @@
+<!--
+##############################################################################
+#
+# Copyright (C) Zenoss, Inc. 2009, all rights reserved.
+#
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+#
+##############################################################################
+-->
+
+
+<configure xmlns="http://namespaces.zope.org/zope"
+           >
+
+  <!-- Only load this in a ZenHub process -->
+  <utility
+    factory=".invalidations.InvalidationProcessor"
+    provides=".interfaces.IInvalidationProcessor"
+    />
+
+  <utility
+    factory=".invalidationfilter.DeviceClassInvalidationFilter"
+    provides=".interfaces.IInvalidationFilter"
+    name="DeviceClass"
+    />
+
+  <utility
+    factory=".invalidationfilter.OSProcessOrganizerFilter"
+    provides=".interfaces.IInvalidationFilter"
+    name="OSProcessOrganizer"
+    />
+
+  <utility
+    factory=".invalidationfilter.OSProcessClassFilter"
+    provides=".interfaces.IInvalidationFilter"
+    name="OSProcessClass"
+    />
+
+  <utility
+    factory=".invalidationfilter.IgnorableClassesFilter"
+    provides=".interfaces.IInvalidationFilter"
+    name="IgnorableClasses"
+    />
+
+    <adapter provides=".interfaces.IInvalidationOid"
+             for="Products.ZenModel.DeviceComponent.DeviceComponent"
+             factory=".invalidationoid.DeviceOidTransform"
+            />
+
+    <adapter provides=".interfaces.IInvalidationOid"
+             for="Products.ZenModel.DeviceHW.DeviceHW"
+             factory=".invalidationoid.DeviceOidTransform"
+            />
+
+    <adapter provides=".interfaces.IInvalidationOid"
+             for="Products.ZenModel.OperatingSystem.OperatingSystem"
+             factory=".invalidationoid.DeviceOidTransform"
+            />
+
+    <adapter provides=".interfaces.IInvalidationOid"
+             for="Products.ZenRelations.PrimaryPathObjectManager.PrimaryPathObjectManager"
+             factory=".invalidationoid.DefaultOidTransform"
+            />
+
+
+</configure>

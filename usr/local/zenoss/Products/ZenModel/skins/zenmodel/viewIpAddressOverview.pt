@@ -1,0 +1,149 @@
+<tal:block metal:use-macro="here/templates/macros/page2">
+<tal:block metal:fill-slot="contentPane">
+
+
+        <tal:block tal:define=" tabletitle string:IP Address">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr>
+        <td class=tableheader align=left width=25%>
+            IP Address 
+        </td>
+        <td class=tablevalues align=left
+            tal:content="here/getIpAddress">
+            1.1.1.1/24
+        </td>
+        <td class=tableheader align=left width=25%>
+            Device
+        </td>
+        <td class=tablevalues align=left>
+            <a class=tablevalues 
+                tal:condition="python:here.getDeviceName() != 'No Device'"
+                tal:content="here/getDeviceName" 
+                tal:attributes="href here/getDeviceUrl">device</a>
+            <a class=tablevalues 
+                tal:condition="python:here.getDeviceName() == 'No Device'"
+                tal:attributes="href python:'/zport/dmd/addDevice?deviceName=' + here.getIpAddress().split('/')[0]">
+                Add Device</a>
+            <span tal:condition="not: here/getDeviceUrl" 
+                tal:content="here/getDeviceName" />
+        </td>
+    </tr>
+    <tr>
+        <td class=tableheader align=left width=25%>
+            Network
+        </td>
+        <td class=tablevalues align=left>
+            <a class=tablevalues tal:content="here/getNetworkName" 
+                tal:attributes="href here/getNetworkUrl">device</a>
+        </td>
+        <td class=tableheader align=left width=25%>
+            Interface
+        </td>
+            <td class="tablevalues" align="left"> 
+                    <a href="_"  
+                    tal:condition="here/interface" 
+                    tal:attributes="href python:here.interface().getPrimaryUrlPath()" 
+                    tal:content="python:here.interface().name()">eth0</a> 
+                    <span tal:condition="not:here/interface"  
+                        tal:content="here/getInterfaceName" />
+            </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+<br />
+
+
+        <tal:block tal:define="objects here/clientroutes/objectValuesAll;
+    tableName string:dependentipdevices;
+    batch python:here.ZenTableManager.getBatch(tableName,objects);
+    tabletitle string:Dependent Devices">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    
+    <tr>
+    <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                tableName,'primarySortKey','Device')">
+        Device
+    </th>
+    <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                tableName,'getInterfaceName','Interface')">
+        Interface
+    </th>
+    <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                tableName,'pingStatus','Ping')">
+        Ping
+    </th>
+    <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
+                tableName,'snmpStatus','Snmp')">
+        Snmp
+    </th>
+    <tr tal:repeat="route batch">
+        <td class="tablevalues" align="left">
+            <a tal:attributes="href route/getDeviceUrl"
+            tal:content="route/getDeviceName">devicenamelink</a>
+        </td>
+        <td class="tablevalues" align="left"
+            tal:content="route/getInterfaceName">
+            intname
+        </td>
+        <td tal:define="status route/getPingStatus"
+            tal:attributes="class python:route.getStatusCssClass(status)"
+            tal:content="python:here.convertStatus(status)" align="center">
+            ping status
+        </td>
+        <td tal:define="status route/getSnmpStatus"
+            tal:attributes="class python:route.getStatusCssClass(status)"
+            tal:content="python:here.convertStatus(status)" align="center">
+            Snmp Status
+        </td>
+    </tr>
+    <tr>
+    <td colspan="4" class="tableheader" align='center'>
+        <form metal:use-macro="here/zenTableNavigation/macros/navtool"></form>
+    </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+
+</tal:block>
+</tal:block>

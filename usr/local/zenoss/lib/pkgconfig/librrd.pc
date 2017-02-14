@@ -1,0 +1,10 @@
+prefix=/usr/local/zenoss
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: librrd
+Description: Library for the RRDtool
+Version: 1.4.7
+Libs: -L${libdir} -lrrd
+Cflags: -I${includedir}

@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: zenpacksupport
+Version: 1.0
+Summary: Support for Zenoss ZenPacks packaged as python eggs.
+Home-page: UNKNOWN
+Author: Zenoss, Inc.
+Author-email: UNKNOWN
+License: GPLv2
+Description: Support for Zenoss ZenPacks packaged as python eggs.
+Platform: UNKNOWN

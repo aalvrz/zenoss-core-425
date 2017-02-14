@@ -1,0 +1,319 @@
+##############################################################################
+# 
+# Copyright (C) Zenoss, Inc. 2007, all rights reserved.
+# 
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+# 
+##############################################################################
+
+
+# Bitrock installer sets the following variables properly for the stack
+# in setenv.sh.  Avoid undoing that goodness.
+# NB: This should probably be refactored per MT's idea of generalizing
+# setenv.sh for all artifacts.
+
+if [ -z "$ZENOSS_BITROCK_STACK" ];then
+   INSTANCE_HOME=$ZENHOME
+   export INSTANCE_HOME
+   if [ -d /usr/lib/zope ] ; then
+      # appliance
+      ZOPEHOME=/usr/lib/zope
+      PYTHONPATH=$ZENHOME/lib/python:$ZOPEHOME/lib/python
+   else
+      # rpm / source build
+      ZOPEHOME=$ZENHOME
+      PYTHONPATH=$ZENHOME/lib/python
+   fi
+   export PYTHONPATH
+fi
+PYTHON=$ZENHOME/bin/python
+
+# zensocket alternative program
+PYRAW=$ZENHOME/bin/pyraw
+
+SYBASE=$ZENHOME/sybase
+export SYBASE
+
+VARDIR=$ZENHOME/var
+CFGDIR=$ZENHOME/etc
+
+ZENPRODUCTS="ZenModel ZenHub ZenReports ZenWin ZenUtils  ZenRelations ZenStatus ZenRRD DataCollector ZenWidgets ZenEvents"
+
+SYS=`uname`
+PS="ps -eo pid"
+
+if [ $SYS = "Darwin" -o $SYS = "FreeBSD" ]; then
+    PS="ps -axo pid"
+fi
+
+CMD=$1
+shift
+
+pidFile() {
+   if [ -z "$PIDFILE" ] ; then
+       MONITOR=`grep '^[ 	]*monitor' $1 2>/dev/null | tr -d '\r' | tail -1 | awk '{ print $2 }'`
+       if [ -z "$MONITOR" ] ; then MONITOR=localhost ; fi
+       PIDFILE="$VARDIR/`basename $PRGNAME .py`-$MONITOR.pid"
+   fi
+   echo "$PIDFILE"
+}
+
+running() {
+    PIDFILE=`pidFile $CFGFILE`
+
+    if [ -f $PIDFILE ]; then
+        PID=`cat $PIDFILE 2>/dev/null`
+        if [ -d "/proc" ]; then
+            # check the /proc directory first
+            if [ -d "/proc/$PID" ]; then
+                kill -0 $PID 2>/dev/null
+                return $?
+            fi
+        else
+            kill -0 $PID 2>/dev/null || $PS | grep -q "^ *$PID$"
+            return $?
+        fi
+    fi
+    return 1
+}
+
+pyexec() {
+    WRAPPER=$PYTHON
+    if [ "$PRGNAME" = "zendisc.py" ] ; then
+        WRAPPER=$PYRAW
+    fi
+    if [ -z "$PRGMODULE" ]; then
+        PRG="$PRGHOME/$PRGNAME"
+    else
+        PRG="$PRGMODULE"
+        MODULE_OPT="-m"
+    fi
+    if [ -n "$CFGFILE" ]; then
+        set -- --configfile $CFGFILE "$@"
+    fi
+    exec $WRAPPER $MODULE_OPT $PRG "$@"
+
+}
+
+start() {
+    PIDFILE=`pidFile $CFGFILE`
+    if running; then    
+        echo is already running
+    else
+        echo starting...
+        pyexec --cycle --daemon "$@"
+    fi
+}
+
+run() {
+    pyexec "$@"
+}
+
+stopbase() {
+    PIDFILE=`pidFile $CFGFILE`
+    WATCHDOGPID=`dirname $PIDFILE`/watchdog-`basename $PIDFILE`
+    KILLED=1
+    echo stopping...
+    # first, kill any watchdog
+    if [ -f $WATCHDOGPID ] ; then
+	kill -TERM `cat $WATCHDOGPID`
+	KILLED=$?
+	rm -f $WATCHDOGPID
+    fi
+    if running; then
+        # kill the daemon
+        PID=`cat $PIDFILE 2>/dev/null`
+	if [ x"$PID" != x ] ; then
+	    kill -TERM $PID
+	    if [ $? -gt 0 ]; then
+		rm -f $PIDFILE
+		echo clearing pid file
+	    fi
+        fi
+    else
+	# probably stopped by the watchdog
+        if [ "$KILLED" -ne 0 ] ; then
+	   echo already stopped
+        fi
+    fi
+}
+
+stop() {
+    # This is a placeholder for more complex shutdowns.
+    stopbase
+}
+
+restart() {
+    PIDFILE=`pidFile $CFGFILE`
+    PID=`cat $PIDFILE 2>/dev/null`
+    SUCCEEDED=
+    stop
+    for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+    do
+       sleep 0.75 2>/dev/null || sleep 1
+       if [ ! -f $PIDFILE ]; then
+           SUCCEEDED=1
+           break
+       fi
+    done
+    # Double-check ps output in case the pid file is stale
+    if [ -z "$SUCCEEDED" ]; then
+        ps -p $PID >/dev/null 2>&1 || SUCCEEDED=1
+    fi
+    # If we still haven't stopped, warn and fail, otherwise start
+    if [ -z "$SUCCEEDED" ]; then
+        echo "Unable to shut down process $PID. You might need to kill it manually."
+        exit 1
+    else
+        start "$@"
+    fi
+}
+
+status() {
+    PIDFILE=`pidFile $CFGFILE`
+    if running; then
+            echo program running\; pid=$PID
+            exit 0
+    else
+        echo not running
+        if [ -f $PIDFILE ]; then
+            rm -f $PIDFILE
+            exit 1
+        else
+            exit 3
+        fi
+    fi
+}
+
+help() {
+    pyexec -h
+}
+
+
+genconf() {
+    #
+    # Create a suitable default configuration file
+    #
+    pyexec --genconf
+}
+
+genxmlconfigs() {
+    #
+    # Create a suitable default configuration file
+    #
+    pyexec --genxmlconfigs
+}
+
+debug() {
+    PIDFILE=`pidFile $CFGFILE`
+    if [ -f $PIDFILE ]; then
+        PID=`cat $PIDFILE 2>/dev/null`
+        echo "Sending SIGUSR1 to $PID"
+        kill -s USR1 $PID 2>/dev/null || $PS | grep -q "^ *$PID$"
+        return $?
+    else
+        echo "Unable to find process to send SIGUSR1 signal"
+    fi
+
+}
+
+stats() {
+    PIDFILE=`pidFile $CFGFILE`
+    if [ -f $PIDFILE ]; then
+        PID=`cat $PIDFILE 2>/dev/null`
+        echo "Sending SIGUSR2 to $PID"
+        kill -s USR2 $PID 2>/dev/null || $PS | grep -q "^ *$PID$"
+        return $?
+    else
+        echo "Unable to find process to send SIGUSR2 signal"
+    fi
+
+}
+
+generic() {
+    case "$CMD" in
+      run)
+	    run "$@"
+	    ;;
+      start)
+	    start "$@"
+	    ;;
+      stop)
+	    stop
+	    ;;
+      restart)
+	    restart "$@"
+	    ;;
+      status)
+	    status
+	    ;;
+      help)
+	    help
+	    ;;
+      genconf)
+	    genconf
+	    ;;
+      genxmlconfigs)
+	    genxmlconfigs
+	    ;;
+      debug)
+	    debug "$@"
+	    ;;
+      stats)
+            stats "$@"
+            ;;
+      *)
+	    cat - <<HELP
+Usage: $0 {run|start|stop|restart|status|help|genconf|genxmlconfigs|debug|stats} [options]
+
+  where the commands are:
+
+    run     - start the program but don't put it in the background.
+              NB: This mode is good for debugging.
+
+    start   - start the program in daemon mode -- running in the background,
+              detached from the shell
+
+    stop    - stop the program
+
+    restart - stop and then start the program
+              NB: Sometimes the start command will run before the daemon
+                  has terminated.  If this happens just re-run the command.
+
+    status  - Check the status of a daemon.  This will print the current
+              process nuber if it is running.
+
+    help    - display the options available for the daemon
+
+    genconf - create an example configuration file with default settings 
+
+    genxmlconfigs - create an XML file with default settings
+
+    debug   - toggle the logging of daemons between Debug level and the default
+
+    stats   - display detailed statistics of the deamon
+
+HELP
+	    exit 1
+    esac
+    exit $?
+}
+
+notdaemon() {
+    case "$CMD" in
+      run)
+	    run "$@"
+	    ;;
+      start)
+	    run "$@"
+	    ;;
+      help)
+	    help
+	    ;;
+      *)
+	    echo $"Usage: $0 {run|help}"
+	    exit 1
+    esac
+    exit $?
+}

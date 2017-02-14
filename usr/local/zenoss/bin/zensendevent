@@ -1,0 +1,203 @@
+#!/usr/bin/env python
+##############################################################################
+#
+# Copyright (C) Zenoss, Inc. 2012, all rights reserved.
+#
+# This content is made available according to terms specified in
+# License.zenoss under the directory where your Zenoss product is installed.
+#
+##############################################################################
+
+'''
+Send events on a command line via XML-RPC.
+
+This command can be put on any machine with Python installed, and
+does not need Zope or Zenoss.
+
+Sending events from a XML file requires either:
+ * called from Zenoss box that has $ZENHOME/Products/ZenEvents/XmlEvents.py
+ * a copy of XmlEvents.py in the same directory as this file
+'''
+
+import os
+import socket
+
+from xmlrpclib import ServerProxy
+from optparse import OptionParser
+
+
+# Map of human severity strings to Zenoss severity values.
+sevconvert = {
+    'crit': 5,
+    'critical': 5,
+    'err': 4,
+    'error': 4,
+    'warn': 3,
+    'warning': 3,
+    'info': 2,
+    'debug': 1,
+    'clear': 0
+}
+
+
+# Default configuration options. May be overridden by environment variable,
+# command line option, or configuration file.
+DEFAULT_SERVER = 'localhost'
+XML_RPC_PORT = 8081
+DEFAULT_AUTH = 'admin:zenoss'
+
+# Default ZENHOME in case we're on a Zenoss server, but not the zenoss user.
+ZENHOME = os.environ.get('ZENHOME', '/opt/zenoss')
+
+
+def first_of(*choices):
+    '''
+    Return the first choice that isn't None.
+    '''
+    for x in choices:
+        if x is not None:
+            return x
+
+
+def value_from_conf(conf, name):
+    '''
+    Return value of named property from given standard configuration.
+    '''
+    conf_filename = os.path.join(ZENHOME, 'etc', '%s.conf' % conf)
+    try:
+        conf_file = open(conf_filename, 'r')
+        for line in conf_file:
+            line = line.strip()
+            if line.startswith(name):
+                return line.split()[1]
+
+        conf_file.close()
+
+    except Exception:
+        pass
+
+
+def auth_from_conf():
+    '''
+    Return zenhub credentials from configuration file.
+    '''
+    conf_filename = os.path.join(ZENHOME, 'etc', 'hubpasswd')
+    try:
+        conf_file = open(conf_filename)
+        auth = conf_file.read().strip()
+        conf_file.close()
+
+        if auth:
+            return auth
+
+    except Exception:
+        pass
+
+device = socket.getfqdn()
+if device.endswith('.'):
+    device = device[:-1]
+
+parser = OptionParser(usage="usage: %prog [options] summary")
+parser.add_option("-d", "--device", dest="device", default=device,
+    help="device from which this event is sent, default: %default")
+parser.add_option("-i", "--ipAddress", dest="ipAddress", default="",
+    help="Ip from which this event was sent, default: %default")
+parser.add_option("-y", "--eventkey", dest="eventkey", default="",
+    help="eventKey to be used, default: %default")
+parser.add_option("-p", "--component", dest="component", default="",
+    help="component from which this event is sent, default: ''")
+parser.add_option("-k", "--eventclasskey", dest="eventClassKey", default="",
+    help="eventClassKey for this event, default: ''")
+parser.add_option("-s", "--severity", dest="severity", default="Warn",
+    help="severity of this event: Critical, Error, Warn, Info, Debug, Clear")
+parser.add_option("-c", "--eventclass", dest="eventClass", default=None,
+    help="event class for this event, default: ''")
+parser.add_option("--monitor", dest="monitor", default="localhost",
+    help="monitor from which this event came")
+parser.add_option("--port", dest="port", default=None,
+    help="xmlrpc server port, default: %s" % XML_RPC_PORT)
+parser.add_option("--server", dest="server", default=None,
+    help="xmlrpc server, default: %s" % DEFAULT_SERVER)
+parser.add_option("--auth", dest="auth", default=None,
+    help="xmlrpc server auth, default: %s" % DEFAULT_AUTH)
+parser.add_option("-o", "--other", dest="other", default=[],
+    action='append',
+    help="Specify other event_field=value arguments. Can be specified"
+         " more than once.")
+parser.add_option('-f', "--file", dest="input_file", default="",
+    help="Import events from XML file.")
+parser.add_option('-v', dest="show_event", default=False,
+    action='store_true',
+    help="Show the event data sent to Zenoss.")
+
+
+opts, args = parser.parse_args()
+
+opts.server = first_of(
+    opts.server,
+    os.environ.get('ZENOSS_HUB_SERVER', None),
+    value_from_conf('global', 'hubhost'),
+    DEFAULT_SERVER)
+
+opts.port = first_of(
+    opts.port,
+    os.environ.get('ZENOSS_HUB_XMLRPC_PORT', None),
+    value_from_conf('zenhub', 'xmlrpcport'),
+    XML_RPC_PORT)
+
+opts.auth = first_of(
+    opts.auth,
+    os.environ.get('ZENOSS_HUB_AUTH', None),
+    auth_from_conf(),
+    DEFAULT_AUTH)
+
+url = "http://%s@%s:%s" % (opts.auth, opts.server, opts.port)
+serv = ServerProxy(url)
+
+if opts.input_file:
+    import sys
+    try:
+        import Globals
+        from Products.ZenEvents.XmlEvents import sendXMLEvents
+    except ImportError:
+        try:
+            from XmlEvents import sendXMLEvents
+        except ImportError:
+            print "Unable to import needed XmlEvents.py libray -- exiting!"
+            sys.exit(1)
+    sent, total = sendXMLEvents(serv, opts.input_file)
+    print "Sent %s of %s events" % (sent, total)
+    sys.exit(0)
+
+evt = {}
+if opts.severity.lower() in sevconvert:
+    evt['severity'] = sevconvert[opts.severity.lower()]
+else:
+    parser.error('Unknown severity')
+evt['summary'] = " ".join(args)
+if not evt['summary']:
+    parser.error('no summary supplied')
+evt['device'] = opts.device
+evt['component'] = opts.component
+if opts.ipAddress:
+    evt['ipAddress'] = opts.ipAddress
+if opts.eventkey:
+    evt['eventKey'] = opts.eventkey
+if opts.eventClassKey:
+    evt['eventClassKey'] = opts.eventClassKey
+if opts.eventClass:
+    evt['eventClass'] = opts.eventClass
+evt['monitor'] = opts.monitor
+
+for line in opts.other:
+    try:
+        field, value = line.split('=', 1)
+        evt[field] = value
+    except:
+        pass
+
+if opts.show_event:
+    from pprint import pprint
+    pprint(evt)
+
+serv.sendEvent(evt)

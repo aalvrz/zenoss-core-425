@@ -1,0 +1,113 @@
+<tal:block metal:use-macro="here/page_macros/old-new">
+<tal:block metal:fill-slot="contentPane">
+
+<form method=post 
+    tal:attributes="action string:${here/absolute_url_path}">
+    <input type="hidden" name="zenScreenName" value="editManufacturer"/>
+    <input type="hidden" name="redirect" value="true"/>
+
+
+        <tal:block tal:define="message request/message | string:State at time:; 
+                           tabletitle string:${message} ${here/getNowString}">
+        <tal:block metal:use-macro="here/zenuimacros/macros/zentable">
+
+        <!--====Optional titlebar slots=============
+
+            <tal:block metal:fill-slot="filterslot">
+            </tal:block>
+
+            <tal:block metal:fill-slot="menuslot">
+            </tal:block>
+
+            ==========================================-->
+
+        <tal:block metal:fill-slot="zentablecontents">
+        <!-- BEGIN TABLE CONTENTS -->
+            
+    <tr>
+        <td class="tableheader">Name</td>
+        <td class="tablevalues">
+        <input class="tablevalues" type="text" name="title" size="25"
+            tal:attributes="value here/titleOrId" />
+        </td>
+        <td class="tableheader">Phone</td>
+        <td class="tablevalues">
+        <input class="tablevalues" type="text" name="supportNumber" size="15"
+            tal:attributes="value here/supportNumber"/>
+        </td> 
+        <td class="tablevalues" colspan="2"></td>
+    </tr>
+    <tr>
+        <td class="tableheader">URL</td>
+        <td class="tablevalues" colspan="5">
+        <input class="tablevalues" type="text" name="url" size="40"
+            tal:attributes="value here/url" />
+        </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Address 1</td>
+      <td class="tablevalues" colspan="5">
+        <input class="tablevalues" type="text" name="address1" size="40"
+            tal:attributes="value here/address1"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Address 2</td>
+      <td class="tablevalues" colspan="5">
+        <input class="tablevalues" type="text" name="address2" size="40"
+            tal:attributes="value here/address2"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">City</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="city" size="25"
+            tal:attributes="value here/city"/>
+      </td>
+      <td class="tableheader">State/Province</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="state" size="25"
+            tal:attributes="value here/state"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="tableheader">Country</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="country" size="25"
+            tal:attributes="value here/country"/>
+      </td>
+      <td class="tableheader">Postal/Zip Code</td>
+      <td class="tablevalues">
+        <input class="tablevalues" type="text" name="zip" size="10"
+            tal:attributes="value here/zip"/>
+      </td>
+    </tr>
+    <tr>
+        <td class="tableheader">Regexes</td>
+        <td class="tablevalues" colspan="3">
+            <textarea class="tablevalues" rows="5" cols="60"
+                name="regexes:lines"
+                tal:content="python:'\n'.join(here.regexes)">
+            </textarea>
+        </td>
+    </tr>
+    <tr>
+        <td class=tableheader align="left" >
+        </td>
+        <td align="left"  class="tableheader" colspan="5">
+            <input class="tableheader" type="submit" value=" Save "
+                name="manage_editManufacturer:method" />
+        </td>
+    </tr>
+
+        <!-- END TABLE CONTENTS -->
+
+        </tal:block>
+        </tal:block>
+        </tal:block>
+        
+
+</form>
+
+</tal:block>
+</tal:block>
