@@ -3,9 +3,9 @@ Version: 03c
 License: unknown
 Vendor: root@ubuntu
 Architecture: amd64
-Maintainer: <root@ubuntu>
+Maintainer: Andres Alvarez
 Installed-Size: 476530
 Section: default
 Priority: extra
 Homepage: http://example.com/no-uri-given
-Description: no description given
+Description: Zenoss Core 4.2.5
